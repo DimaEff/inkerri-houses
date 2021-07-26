@@ -2,7 +2,7 @@ import firebase from 'firebase';
 import 'firebase/firestore';
 
 
-export const app = firebase.initializeApp({
+const app = firebase.initializeApp({
     "projectId": "houses-inkerri",
     "appId": "1:404869182577:web:6043355bc0a7e2757857d0",
     "storageBucket": "houses-inkerri.appspot.com",
@@ -11,3 +11,6 @@ export const app = firebase.initializeApp({
     "authDomain": "houses-inkerri.firebaseapp.com",
     "messagingSenderId": "404869182577"
 });
+
+export const db = app.firestore();
+export const storage = app.storage();

@@ -1,38 +1,34 @@
 import React, {useState, useEffect} from "react";
+import {connect} from "react-redux";
 
-import {app} from "./firebase";
+import './App.css';
+import {db, storage} from "./firebase";
+import {addUpdateHouse, getHouses} from "./store/housesReducer";
 
 
-const db = app.firestore();
-
-function App() {
+const App = ({houses, getHouses, addUpdateHouse}) => {
     const [imgURL, setImgURL] = useState(null);
-    const [houses, setHouses] = useState([]);
 
-    const onSubmit = (e) => {
+    useEffect(() => {
+        const unsubscribe = db.collection("houses")
+            .onSnapshot(() => {
+                getHouses();
+            })
+
+        return () => unsubscribe();
+    }, [getHouses])
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         const houseName = e.target.houseName.value;
         if (!houseName) return
 
-        db.collection('houses').doc(houseName).set({
-            houseName,
-            imgURL,
-        })
+        await addUpdateHouse({houseName, imgURL});
     }
-
-    useEffect(() => {
-        const getHouses = async () => {
-            const housesCollection = await db.collection('houses').get();
-            setHouses(housesCollection.docs.map(doc => {
-                return doc.data();
-            }));
-        }
-        getHouses();
-    }, [])
 
     const onFileChange = async (e) => {
         const file = e.target.files[0];
-        const storageRef = app.storage().ref();
+        const storageRef = storage.ref();
         const fileRef = storageRef.child(file.name);
         await fileRef.put(file);
         const imgURL = await fileRef.getDownloadURL();
@@ -46,12 +42,18 @@ function App() {
                 <input type="text" name={'houseName'} placeholder={'name'}/>
                 <button>submit</button>
             </form>
-            {houses.map(house => <div key={house.houseName}>
-                <img style={{height: '100px', width: '100px',}} src={house.imgURL} alt={house.houseName}/>
-                {house.houseName}
-            </div>)}
+            {
+                houses.map(house => <div key={house.houseName}>
+                    <img style={{height: '100px', width: '100px',}} src={house.imgURL} alt={house.houseName}/>
+                    {house.houseName}
+                </div>)
+            }
         </div>
     );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    houses: state.houses.houses,
+})
+
+export default connect(mapStateToProps, {getHouses, addUpdateHouse})(App);
