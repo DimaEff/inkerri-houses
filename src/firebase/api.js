@@ -1,5 +1,6 @@
-import {db} from './index'
-import {HOUSES, NEWS} from "./collections";
+import firebase from "firebase";
+
+import {db, storage, auth} from './index'
 
 
 const getCollectionData = async (collection) => {
@@ -15,26 +16,72 @@ const deleteData = async (collection, doc) => {
     if (!doc) await db.collection(collection).doc(doc).delete()
 }
 
-export const housesAPI = {
-    async getHouses() {
-        return await getCollectionData(HOUSES);
+const addImg = async (file) => {
+    const storageRef = storage.ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    const imgURL = await fileRef.getDownloadURL();
+
+    return imgURL;
+}
+
+export const commonAPI = {
+    async getCollection(collection) {
+        return await getCollectionData(collection);
     },
-    async addUpdateHouse(data, doc) {
-        await addUpdateData(HOUSES, data, doc);
+    async addUpdateDoc(docCollection, file, data, doc) {
+        let imgURL = file;
+        if (typeof file !== 'string') {
+            imgURL = await addImg(file);
+        }
+
+        await addUpdateData(docCollection, {...data, imgURL}, doc);
     },
-    async deleteHouse(doc) {
-        await deleteData(HOUSES, doc);
+    async deleteDoc(docCollection, doc) {
+        if (doc) await deleteData(docCollection, doc);
     },
 };
 
-export const newsAPI = {
-    async getNews() {
-        await getCollectionData(NEWS);
+export const userAPI = {
+    async login(email, password) {
+
     },
-    async addUpdateNews(data, doc) {
-        await addUpdateData(NEWS, data, doc);
+    async logout() {
+        await firebase.auth().signOut();
     },
-    async deleteNews(doc) {
-        await deleteData(NEWS, doc);
+    async getAllUsers() {
+
     },
+    async createNewUser(email, password) {
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+    },
+    async deleteUser(email) {
+
+    }
 }
+
+// export const housesAPI = {
+//     async getHouses() {
+//         return await getCollectionData(HOUSES);
+//     },
+//     async addUpdateHouse(file, data, doc) {
+//         const imgURL = await addImg(file);
+//         await addUpdateData(HOUSES, {...data, imgURL}, doc);
+//     },
+//     async deleteHouse(doc) {
+//         await deleteData(HOUSES, doc);
+//     },
+// };
+//
+// export const newsAPI = {
+//     async getNews() {
+//         await getCollectionData(NEWS);
+//     },
+//     async addUpdateNews(file, data, doc) {
+//         const imgURL = await addImg(file);
+//         await addUpdateData(NEWS, {...data, imgURL}, doc);
+//     },
+//     async deleteNews(doc) {
+//         await deleteData(NEWS, doc);
+//     },
+// }

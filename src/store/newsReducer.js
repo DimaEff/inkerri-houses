@@ -1,23 +1,23 @@
 import {commonAPI} from '../firebase/api';
-import {HOUSES} from "../firebase/collections";
+import {NEWS} from "../firebase/collections";
 
 
 // Ну вот я не знаю, редьюсеры(news, houses) очень похожи, но стоит ли
 // обобщать их в один
-const SET_HOUSES = 'houses_reducer/SET_HOUSES';
-const SET_FETCHING = 'houses_reducer/SET_FETCHING';
+const SET_NEWS = 'news_reducer/SET_NEWS';
+const SET_FETCHING = 'news_reducer/SET_FETCHING';
 
 const initialState = {
-    houses: [],
+    news: [],
     isFetching: false,
 }
 
-const housesReducer = (state=initialState, action) => {
+const newsReducer = (state=initialState, action) => {
     switch (action.type) {
-        case SET_HOUSES:
+        case SET_NEWS:
             return {
                 ...state,
-                houses: [...action.payload],
+                news: [...action.payload],
             }
 
         case SET_FETCHING:
@@ -31,18 +31,18 @@ const housesReducer = (state=initialState, action) => {
     }
 }
 
-export const getHouses = () => async (dispatch) => {
-    const data = await commonAPI.getCollection(HOUSES);
-    dispatch(setHouses(data));
+export const getNews = () => async (dispatch) => {
+    const data = await commonAPI.getCollection(NEWS);
+    dispatch(setNews(data));
 }
 
-export const addUpdateHouse = (file, data, doc) => async (dispatch) => {
+export const addUpdateNewsItem = (file, data, doc) => async (dispatch) => {
     dispatch(setFetching(true));
-    await commonAPI.addUpdateDoc(HOUSES, file, data, doc);
+    await commonAPI.addUpdateDoc(NEWS, file, data, doc);
     dispatch(setFetching(false));
 }
 
-const setHouses = (payload) => ({type: SET_HOUSES, payload});
+const setNews = (payload) => ({type: SET_NEWS, payload});
 const setFetching = (payload) => ({type: SET_FETCHING, payload})
 
-export default housesReducer;
+export default newsReducer;
