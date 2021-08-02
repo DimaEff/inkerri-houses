@@ -1,19 +1,28 @@
 import React, {useEffect} from "react";
 import {connect} from "react-redux";
+import * as yup from 'yup';
 
 import './App.css';
-import {db} from "./firebase";
+import {auth, db} from "./firebase";
 import {addUpdateHouse, getHouses} from "./store/housesReducer";
 import {addUpdateNewsItem, getNews} from "./store/newsReducer";
+import {setCurrentUser, logout} from "./store/userReducer";
+import AppContainer from "./components/common/AppContainer/AppContainer";
 import FeedbackForm from "./components/FeedbackForm/FeedbackForm";
-import LoginForm from "./components/LoginForm/LoginForm";
+import {callOrderTemplate} from "./utils/consts";
+import {Grid} from "@material-ui/core";
+import NeedHelp from "./components/NeedHelp/NeedHelp";
+import ConsultingConstraction from "./components/ConsultingConstruction/ConsultingConstraction";
+import Advantages from "./components/Advantages/Advantages";
 
 
-const App = ({houses, news, getHouses, addUpdateHouse, getNews, addUpdateNewsItem}) => {
+
+
+const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateNewsItem, logout, setCurrentUser}) => {
     useEffect(() => {
         const unsubscribe = db.collection("houses")
             .onSnapshot(() => {
-                getHouses();
+                getHouses()
             })
 
         return () => unsubscribe();
@@ -21,6 +30,12 @@ const App = ({houses, news, getHouses, addUpdateHouse, getNews, addUpdateNewsIte
 
     useEffect(() => {
         getNews()
+    }, [])
+
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+            setCurrentUser(user)
+        })
     }, [])
 
     const addHouse = async (e) => {
@@ -43,45 +58,9 @@ const App = ({houses, news, getHouses, addUpdateHouse, getNews, addUpdateNewsIte
 
     return (
         <div>
-            <div style={{display: 'flex', justifyContent: 'space-around'}}>
-                <div style={{border: '1px solid red'}}>
-                    <form onSubmit={addHouse}>
-                        <input type={"file"} name={'imgURL'}/>
-                        <input type="text" name={'houseName'} placeholder={'name'}/>
-                        <button>submit</button>
-                    </form>
-                    {
-                        houses.map(house => <div key={house.houseName}>
-                            <img style={{height: '100px', width: '100px',}} src={house.imgURL} alt={house.houseName}/>
-                            {house.houseName}
-                        </div>)
-                    }
-                </div>
-                <div style={{border: '1px solid green'}}>
-                    <form onSubmit={addNewsItem}>
-                        <input type={"file"} name={'imgURL'}/>
-                        <input type={"text"} name={'title'} placeholder={'title'}/>
-                        <button>submit</button>
-                    </form>
-                    {
-                        news.map(newsItem => <div key={newsItem.houseName}>
-                            <img style={{height: '100px', width: '100px',}} src={newsItem.imgURL} alt={newsItem.title}/>
-                            {newsItem.houseName}
-                        </div>)
-                    }
-                </div>
-            </div>
-            <FeedbackForm templateVariant={1} buttonText={'Заказать звонок'}>
-                {{
-                    fields: [
-                        {name: "username", placeholder: 'Имя*', type: "text"},
-                        {name: "surname", placeholder: 'Фамилия*', type: "text"},
-                        {name: "email", placeholder: 'Email*', type: "email"},
-                        {name: "phone", placeholder: 'Номер телефона*', type: "text"},
-                    ]
-                }}
-            </FeedbackForm>
-            <LoginForm />
+            <ConsultingConstraction/>
+            <Advantages grey/>
+            <NeedHelp/>
         </div>
     );
 }
@@ -89,6 +68,14 @@ const App = ({houses, news, getHouses, addUpdateHouse, getNews, addUpdateNewsIte
 const mapStateToProps = (state) => ({
     houses: state.houses.houses,
     news: state.news.news,
+    user: state.user.user,
 })
 
-export default connect(mapStateToProps, {getHouses, addUpdateHouse, getNews, addUpdateNewsItem})(App);
+export default connect(mapStateToProps, {
+    getHouses,
+    addUpdateHouse,
+    getNews,
+    addUpdateNewsItem,
+    logout,
+    setCurrentUser
+})(App);

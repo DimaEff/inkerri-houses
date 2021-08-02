@@ -7,13 +7,18 @@ const useStyles = makeStyles((theme) => ({
         border: 'none',
         outlined: 'none',
 
-        backgroundColor: '#b72a27',
-        height: '44px',
+        minHeight: '44px',
         paddingLeft: '25px',
         paddingRight: '25px',
+        paddingTop: '5px',
+        paddingBottom: '5px',
         borderRadius: '5px',
-        fontSize: '28px'
-    }
+
+        backgroundColor: '#b72a27',
+        fontSize: '28px',
+        cursor: 'pointer',
+        fontWeight: 400,
+    },
 }))
 
 const MyButton = ({children, action, ...props}) => {
@@ -26,7 +31,7 @@ const MyButton = ({children, action, ...props}) => {
                 {...props}
         >
             <Typography color={'secondary'}>
-                {children}
+                {children || 'Отправить'}
             </Typography>
         </button>
     )

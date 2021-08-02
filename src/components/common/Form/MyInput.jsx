@@ -21,26 +21,30 @@ const useStyles = makeStyles(theme => ({
         height: '100%',
         width: '80%',
         fontSize: '16px',
+        backgroundColor: 'inherit',
 
         '&::placeholder': {
             fontSize: '16px',
-        }
+        },
     },
     errorText: {
         position: 'absolute',
         bottom: '-50px',
 
-        fontSize: '12px',
+        fontSize: '14px',
         color: 'rgba(255, 0, 0, .7)',
-    }
+        textAlign: 'center',
+    },
 }))
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(({errorText, ...props}, ref) => {
     const styles = useStyles();
 
     return <div className={styles.inputWrapper}>
-        <input type="text" className={styles.input} ref={ref} {...props}/>
-        <div className={styles.errorText}>{props.errorText?.message}</div>
+        <input className={styles.input} ref={ref} {...props}/>
+        <div className={styles.errorText}>
+                {errorText?.message}
+        </div>
     </div>
 });
 

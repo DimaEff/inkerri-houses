@@ -1,6 +1,8 @@
 import {commonAPI} from '../firebase/api';
-import {HOUSES} from "../firebase/collections";
+import {firestoreCollections} from "../utils/consts";
 
+
+const HOUSES = firestoreCollections.houses;
 
 // Ну вот я не знаю, редьюсеры(news, houses) очень похожи, но стоит ли
 // обобщать их в один

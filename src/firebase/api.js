@@ -1,5 +1,3 @@
-import firebase from "firebase";
-
 import {db, storage, auth} from './index'
 
 
@@ -44,20 +42,15 @@ export const commonAPI = {
 
 export const userAPI = {
     async login(email, password) {
-
+        const user = await auth.signInWithEmailAndPassword(email, password)
+        return user.user;
     },
     async logout() {
-        await firebase.auth().signOut();
-    },
-    async getAllUsers() {
-
+        await auth.signOut();
     },
     async createNewUser(email, password) {
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await auth.createUserWithEmailAndPassword(email, password);
     },
-    async deleteUser(email) {
-
-    }
 }
 
 // export const housesAPI = {

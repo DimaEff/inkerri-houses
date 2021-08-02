@@ -13,7 +13,7 @@ const userReducer = (state=initialState, action) => {
         case SET_USER:
             return {
                 ...state,
-                user: [...action.payload],
+                user: action.payload,
             }
 
         case SET_FETCHING:
@@ -27,20 +27,26 @@ const userReducer = (state=initialState, action) => {
     }
 }
 
+export const setCurrentUser = (user) => async (dispatch) => {
+    dispatch(setUser(user?.email));
+}
+
 export const login = (email, password) => async (dispatch) => {
-    const user = await userAPI.login(email, password);
-    dispatch(setUser(user));
+    dispatch(setFetching(true));
+    await userAPI.login(email, password);
+    dispatch(setFetching(false));
 }
 
 export const logout = () => async (dispatch) => {
+    dispatch(setFetching(true));
     await userAPI.logout();
-    dispatch(setUser(null));
+    dispatch(setFetching(false));
 }
 
 export const addNewUser = (email, password) => async (dispatch) => {
-    setFetching(true);
+    dispatch(setFetching(true));
     await userAPI.createNewUser(email, password);
-    setFetching(false);
+    dispatch(setFetching(false));
 }
 
 const setUser = (payload) => ({type: SET_USER, payload});
