@@ -6,3 +6,10 @@ export const firestoreCollections = {
     houses: 'houses',
     news: 'news',
 };
+
+export const paths = [
+    {name: 'Главная', path: '#home'},
+    {name: 'Новости', path: '#news'},
+    {name: 'Готовые проекты', path: '#progects'},
+    {name: 'Фотогалерея', path: '#galery'},
+]

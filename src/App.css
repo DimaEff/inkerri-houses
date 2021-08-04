@@ -8,3 +8,11 @@
 html {
     scroll-behavior: smooth;
 }
+
+body {
+    min-width: 279px;
+}
+
+.slide {
+    min-height: 100% !important;
+}

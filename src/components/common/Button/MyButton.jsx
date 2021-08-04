@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
+import {displaySize} from "../../../utils/consts";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '28px',
         cursor: 'pointer',
         fontWeight: 400,
+
+        [theme.breakpoints.down(displaySize)]: {
+            fontSize: '20px',
+            paddingLeft: '20px',
+            paddingRight: '20px',
+        },
     },
 }))
 

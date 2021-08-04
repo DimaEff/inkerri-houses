@@ -3,12 +3,12 @@ import React from 'react';
 import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import TextIcon from "../common/Text/TextIcon";
-import hoursImg from '../../assets/HomePage/24h.svg';
-import builderImg from '../../assets/HomePage/builder.svg';
-import penAndRulerImg from '../../assets/HomePage/penAndRuler.svg';
-import infoImg from '../../assets/HomePage/info.svg';
-import bricksWallImg from '../../assets/HomePage/bricksWall.svg';
-import excavatorImg from '../../assets/HomePage/excavator.svg';
+import hoursImg from '../../assets/Frame26/24h.svg';
+import builderImg from '../../assets/Frame26/builder.svg';
+import penAndRulerImg from '../../assets/Frame26/penAndRuler.svg';
+import infoImg from '../../assets/Frame26/info.svg';
+import bricksWallImg from '../../assets/Frame26/bricksWall.svg';
+import excavatorImg from '../../assets/Frame26/excavator.svg';
 
 
 const Advantages = ({grey}) => {

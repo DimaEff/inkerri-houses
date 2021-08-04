@@ -5,7 +5,7 @@ import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import ListItems from "../common/Text/ListItem";
 import questionIcon from '../../assets/questionIcon.svg';
-import questionImg from '../../assets/HomePage/questionImg2.svg';
+import questionImg from '../../assets/Frame26/questionImg2.svg';
 import MyButton from "../common/Button/MyButton";
 import TextContainer from "../common/Text/TextContainer";
 import {displaySize} from "../../utils/consts";

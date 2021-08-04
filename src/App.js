@@ -14,6 +14,8 @@ import {Grid} from "@material-ui/core";
 import NeedHelp from "./components/NeedHelp/NeedHelp";
 import ConsultingConstraction from "./components/ConsultingConstruction/ConsultingConstraction";
 import Advantages from "./components/Advantages/Advantages";
+import Carousel from "./components/Carousel/Carousel";
+import Header from "./components/Header/Header";
 
 
 
@@ -58,6 +60,7 @@ const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateN
 
     return (
         <div>
+            <Header />
             <ConsultingConstraction/>
             <Advantages grey/>
             <NeedHelp/>
