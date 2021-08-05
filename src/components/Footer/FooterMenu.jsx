@@ -4,6 +4,7 @@ import MenuMini from "./MenuMini";
 import InstagramContact from "../common/Contacts/InstagramContact";
 import {paths} from "../../utils/consts";
 import FooterText from "../common/Text/FooterText";
+import WhatsAppContact from "../common/Contacts/WhatsAppContact";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,6 +17,13 @@ const useStyles = makeStyles((theme) => ({
     menuMini: {
         width: '150px',
         marginRight: '10px'
+    },
+    contacts: {
+        display: 'flex',
+
+        '& div': {
+            marginRight: '15px'
+        }
     }
 }))
 
@@ -35,7 +43,10 @@ const FooterMenu = () => {
                     Услуги:
                 </FooterText>
                 <MenuMini paths={testPaths}/>
-                <InstagramContact color={'#B72A27'} />
+                <div className={styles.contacts}>
+                    <InstagramContact color={'#B72A27'} />
+                    <WhatsAppContact color={'#B72A27'} />
+                </div>
             </div>
             <div className={styles.menuMini}>
                 <FooterText>
