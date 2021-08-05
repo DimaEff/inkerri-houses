@@ -67,11 +67,11 @@ const Header = () => {
     const styles = useStyles();
 
     const imgs = [
-        house1Img,
-        house2Img,
-        house3Img,
-        house4Img,
-        house5Img,
+        {name: 'house1Img', img: house1Img},
+        {name: 'house2Img', img: house2Img},
+        {name: 'house3Img', img: house3Img},
+        {name: 'house4Img', img: house4Img},
+        {name: 'house5Img', img: house5Img},
     ]
 
     return (
@@ -80,7 +80,7 @@ const Header = () => {
                 <NavBar />
             </div>
             <Carousel>
-                {imgs.map(img => <Img img={img}/>)}
+                {imgs.map(({name, img}) => <Img key={name} img={img}/>)}
             </Carousel>
         </div>
     );

@@ -40,7 +40,8 @@ const useStyles = makeStyles((theme => ({
 })))
 
 const AppContainer = ({children, title, grey, reverse, withoutTitle, ...props}) => {
-    const styles = useStyles({grey, reverse})
+    const g = grey ? grey?.toString(): undefined;
+    const styles = useStyles({grey: g, reverse})
 
     return (
         <div className={styles.containerWrapper}>

@@ -56,7 +56,7 @@ const FooterPaper = () => {
 
     return (
         <Paper className={styles.paper} elevation={2}>
-            {items.map(({icon, text}) => <PaperItem icon={icon} alternative={alternative}>
+            {items.map(({icon, text}) => <PaperItem key={text} icon={icon} alternative={alternative}>
                 {text}
             </PaperItem>)}
         </Paper>

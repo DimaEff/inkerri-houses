@@ -48,7 +48,7 @@ const Advantages = ({grey}) => {
     return (
         <AppContainer grey={grey} title={'Преимущества работы с нами'}>
             {advantages.map(({icon, title, text}) => {
-                return <AppContainerItem key={title} grey={!!grey} lg={4} md={4} sm={4} xs={6}>
+                return <AppContainerItem key={title} grey={grey ? grey.toString(): undefined} lg={4} md={4} sm={4} xs={6}>
                     <TextIcon icon={icon} title={title}>
                         {text}
                     </TextIcon>

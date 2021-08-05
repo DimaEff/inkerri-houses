@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const MyInput = forwardRef(({errorText, ...props}, ref) => {
+const MyInput = forwardRef(({children, errorText, ...props}, ref) => {
     const styles = useStyles();
 
     return <div className={styles.inputWrapper}>
