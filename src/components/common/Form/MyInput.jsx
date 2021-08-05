@@ -41,7 +41,7 @@ const MyInput = forwardRef(({errorText, ...props}, ref) => {
     const styles = useStyles();
 
     return <div className={styles.inputWrapper}>
-        <input className={styles.input} ref={ref} {...props}/>
+        <input className={styles.input} ref={ref} autoComplete={'off'} {...props}/>
         <div className={styles.errorText}>
                 {errorText?.message}
         </div>

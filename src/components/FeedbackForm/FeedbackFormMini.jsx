@@ -5,7 +5,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {makeStyles, Paper} from "@material-ui/core";
 
 import sendEmail from "./index";
-import {callOrderTemplate} from '../../utils/consts'
+import {callOrderTemplate, displaySize} from '../../utils/consts'
 import MyButton from "../common/Button/MyButton";
 
 
@@ -30,12 +30,19 @@ const useStyles = makeStyles((theme => ({
         justifyContent: 'center',
         alignItems: 'center',
 
-        width: '60%',
-        maxWidth: '177px',
-        paddingTop: '22px',
-        paddingBottom: '22px',
+        width: '204px',
+        padding: '22px 15px',
         borderRadius: '20px',
         boxShadow: '0px 2px 20px 0px #00000040',
+
+        [theme.breakpoints.down(displaySize)]: {
+            width: '80vw',
+            maxWidth: '280px',
+            minWidth: '200px',
+            height: '70vw',
+            maxHeight: '230px',
+            minHeight: '170px',
+        },
     },
     form: {
         display: 'flex',
@@ -79,7 +86,7 @@ const useStyles = makeStyles((theme => ({
         position: 'absolute',
         bottom: '-40px',
 
-        fontSize: '10px',
+        fontSize: '12px',
         color: 'rgba(255, 0, 0, .7)',
         textAlign: 'center',
     },
@@ -109,15 +116,16 @@ const FeedbackFormMini = () => {
 
     return (
         <div>
+            <a name={"help"}/>
             <Paper elevation={0} className={styles.paper}>
                 <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
                     <input type="hidden" name="contact_number" />
                     <div className={styles.inputWrapper}>
-                        <input type="text" placeholder={'Имя*'} className={styles.input} {...register('username')}/>
+                        <input type="text" placeholder={'Имя*'} className={styles.input} autoComplete={'off'} {...register('username')}/>
                         <div className={styles.errorText}>{errors.username?.message}</div>
                     </div>
                     <div className={styles.inputWrapper}>
-                        <input type="text" placeholder={'Номер телефона*'} className={styles.input} {...register('phone')}/>
+                        <input type="text" placeholder={'Номер телефона*'} className={styles.input} autoComplete={'off'} {...register('phone')}/>
                         <div className={styles.errorText}>{errors.phone?.message}</div>
                     </div>
                     <MyButton type={'submit'} style={buttonStyle}>

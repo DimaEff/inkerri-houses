@@ -16,6 +16,7 @@ import ConsultingConstraction from "./components/ConsultingConstruction/Consulti
 import Advantages from "./components/Advantages/Advantages";
 import Carousel from "./components/Carousel/Carousel";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 
 
@@ -64,6 +65,7 @@ const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateN
             <ConsultingConstraction/>
             <Advantages grey/>
             <NeedHelp/>
+            <Footer />
         </div>
     );
 }

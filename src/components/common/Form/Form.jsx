@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles, Paper} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 import MyInput from "./MyInput";
 import MyButton from "../Button/MyButton";
+import SuccessAlert from "../Alerts/SuccessAlert";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
     const styles = useStyles();
+    const [open, setOpen] = useState(false);
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         mode: 'onBlur',
@@ -51,11 +53,13 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
 
     const onHandleSubmit = async (data, e) => {
         const result = await onSubmit(data, e)
+        setOpen(true);
         reset(result);
     }
 
     return (
         <div className={styles.root}>
+            <SuccessAlert open={open} handleClose={() => setOpen(false)}/>
             <Paper className={styles.paper} {...props}>
                 <form onSubmit={handleSubmit(onHandleSubmit)} className={styles.form}>
                     {antiSpam}

@@ -39,13 +39,13 @@ const useStyles = makeStyles((theme => ({
     })
 })))
 
-const AppContainer = ({children, title, grey, reverse, ...props}) => {
+const AppContainer = ({children, title, grey, reverse, withoutTitle, ...props}) => {
     const styles = useStyles({grey, reverse})
 
     return (
         <div className={styles.containerWrapper}>
             <Container maxWidth={'lg'} className={styles.container} {...props}>
-                <AppContainerTitle>{title}</AppContainerTitle>
+                {withoutTitle || <AppContainerTitle>{title}</AppContainerTitle>}
                 <Grid container justifyContent={'center'} alignItems={'center'} className={styles.grid}>
                     {children}
                 </Grid>

@@ -5,14 +5,16 @@ import Link from "./Link";
 
 
 const useStyles = makeStyles((theme) => ({
-    root: (color) => ({
-        color: color || '#fff',
-        fontSize: '16px',
+    root: ({color}) => ({
+        '& a p': {
+            color: color || '#fff',
+            fontSize: '16px',
+        }
     })
 }))
 
 const NavText = ({children, path, color, ...props}) => {
-    const styles = useStyles(color);
+    const styles = useStyles({color});
 
     return (
         <div className={styles.root} {...props}>
