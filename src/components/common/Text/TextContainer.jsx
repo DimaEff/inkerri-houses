@@ -20,11 +20,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const TextContainer = ({children}) => {
+const TextContainer = ({children, ...props}) => {
     const styles = useStyles();
 
     return (
-        <div className={styles.root}>
+        <div className={styles.root} {...props}>
             {children}
         </div>
     );

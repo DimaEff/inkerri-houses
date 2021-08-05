@@ -2,6 +2,7 @@ import React from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from "react-responsive-carousel";
 import {makeStyles} from "@material-ui/core";
+
 import {displaySize} from "../../utils/consts";
 
 

@@ -1,15 +1,14 @@
 import React from 'react';
-import Carousel from "../Carousel/Carousel";
 import {makeStyles} from "@material-ui/core";
 
-import {displaySize} from "../../utils/consts";
 import NavBar from "./NavBar/NavBar";
+import Carousel from "./Carousel";
+import {displaySize} from "../../utils/consts";
 import house1Img from '../../assets/Header/house1.png';
 import house2Img from '../../assets/Header/house2.png';
 import house3Img from '../../assets/Header/house3.png';
 import house4Img from '../../assets/Header/house4.png';
 import house5Img from '../../assets/Header/house5.png';
-
 
 
 const useStyles = makeStyles(theme => ({

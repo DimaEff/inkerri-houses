@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
         alignItems: aI || 'center',
         flexFlow: !!column && 'column',
 
-
         marginBottom:  !!margin && '30px',
 
         '& img': {

@@ -7,18 +7,14 @@ import {auth, db} from "./firebase";
 import {addUpdateHouse, getHouses} from "./store/housesReducer";
 import {addUpdateNewsItem, getNews} from "./store/newsReducer";
 import {setCurrentUser, logout} from "./store/userReducer";
-import AppContainer from "./components/common/AppContainer/AppContainer";
-import FeedbackForm from "./components/FeedbackForm/FeedbackForm";
-import {callOrderTemplate} from "./utils/consts";
-import {Grid} from "@material-ui/core";
 import NeedHelp from "./components/NeedHelp/NeedHelp";
-import ConsultingConstraction from "./components/ConsultingConstruction/ConsultingConstraction";
+import ConsultingConstruction from "./components/ConsultingConstruction/ConsultingConstraction";
 import Advantages from "./components/Advantages/Advantages";
-import Carousel from "./components/Carousel/Carousel";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-
-
+import ModernHousesDesign from "./components/ModernHousesDesign/ModernHousesDesign";
+import Economy from "./components/Economy/Economy";
+import DesigningSteps from "./components/DesigningSteps/DesigningSteps";
 
 
 const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateNewsItem, logout, setCurrentUser}) => {
@@ -62,7 +58,10 @@ const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateN
     return (
         <div>
             <Header />
-            <ConsultingConstraction/>
+            <DesigningSteps />
+            <Economy grey/>
+            <ModernHousesDesign />
+            <ConsultingConstruction />
             <Advantages grey/>
             <NeedHelp/>
             <Footer />
