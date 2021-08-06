@@ -8,6 +8,8 @@ import s2h1Img from '../../assets/Frame27/s2h1.jpg';
 import s2h2Img from '../../assets/Frame27/s2h2.jpg';
 import s3h1Img from '../../assets/Frame27/s3h1.jpg';
 import s3h2Img from '../../assets/Frame27/s3h2.jpg';
+import AppContainerItem from "../common/AppContainer/AppContainerItem";
+import {Typography} from "@material-ui/core";
 
 
 const DesigningSteps = ({grey}) => {
@@ -59,6 +61,11 @@ const DesigningSteps = ({grey}) => {
                     'общая спецификация материалов требуемых для строительства дома',
                 ]}
             </Step>
+            <AppContainerItem lg={12} md={12} sm={9} xs={12}>
+                <Typography style={{color: '#00000099', textAlign: 'center'}}>
+                    Приглашаем к сотрудничеству корпоративных клиентов: предлагаем строительным компаниям или прорабам, которым требуются услуги архитектора или конструктора, разработку проекта под клиента или целой линейки проектов для портфолио.
+                </Typography>
+            </AppContainerItem>
         </AppContainer>
     );
 };

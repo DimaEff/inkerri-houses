@@ -15,6 +15,8 @@ import Footer from "./components/Footer/Footer";
 import ModernHousesDesign from "./components/ModernHousesDesign/ModernHousesDesign";
 import Economy from "./components/Economy/Economy";
 import DesigningSteps from "./components/DesigningSteps/DesigningSteps";
+import Drawings from "./components/Drawings/Drawings";
+import HowBuild from "./components/HowBuild/HowBuild";
 
 
 const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateNewsItem, logout, setCurrentUser}) => {
@@ -58,6 +60,7 @@ const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateN
     return (
         <div>
             <Header />
+            <HowBuild />
             <DesigningSteps />
             <Economy grey/>
             <ModernHousesDesign />

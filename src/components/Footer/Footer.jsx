@@ -27,31 +27,6 @@ const Footer = () => {
                     <FeedbackFormMini/>
                 </div>
             </AppContainerItem>
-
-
-            {/*<div style={{display: 'flex', flexFlow: 'column'}}>*/}
-            {/*    <FooterPaper/>*/}
-
-            {/*    <div style={{height: '200px'}}>*/}
-            {/*        <div style={{display: 'flex', flexFlow: 'column', marginRight: '45px',}}>*/}
-            {/*            <Typography style={{fontWeight: 'bold', fontSize: '18px', marginBottom: '10px'}}>*/}
-            {/*                Услуги*/}
-            {/*            </Typography>*/}
-            {/*        </div>*/}
-            {/*        <div style={{display: 'flex', flexFlow: 'column'}}>*/}
-            {/*            <Typography style={{fontWeight: 'bold', fontSize: '18px', marginBottom: '10px'}}>*/}
-            {/*                Меню*/}
-            {/*            </Typography>*/}
-            {/*        </div>*/}
-            {/*    </div>*/}
-
-            {/*    <div style={{display: 'flex', flexFlow: 'column'}}>*/}
-            {/*        <Typography style={{fontWeight: 'bold', fontSize: '18px', marginBottom: '10px'}}>*/}
-            {/*            Отправить заявку*/}
-            {/*        </Typography>*/}
-            {/*        <FeedbackFormMini/>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
         </AppContainer>
     );
 };
