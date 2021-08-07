@@ -4,15 +4,19 @@ import {displaySize} from "../../../utils/consts";
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    root: ({minHeight}) => ({
         display: 'flex',
         flexFlow: 'column',
-        // justifyContent: 'center',
         alignItems: 'center',
 
-        height: '400px',
+        maxWidth: '400px',
+        minHeight: minHeight || '400px',
         marginTop: '0px',
-    },
+
+        [theme.breakpoints.down(displaySize)]: {
+            minHeight: '250px',
+        },
+    }),
     icon: {
         display: 'flex',
         justifyContent: 'center',
@@ -46,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     },
     text: {
         width: '80%',
-        maxWidth: '320px',
         textAlign: 'center',
 
         '& p': {
@@ -59,11 +62,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const TextIcon = ({children, icon, title}) => {
-    const styles = useStyles();
+const TextIcon = ({children, icon, title, minHeight, ...props}) => {
+    const styles = useStyles({minHeight});
 
     return (
-        <div className={styles.root}>
+        <div className={styles.root} {...props}>
             <div className={styles.icon}>
                 <img src={icon}/>
             </div>

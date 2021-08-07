@@ -1,10 +1,11 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
+
 import MenuMini from "./MenuMini";
 import InstagramContact from "../common/Contacts/InstagramContact";
-import {paths} from "../../utils/consts";
 import FooterText from "../common/Text/FooterText";
 import WhatsAppContact from "../common/Contacts/WhatsAppContact";
+import appRoutes from "../../AppRouter/routes";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,19 +31,13 @@ const useStyles = makeStyles((theme) => ({
 const FooterMenu = () => {
     const styles = useStyles();
 
-    const testPaths = [
-        {name: 'Скандинавские дома', path: '#houses'},
-        {name: 'Проектирование', path: '#progects'},
-        {name: 'Консультации', path: '#cons'},
-    ]
-
     return (
         <div className={styles.root}>
             <div className={styles.menuMini}>
                 <FooterText>
                     Услуги:
                 </FooterText>
-                <MenuMini paths={testPaths}/>
+                <MenuMini menuNum={2} paths={appRoutes}/>
                 <div className={styles.contacts}>
                     <InstagramContact color={'#B72A27'} />
                     <WhatsAppContact color={'#B72A27'} />
@@ -52,7 +47,7 @@ const FooterMenu = () => {
                 <FooterText>
                     Меню:
                 </FooterText>
-                <MenuMini paths={paths}/>
+                <MenuMini menuNum={1} paths={appRoutes}/>
             </div>
         </div>
     );

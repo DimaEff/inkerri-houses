@@ -28,14 +28,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const MenuMini = ({paths, ...props}) => {
+const MenuMini = ({paths, menuNum, ...props}) => {
     const styles = useStyles();
 
+    const filterPaths = paths?.filter(path => path.menuNum === menuNum);
+
     return (
-        <div>
+        <div {...props}>
             <div className={styles.menu}>
                 {
-                    paths.map(({name, path}) => {
+                    filterPaths.map(({name, path}) => {
                         return (
                             <div key={path}>
                                 <NavText color={'#3E3E3E99'} path={path}>

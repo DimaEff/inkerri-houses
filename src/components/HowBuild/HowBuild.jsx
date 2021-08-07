@@ -1,11 +1,15 @@
 import React from 'react';
-import {makeStyles, Typography} from "@material-ui/core";
+import {ImageList, ImageListItem, makeStyles, Typography} from "@material-ui/core";
 
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import TextContainer from "../common/Text/TextContainer";
 import PaperItem from "../Footer/PaperItem";
 import AppContainer from "../common/AppContainer/AppContainer";
-import twoHousesImg from "../../assets/Frame27/twoHouses.jpg";
+import MyButton from "../common/Button/MyButton";
+import {displaySize} from "../../utils/consts";
+import home1Img from '../../assets/Home/home1.jpg';
+import home2Img from '../../assets/Home/home2.jpg';
+import home3Img from '../../assets/Home/home3.jpg';
 import phoneIcon from "../../assets/Footer/phone.svg";
 import mailIcon from "../../assets/Footer/mail.svg";
 import timeIcon from "../../assets/Footer/time.svg";
@@ -16,12 +20,42 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         display: 'flex',
         width: '100%',
+        minHeight: '90px',
+
+        [theme.breakpoints.down(1220)]: {
+            minHeight: '100px',
+        },
+
+        [theme.breakpoints.down(displaySize)]: {
+            justifyContent: 'center',
+            margin: '20px 0px',
+        },
     },
     contactItem: {
         position: 'absolute',
-        top: '-6vw',
+        top: '-2vw',
 
+        [theme.breakpoints.down(1220)]: {
+            top: '-2.5vw',
+        },
 
+        [theme.breakpoints.down(displaySize)]: {
+            position: 'static',
+        },
+    },
+    img: {
+        margin: '14px',
+        height: '100%',
+    },
+    button: {
+        display: 'flex',
+        justifyContent: 'flex-start',
+        width : '100%',
+        maxWidth: '100%',
+
+        [theme.breakpoints.down(displaySize)]: {
+            justifyContent: 'center',
+        },
     }
 }))
 
@@ -35,7 +69,7 @@ const HowBuild = ({grey}) => {
     ]
 
     return (
-        <AppContainer title={'Современное проектирование домов'} grey={!!grey}>
+        <AppContainer title={'Как мыстроим?'} grey={!!grey}>
             <AppContainerItem margin column aI={'flex-start'} lg={5} md={5} sm={12} xs={12}>
                 <TextContainer>
                     <div>
@@ -66,7 +100,19 @@ const HowBuild = ({grey}) => {
                 </TextContainer>
             </AppContainerItem>
             <AppContainerItem lg={7} md={7} sm={12} xs={12}>
-                <img src={twoHousesImg}/>
+                <div style={{display: 'flex', flexFlow: 'column', alignItems: 'center', width: '80vw', maxWidth: '500px', minWidth: '279px'}}>
+                    <div style={{display: 'flex', maxWidth: '100%'}}>
+                        <div className={styles.img}>
+                            <img src={home1Img}/>
+                        </div>
+                        <div className={styles.img}>
+                            <img src={home2Img}/>
+                        </div>
+                    </div>
+                    <div className={styles.img}>
+                        <img src={home3Img}/>
+                    </div>
+                </div>
             </AppContainerItem>
             <AppContainerItem lg={12} md={12} sm={12} xs={12}>
                 <div className={styles.contacts}>
@@ -75,6 +121,15 @@ const HowBuild = ({grey}) => {
                             {text}
                         </PaperItem>)}
                     </div>
+                </div>
+            </AppContainerItem>
+            <AppContainerItem margin lg={12} md={12} sm={12} xs={12}>
+                <div className={styles.button}>
+                    <a href={"#help"}>
+                        <MyButton>
+                            Записаться на консультацию
+                        </MyButton>
+                    </a>
                 </div>
             </AppContainerItem>
         </AppContainer>

@@ -2,9 +2,9 @@ import React from 'react';
 import {makeStyles} from "@material-ui/core";
 import {NavLink} from "react-router-dom";
 
-import {paths} from "../../../utils/consts";
 import logoImg from '../../../assets/Header/logo.svg';
 import NavigationMenuContainer from "./NavigationMenu/NavigationMenuContainer";
+import appRoutes from "../../../AppRouter/routes";
 
 
 const useStytles = makeStyles((theme) => ({
@@ -35,7 +35,7 @@ const Navigation = () => {
                     <img src={logoImg}/>
                 </NavLink>
             </div>
-            <NavigationMenuContainer paths={paths}/>
+            <NavigationMenuContainer paths={appRoutes}/>
         </div>
     );
 };

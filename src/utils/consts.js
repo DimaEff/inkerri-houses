@@ -8,8 +8,8 @@ export const firestoreCollections = {
 };
 
 export const paths = [
-    {name: 'Главная', path: '#home'},
-    {name: 'Новости', path: '#news'},
-    {name: 'Готовые проекты', path: '#progects'},
-    {name: 'Фотогалерея', path: '#galery'},
+    {name: 'Главная', path: '/'},
+    {name: 'Новости', path: 'news'},
+    {name: 'Готовые проекты', path: 'projects'},
+    {name: 'Фотогалерея', path: 'photos'},
 ]

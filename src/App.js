@@ -8,7 +8,7 @@ import {addUpdateHouse, getHouses} from "./store/housesReducer";
 import {addUpdateNewsItem, getNews} from "./store/newsReducer";
 import {setCurrentUser, logout} from "./store/userReducer";
 import NeedHelp from "./components/NeedHelp/NeedHelp";
-import ConsultingConstruction from "./components/ConsultingConstruction/ConsultingConstraction";
+import ConsultingConstruction from "./components/ConsultingConstruction/ConsultingConstruction";
 import Advantages from "./components/Advantages/Advantages";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -17,6 +17,12 @@ import Economy from "./components/Economy/Economy";
 import DesigningSteps from "./components/DesigningSteps/DesigningSteps";
 import Drawings from "./components/Drawings/Drawings";
 import HowBuild from "./components/HowBuild/HowBuild";
+import WeDo from "./components/WeDo/WeDo";
+import WhyWe from "./components/WhyWe/WhyWe";
+import Home from "./Pages/Home/Home";
+import WhyScandinavian from "./components/WhyScandinavian/WhyScandinavian";
+import AppRouter from "./AppRouter/AppRouter";
+import appRoutes from "./AppRouter/routes";
 
 
 const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateNewsItem, logout, setCurrentUser}) => {
@@ -60,13 +66,7 @@ const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateN
     return (
         <div>
             <Header />
-            <HowBuild />
-            <DesigningSteps />
-            <Economy grey/>
-            <ModernHousesDesign />
-            <ConsultingConstruction />
-            <Advantages grey/>
-            <NeedHelp/>
+            <AppRouter routes={appRoutes}/>
             <Footer />
         </div>
     );
