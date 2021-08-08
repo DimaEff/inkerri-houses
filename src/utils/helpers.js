@@ -20,3 +20,14 @@ export const getPriceTemplate = (minPrice, maxPrice) => {
 
     return `${min} - ${max}`;
 }
+
+export const getMinMaxArrValue = (arr, prop, type) => {
+    const propArr = arr.map(a => a[prop]);
+
+    let result = [];
+
+    if (type === 'min' || 'all') result.push(Math.min(...propArr))
+    if (type === 'max' || 'all') result.push(Math.max(...propArr))
+
+    return result;
+}

@@ -23,10 +23,10 @@ const useStyles = makeStyles((theme => ({
             paddingBottom: '22px',
         },
     },
-    grid: ({reverse}) =>  ({
+    grid: ({reverse, aI, jC}) =>  ({
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: jC || 'center',
+        alignItems: aI || 'center',
 
         paddingLeft: '3.7%',
         paddingRight: '3.7%',
@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme => ({
     })
 })))
 
-const AppContainer = ({children, title, grey, reverse, withoutTitle, ...props}) => {
+const AppContainer = ({children, title, grey, reverse, withoutTitle, aI, jC, ...props}) => {
     const g = grey ? grey?.toString(): undefined;
-    const styles = useStyles({grey: g, reverse})
+    const styles = useStyles({grey: g, reverse, aI, jC})
 
     return (
         <div className={styles.containerWrapper}>

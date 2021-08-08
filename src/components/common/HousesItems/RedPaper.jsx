@@ -6,16 +6,18 @@ const useStyles = makeStyles(theme => ({
     root: ({shadow, h, w}) => ({
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         position: 'relative',
+        flexFlow: 'column',
 
         height: h || 'auto',
         width: w || 'auto',
-        minWidth: '279px',
+        minWidth: '266px',
         border: '2px solid #B72A27',
         borderRadius: '10px',
         padding: '0px',
         margin: '15px 5px',
-        boxShadow: shadow && '-2px -2px 70px 0px #00000012',
+        boxShadow: shadow && '0px 2px 40px 2px rgba(0, 0, 0, 0.15)',
     }),
     cornerInfo: {
         position: 'absolute',

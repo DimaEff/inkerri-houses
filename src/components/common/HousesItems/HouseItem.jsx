@@ -120,14 +120,14 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
 
     const cornerText = variant === 'secondary' ?
         getFloorTitle(houseItem.floorsNumber) || plug :
-        (houseItem.usableArea || plug) + ' м2';
+        (houseItem.usableArea.split(',')[0] || plug) + ' м2';
 
     return (
         <RedPaper shadow cornerText={cornerText} h={'550px'} w={'320px'} {...props}>
             <div className={styles.root}>
                 <div className={styles.floorTitle}>
                     <Typography>
-                        {getFloorTitle(houseItem.floors)}
+                        {getFloorTitle(houseItem.floors) || plug}
                     </Typography>
                 </div>
                 <div className={styles.img}>
@@ -135,16 +135,16 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
                 </div>
                 <div className={styles.title}>
                     <Typography>
-                        {houseItem.title}
+                        {houseItem.title || plug}
                     </Typography>
                 </div>
                 <div className={styles.price}>
                     <Typography color={'secondary'}>
-                        {getPriceTemplate(houseItem.minPrice, houseItem.maxPrice)}
+                        {getPriceTemplate(houseItem.minPrice, houseItem.maxPrice) || plug}
                     </Typography>
                 </div>
                 <div style={{width: '100%'}}>
-                    <HouseItemParams params={variant === 'secondary' ? paramsSecondary: paramsFirst}/>
+                    <HouseItemParams params={variant === 'secondary' ? paramsSecondary || plug: paramsFirst || plug}/>
                 </div>
                 <div className={styles.button}>
                     <MyButton action={() => history.push(getHousesItemRoute(houseItem.houseId))}>

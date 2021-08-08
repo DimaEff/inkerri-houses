@@ -11,6 +11,7 @@ import mailIconW from '../../assets/Footer/mailW.svg';
 import locationIconW from '../../assets/Footer/locationW.svg';
 import timeIconW from '../../assets/Footer/timeW.svg';
 import PaperItem from "./PaperItem";
+import {getConsultingRoute, getScandinavianRoute} from "../../AppRouter/consts";
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,11 +37,11 @@ const FooterPaper = () => {
 
     useEffect((() => {
         const altPages = [
-            '#news',
-            '#galery',
+            getConsultingRoute(),
+            getScandinavianRoute(),
         ];
 
-        if (altPages.some(page => page === location.hash)) {
+        if (altPages.some(page => page === location.pathname)) {
             setAlternative(true)
         } else {
             setAlternative(false)
