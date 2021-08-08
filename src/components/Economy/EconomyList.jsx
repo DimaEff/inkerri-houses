@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
 
-import TextContainer from "../common/Text/TextContainer";
+import TextContainer from "../common/AppContainer/TextContainer";
 import ListItems from "../common/Text/ListItem";
 import {displaySize} from "../../utils/consts";
 

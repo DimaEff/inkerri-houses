@@ -2,15 +2,50 @@ import {commonAPI} from '../firebase/api';
 import {firestoreCollections} from "../utils/consts";
 
 
-const HOUSES = firestoreCollections.houses;
+const HOUSES     = firestoreCollections.houses;
 
-// Ну вот я не знаю, редьюсеры(news, houses) очень похожи, но стоит ли
-// обобщать их в один
 const SET_HOUSES = 'houses_reducer/SET_HOUSES';
 const SET_FETCHING = 'houses_reducer/SET_FETCHING';
 
 const initialState = {
-    houses: [],
+    houses: [
+        {
+            title: 'Олонец 81',
+            usableArea: '81,12',
+            totalArea: '83,09',
+            dimensions: [12, 8.3],
+            floors: '1',
+            minPrice: 3240000,
+            maxPrice: 3700000,
+            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
+            bedRooms: 2,
+            bathRooms: 2,
+        },
+        {
+            title: 'Клязьминский парк 146',
+            usableArea: '81,12',
+            totalArea: '83,09',
+            dimensions: [12, 8.3],
+            floors: '2',
+            minPrice: 3240000,
+            maxPrice: 3700000,
+            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
+            bedRooms: 2,
+            bathRooms: 2,
+        },
+        {
+            title: 'Гольфстрим 127',
+            usableArea: '81,12',
+            totalArea: '83,09',
+            dimensions: [12, 8.3],
+            floors: '1.5',
+            minPrice: 3240000,
+            maxPrice: 3700000,
+            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
+            bedRooms: 2,
+            bathRooms: 2,
+        },
+    ],
     isFetching: false,
 }
 

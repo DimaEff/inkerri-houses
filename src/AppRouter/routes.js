@@ -10,7 +10,7 @@ import {
     getConsultingRoute,
 } from "./consts";
 import Home from "../Pages/Home/Home";
-import Houses from '../Pages/Houses/Houses';
+import HousesContainer from '../Pages/Houses/HousesContainer';
 
 const Scandinavian = React.lazy(() => import("../Pages/Scandinavian/Scandinavian"));
 const Designing = React.lazy(() => import("../Pages/Designing/Designing"));
@@ -37,7 +37,7 @@ const appRoutes = [
     {
         name: 'Готовые проекты',
         path: getHousesRoute(''),
-        Component: Houses,
+        Component: HousesContainer,
         menuNum: 1,
     },
     {

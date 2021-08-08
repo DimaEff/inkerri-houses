@@ -3,7 +3,7 @@ import {Typography} from "@material-ui/core";
 
 import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
-import TextContainer from "../common/Text/TextContainer";
+import TextContainer from "../common/AppContainer/TextContainer";
 import ListItems from "../common/Text/ListItem";
 import doubleCheckIcon from "../../assets/doubleCheckIcon.svg";
 import twoHousesImg from "../../assets/Frame27/twoHouses.jpg";

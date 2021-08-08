@@ -2,7 +2,7 @@ import React from 'react';
 import {ImageList, ImageListItem, makeStyles, Typography} from "@material-ui/core";
 
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
-import TextContainer from "../common/Text/TextContainer";
+import TextContainer from "../common/AppContainer/TextContainer";
 import PaperItem from "../Footer/PaperItem";
 import AppContainer from "../common/AppContainer/AppContainer";
 import MyButton from "../common/Button/MyButton";
