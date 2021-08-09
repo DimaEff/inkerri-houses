@@ -8,6 +8,8 @@
 # testing
 /coverage
 
+/bild
+
 # misc
 .DS_Store
 .env.local
