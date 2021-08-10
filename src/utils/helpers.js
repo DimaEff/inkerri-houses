@@ -14,11 +14,15 @@ export const getFloorTitle = (floorsNumber) => {
     }
 }
 
-export const getPriceTemplate = (minPrice, maxPrice) => {
-    const min = minPrice.toString().split( /(?=(?:...)*$)/ ).join(' ');
-    const max = maxPrice.toString().split( /(?=(?:...)*$)/ ).join(' ');
+export const getStringPrice = (price) => {
+    return price?.toString().split( /(?=(?:...)*$)/ ).join(' ');
+}
 
-    return `${min} - ${max}`;
+export const getPriceTemplate = (minPrice, maxPrice) => {
+    const min = getStringPrice(minPrice);
+    const max = getStringPrice(maxPrice);
+
+    return `${min} - ${max} ₽`;
 }
 
 export const getMinMaxArrValue = (arr, prop, type) => {
@@ -26,8 +30,14 @@ export const getMinMaxArrValue = (arr, prop, type) => {
 
     let result = [];
 
-    if (type === 'min' || 'all') result.push(Math.min(...propArr))
-    if (type === 'max' || 'all') result.push(Math.max(...propArr))
+    if (type === 'min' || type === 'all') result.push(Math.min(...propArr))
+    if (type === 'max' || type === 'all') result.push(Math.max(...propArr))
 
     return result;
 }
+
+// export const filterHouses = (filterData, houses) => {
+//     let result;
+//
+//     if (filterData.)
+// }

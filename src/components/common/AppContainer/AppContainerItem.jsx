@@ -3,13 +3,14 @@ import {Grid, makeStyles} from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
-    root: ({margin, column, jC, aI}) => ({
+    root: ({margin, column, jC, aI, fullHeight}) => ({
         display: 'flex',
         justifyContent: jC || 'center',
         alignItems: aI || 'center',
         flexFlow: !!column && 'column',
 
         marginBottom:  !!margin && '30px',
+        // height: fullHeight && '100vh',
 
         '& img': {
             maxWidth: '100%',
@@ -18,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     }),
 }))
 
-const AppContainerItem = ({children, margin, column, jC, aI, ...props}) => {
-    const styles = useStyles({margin, column, jC, aI});
+const AppContainerItem = ({children, margin, column, jC, aI, fullHeight, ...props}) => {
+    const styles = useStyles({margin, column, jC, aI, fullHeight});
 
     return (
         <Grid item className={styles.root} {...props}>

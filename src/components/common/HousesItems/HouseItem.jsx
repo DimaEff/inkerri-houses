@@ -1,6 +1,5 @@
 import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
-import {useHistory} from 'react-router-dom';
 
 import {getFloorTitle, getPriceTemplate} from "../../../utils/helpers";
 import {getHousesItemRoute} from "../../../AppRouter/consts";
@@ -10,6 +9,7 @@ import HouseItemParams from "./HouseItemParams";
 import bedIcon from '../../../assets/HouseItem/bed.svg';
 import bathIcon from '../../../assets/HouseItem/bath.svg';
 import houseIcon from '../../../assets/HouseItem/house.svg';
+import Link from "../Text/Link";
 
 
 const useStyles = makeStyles(theme => ({
@@ -18,11 +18,13 @@ const useStyles = makeStyles(theme => ({
         flexFlow: 'column',
         justifyContent: 'space-between',
 
-        width: '84%',
+        width: '90%',
         height: '100%',
-        padding: '40px 0px',
+        padding: '15px 0px',
     },
     floorTitle: {
+        height: '30px',
+
         '& p': {
             fontWeight: 600,
         }
@@ -69,7 +71,6 @@ const useStyles = makeStyles(theme => ({
 
 const HouseItem = ({variant, shadow, houseItem, ...props}) => {
     const styles = useStyles({shadow});
-    const history = useHistory();
 
     const plug = '-'.repeat(5);
 
@@ -120,7 +121,7 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
 
     const cornerText = variant === 'secondary' ?
         getFloorTitle(houseItem.floorsNumber) || plug :
-        (houseItem.usableArea.split(',')[0] || plug) + ' м2';
+        (houseItem.usableArea.toString().split('.')[0] || plug) + ' м2';
 
     return (
         <RedPaper shadow cornerText={cornerText} h={'550px'} w={'320px'} {...props}>
@@ -147,9 +148,11 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
                     <HouseItemParams params={variant === 'secondary' ? paramsSecondary || plug: paramsFirst || plug}/>
                 </div>
                 <div className={styles.button}>
-                    <MyButton action={() => history.push(getHousesItemRoute(houseItem.houseId))}>
-                        Подробнее
-                    </MyButton>
+                    <Link to={getHousesItemRoute(houseItem.id)}>
+                        <MyButton>
+                            Подробнее
+                        </MyButton>
+                    </Link>
                 </div>
             </div>
         </RedPaper>

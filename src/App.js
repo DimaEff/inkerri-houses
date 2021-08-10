@@ -26,14 +26,14 @@ import appRoutes from "./AppRouter/routes";
 
 
 const App = ({houses, news, user, getHouses, addUpdateHouse, getNews, addUpdateNewsItem, logout, setCurrentUser}) => {
-    // useEffect(() => {
-    //     const unsubscribe = db.collection("houses")
-    //         .onSnapshot(() => {
-    //             getHouses()
-    //         })
-    //
-    //     return () => unsubscribe();
-    // }, [getHouses])
+    useEffect(() => {
+        const unsubscribe = db.collection("houses")
+            .onSnapshot(() => {
+                getHouses()
+            })
+
+        return () => unsubscribe();
+    }, [getHouses])
 
     useEffect(() => {
         getNews()

@@ -2,12 +2,10 @@ import React from "react";
 
 import {
     getHomeRoute,
-    getNewsRoute,
-    getHousesRoute,
     getPhotosRoute,
     getScandinavianRoute,
     getDesigningRoute,
-    getConsultingRoute,
+    getConsultingRoute, getNewsItemRoute, getHousesItemRoute,
 } from "./consts";
 import Home from "../Pages/Home/Home";
 import HousesContainer from '../Pages/Houses/HousesContainer';
@@ -15,7 +13,7 @@ import HousesContainer from '../Pages/Houses/HousesContainer';
 const Scandinavian = React.lazy(() => import("../Pages/Scandinavian/Scandinavian"));
 const Designing = React.lazy(() => import("../Pages/Designing/Designing"));
 const Consulting = React.lazy(() => import("../Pages/Consulting/Consulting"));
-const News = React.lazy(() => import("../Pages/News/News"));
+const NewsContainer = React.lazy(() => import("../Pages/News/NewsContainer"));
 const Photos = React.lazy(() => import("../Pages/Photos/Photos"));
 
 
@@ -29,14 +27,14 @@ const appRoutes = [
     },
     {
         name: 'Новости',
-        path: getNewsRoute(''),
-        Component: News,
+        path: getNewsItemRoute(),
+        Component: NewsContainer,
         lazyLoading: true,
         menuNum: 1,
     },
     {
         name: 'Готовые проекты',
-        path: getHousesRoute(''),
+        path: getHousesItemRoute(),
         Component: HousesContainer,
         menuNum: 1,
     },

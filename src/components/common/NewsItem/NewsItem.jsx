@@ -1,6 +1,9 @@
 import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
 
+import Link from "../Text/Link";
+import {getNewsItemRoute} from "../../../AppRouter/consts";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,13 +42,13 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const NewsItem = ({id, img, date, title, text, ...props}) => {
+const NewsItem = ({id, imageURL, date, title, text, ...props}) => {
     const styles = useStyles();
 
     return (
         <div className={styles.root} {...props}>
             <div className={styles.img}>
-                <img src={img}/>
+                <img src={imageURL}/>
             </div>
             <div>
                 <Typography className={styles.date}>
@@ -53,9 +56,11 @@ const NewsItem = ({id, img, date, title, text, ...props}) => {
                 </Typography>
             </div>
             <div>
-                <Typography style={{fontSize: '18px'}} color={'error'}>
-                    {title}
-                </Typography>
+                <Link to={getNewsItemRoute(id)}>
+                    <Typography style={{fontSize: '18px'}} color={'error'}>
+                        {title}
+                    </Typography>
+                </Link>
             </div>
             <div className={styles.text}>
                 <Typography >

@@ -33,23 +33,34 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const ListItems = ({children, icon, ...props}) => {
+const Item = ({icon, text, withTitle}) => {
+    const styles = useStyles();
+
+    const splitText = text.split('@');
+
+    return (
+        <div key={text} className={styles.item}>
+            <img className={styles.icon} src={icon}/>
+            <div>
+                <Typography style={{fontWeight: 600}}>
+                    {withTitle && splitText[0]}
+                </Typography>
+            </div>
+            <div>
+                <Typography>
+                    {withTitle ? splitText[1]: splitText[0]}
+                </Typography>
+            </div>
+        </div>
+    )
+}
+
+const ListItems = ({children, icon, withTitle, ...props}) => {
     const styles = useStyles();
 
     return (
         <div {...props}>
-            {children.map(text => {
-                return (
-                    <div key={text} className={styles.item}>
-                        <img className={styles.icon} src={icon}/>
-                        <div>
-                            <Typography>
-                                {text}
-                            </Typography>
-                        </div>
-                    </div>
-                )
-            })}
+            {children.map(text => <Item withTitle={withTitle} icon={icon} text={text}/>)}
         </div>
     );
 };

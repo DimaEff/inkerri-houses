@@ -3,15 +3,25 @@ import {db, storage, auth} from './index'
 
 const getCollectionData = async (collection) => {
     const response = await db.collection(collection).get();
-    return response.docs.map(doc => doc.data());
+    return response.docs.map(doc => ({id: doc.id, ...doc.data()}));
+}
+
+const getOneDoc = async (collection, docId) => {
+    const doc = await db.collection(collection).doc(docId).get();
+
+    if (doc.exists) {
+        return {id: doc.id, ...doc.data()};
+    }
+
+    return false
 }
 
 const addUpdateData = async (collection, data, doc) => {
     await db.collection(collection).doc(doc).set(data);
 }
 
-const deleteData = async (collection, doc) => {
-    if (!doc) await db.collection(collection).doc(doc).delete()
+const deleteData = async (collection, docId) => {
+    if (!docId) await db.collection(collection).doc(docId).delete()
 }
 
 const addImg = async (file) => {
@@ -26,6 +36,9 @@ const addImg = async (file) => {
 export const commonAPI = {
     async getCollection(collection) {
         return await getCollectionData(collection);
+    },
+    async getOneDoc(collection, docId) {
+        return await getOneDoc(collection, docId);
     },
     async addUpdateDoc(docCollection, file, data, doc) {
         let imgURL = file;

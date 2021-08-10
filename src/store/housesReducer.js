@@ -7,145 +7,13 @@ const HOUSES = firestoreCollections.houses;
 
 const SET_HOUSES = 'houses_reducer/SET_HOUSES';
 const SET_FETCHING = 'houses_reducer/SET_FETCHING';
-const SET_MINMAX = 'houses_reducer/SET_MINMAX';
+const SET_MIN_MAX_PRICES = 'houses_reducer/SET_MIN_MAX_PRICES';
+const SET_MIN_MAX_SQUARES = 'houses_reducer/SET_MIN_MAX_SQUARES';
 
 const initialState = {
     prices: [],
     squares: [],
-    houses: [
-        {
-            title: 'Клязьминский парк 146',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '2',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Гольфстрим 127',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1.5',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Олонец 81',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Клязьминский парк 146',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '2',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Гольфстрим 127',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1.5',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Олонец 81',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Клязьминский парк 146',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '2',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Гольфстрим 127',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1.5',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Олонец 81',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Клязьминский парк 146',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '2',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-        {
-            title: 'Гольфстрим 127',
-            usableArea: '81,12',
-            totalArea: '83,09',
-            dimensions: [12, 8.3],
-            floors: '1.5',
-            minPrice: 3240000,
-            maxPrice: 3700000,
-            imagesURL: ['https://images.adsttc.com/media/images/5ecd/d4ac/b357/65c6/7300/009d/large_jpg/02C.jpg?1590547607'],
-            bedRooms: 2,
-            bathRooms: 2,
-        },
-    ],
+    houses: [],
     isFetching: false,
 }
 
@@ -163,10 +31,16 @@ const housesReducer = (state=initialState, action) => {
                 isFetching: action.payload,
             }
 
-        case SET_MINMAX:
+        case SET_MIN_MAX_PRICES:
             return {
                 ...state,
-                [action.fieldName]: action.payload,
+                prices: action.payload,
+            }
+
+        case SET_MIN_MAX_SQUARES:
+            return {
+                ...state,
+                squares: action.payload,
             }
 
         default:
@@ -182,9 +56,13 @@ export const getHouses = () => async (dispatch) => {
     const minMaxSquare = getMinMaxArrValue(data, 'totalArea', 'all');
 
     dispatch(setHouses(data));
-    dispatch(setMinMax('prices', [minPrice[0], maxPrice[0]]));
-    dispatch(setMinMax('squares', minMaxSquare));
+    dispatch(setMinMaxPrices(([minPrice[0], maxPrice[0]])));
+    dispatch(setMinMaxSquares( minMaxSquare));
 }
+
+// export const getFilterHouses = (data) => (dispatch) => {
+//
+// }
 
 export const addUpdateHouse = (file, data, doc) => async (dispatch) => {
     dispatch(setFetching(true));
@@ -194,6 +72,7 @@ export const addUpdateHouse = (file, data, doc) => async (dispatch) => {
 
 const setHouses = (payload) => ({type: SET_HOUSES, payload});
 const setFetching = (payload) => ({type: SET_FETCHING, payload})
-const setMinMax = (fieldName, payload) => ({TYPE: SET_MINMAX, fieldName, payload})
+const setMinMaxPrices = (payload) => ({type: SET_MIN_MAX_PRICES, payload})
+const setMinMaxSquares = (payload) => ({type: SET_MIN_MAX_SQUARES, payload})
 
 export default housesReducer;

@@ -18,6 +18,27 @@ const theme = createTheme({
             main: '#B72A27',
         }
     },
+    overrides: {
+        MuiSlider: {
+            colorSecondary: {
+                color: '#B72A27',
+            }
+        },
+        PrivateSwitchBase: {
+            root: {
+                padding: '2px',
+                paddingLeft: '35px',
+            },
+            checked: {
+                color: '#B72A27',
+            }
+        },
+        PrivateRadioButtonIcon: {
+            checked: {
+                color: '#B72A27',
+            }
+        },
+    }
 });
 
 export default theme;

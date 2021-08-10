@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
         position: 'absolute',
         width: '30%',
         right: '0px',
+        marginLeft: '2px',
     }
 }))
 
@@ -27,7 +28,7 @@ const ParamItem = ({icon, title, value, unit, ...props}) => {
     return (
         <div className={styles.item} {...props}>
             {icon && <div className={styles.icon}><img src={icon}/></div>}
-            <div>
+            <div style={{marginRight: '5px'}}>
                 <Typography>
                     {title}:
                 </Typography>
@@ -46,7 +47,7 @@ const HouseItemParams = ({params, ...props}) => {
 
     return (
         <div className={styles.root} {...props}>
-            {params.map(param => <ParamItem {...param}/>)}
+            {params.map(param => <ParamItem key={param.title} {...param}/>)}
         </div>
     );
 };

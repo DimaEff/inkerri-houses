@@ -32,3 +32,9 @@ body {
 .my-masonry-grid_column > div {
     min-width: 100% !important;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

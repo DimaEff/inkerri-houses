@@ -5,10 +5,10 @@ import {displaySize} from "../../../utils/consts";
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {
+    root: ({mB}) => ({
         '& div': {
             '&:not(:last-child)': {
-                marginBottom: '30px',
+                marginBottom: mB || '30px',
             },
 
             [theme.breakpoints.down(displaySize)]: {
@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
                 },
             },
         }
-    }
+    })
 }))
 
-const TextContainer = ({children, ...props}) => {
-    const styles = useStyles();
+const TextContainer = ({children, mB, ...props}) => {
+    const styles = useStyles({mB});
 
     return (
         <div className={styles.root} {...props}>

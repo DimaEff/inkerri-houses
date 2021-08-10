@@ -27,22 +27,24 @@ const schema = yup.object().shape({
 
 const NeedHelp = ({grey}) => {
     return (
-        <AppContainer title={'Нужна помощь?'} grey={!!grey} reverse>
+        <div>
             <a name={"help"}/>
-            <AppContainerItem lg={7} md={7} sm={12} xs={12}>
-                <img style={{maxWidth: '100%', maxHeight: '100%',}} src={questionImg}/>
-            </AppContainerItem>
-            <AppContainerItem margin lg={5} md={5} sm={12} xs={12}>
-                <FeedbackForm template={callOrderTemplate} schema={schema} buttonText={'Заказать звонок'}>
-                    {[
-                        {name: 'username', placeholder: 'Имя*'},
-                        {name: 'surname', placeholder: 'Фамилия*'},
-                        {name: 'email', placeholder: 'Email*'},
-                        {name: 'phone', placeholder: 'Номер телефона*'},
-                    ]}
-                </FeedbackForm>
-            </AppContainerItem>
-        </AppContainer>
+            <AppContainer title={'Нужна помощь?'} grey={!!grey} reverse>
+                <AppContainerItem lg={7} md={7} sm={12} xs={12}>
+                    <img style={{maxWidth: '100%', maxHeight: '100%',}} src={questionImg}/>
+                </AppContainerItem>
+                <AppContainerItem margin lg={5} md={5} sm={12} xs={12}>
+                    <FeedbackForm template={callOrderTemplate} schema={schema} buttonText={'Заказать звонок'}>
+                        {[
+                            {name: 'username', placeholder: 'Имя*'},
+                            {name: 'surname', placeholder: 'Фамилия*'},
+                            {name: 'email', placeholder: 'Email*'},
+                            {name: 'phone', placeholder: 'Номер телефона*'},
+                        ]}
+                    </FeedbackForm>
+                </AppContainerItem>
+            </AppContainer>
+        </div>
     );
 };
 
