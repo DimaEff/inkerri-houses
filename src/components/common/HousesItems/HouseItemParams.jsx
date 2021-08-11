@@ -16,8 +16,12 @@ const useStyles = makeStyles(theme => ({
     },
     value: {
         position: 'absolute',
-        width: '30%',
         right: '0px',
+
+        display: 'flex',
+        justifyContent: 'flex-start',
+        width: '30%',
+        minWidth: '90px',
         marginLeft: '2px',
     }
 }))

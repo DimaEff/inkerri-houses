@@ -36,6 +36,16 @@ export const getMinMaxArrValue = (arr, prop, type) => {
     return result;
 }
 
+export const splitArray = (array, size) => {
+    const subarray = [];
+
+    for (let i = 0; i <Math.ceil(array.length/size); i++){
+        subarray[i] = array.slice((i*size), (i*size) + size);
+    }
+
+    return subarray;
+}
+
 // export const filterHouses = (filterData, houses) => {
 //     let result;
 //

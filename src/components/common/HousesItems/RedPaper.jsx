@@ -3,16 +3,15 @@ import {makeStyles, Paper, Typography} from "@material-ui/core";
 
 
 const useStyles = makeStyles(theme => ({
-    root: ({shadow, h, w}) => ({
+    root: ({shadow, h, w, minW}) => ({
         display: 'flex',
-        // justifyContent: 'center',
         alignItems: 'center',
         position: 'relative',
         flexFlow: 'column',
 
         height: h || 'auto',
-        // width: w || 'auto',
-        width: '260px',
+        width: w || 'auto',
+        minWidth: minW || '260px',
         border: '2px solid #B72A27',
         borderRadius: '10px',
         padding: '20px 0px',
@@ -24,6 +23,7 @@ const useStyles = makeStyles(theme => ({
         top: '-2px',
         right: '-2px',
 
+        minWidth: '40px',
         padding: '8px',
         borderBottomLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
@@ -35,8 +35,8 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const MyComponent = ({children, shadow, cornerText, h, w, ...props}) => {
-    const styles = useStyles({shadow, h, w});
+const MyComponent = ({children, shadow, cornerText, h, w, minW, ...props}) => {
+    const styles = useStyles({shadow, h, w, minW});
 
     return (
         <Paper elevation={0} className={styles.root} {...props}>

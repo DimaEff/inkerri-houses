@@ -7,9 +7,12 @@ import TextContainer from "../../../components/common/AppContainer/TextContainer
 
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        marginLeft: '10px',
+    },
     description: {
         overflowY: 'auto',
-        minHeight: '100px',
+        // minHeight: '100px',
         maxHeight: '300px',
     }
 }))
@@ -41,7 +44,7 @@ const HouseItemInfo = ({houseItem}) => {
     ];
 
     return (
-        <div>
+        <div className={styles.root}>
             <TextContainer mB={'10px'}>
                 <div>
                     <Typography variant={'h5'} color={'error'}>

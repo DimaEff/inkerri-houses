@@ -9,11 +9,7 @@ import News from "./News";
 import NewsItemPage from "./NewsItemPage";
 
 
-const NewsContainer = ({news, getNews}) => {
-    useEffect(() => {
-        getNews();
-    }, [getNews])
-
+const NewsContainer = () => {
     const {newsItemId} = useParams();
     const history = useHistory();
 
@@ -23,7 +19,7 @@ const NewsContainer = ({news, getNews}) => {
 
     if (newsItemId) return <NewsItemPage newsItemId={newsItemId}/>
 
-    return <News news={news}/>;
+    return <News />;
 };
 
 const mapStateToProps = (state) => ({

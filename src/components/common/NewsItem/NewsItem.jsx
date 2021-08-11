@@ -3,6 +3,7 @@ import {makeStyles, Typography} from "@material-ui/core";
 
 import Link from "../Text/Link";
 import {getNewsItemRoute} from "../../../AppRouter/consts";
+import {displaySize} from "../../../utils/consts";
 
 
 const useStyles = makeStyles(theme => ({
@@ -10,7 +11,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         flexFlow: 'column',
         width: '371px',
-        minWidth: '279px',
+        minWidth: '250px',
         maxWidth: '80vw',
         margin: '0px 12px',
         marginBottom: '15px',
@@ -39,6 +40,11 @@ const useStyles = makeStyles(theme => ({
     text: {
         overflow: 'hidden',
         height: '166px',
+
+        [theme.breakpoints.down(600)]: {
+            height: 'auto',
+            maxHeight: '166px'
+        },
     }
 }))
 
@@ -64,7 +70,7 @@ const NewsItem = ({id, imageURL, date, title, text, ...props}) => {
             </div>
             <div className={styles.text}>
                 <Typography >
-                    {text.slice(0, 250)}...
+                    {text.length <= 200 ? text: (text.slice(0, 200) + '...')}
                 </Typography>
             </div>
         </div>

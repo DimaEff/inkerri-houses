@@ -53,7 +53,7 @@ const Filter = ({prices, squares, floors, setFloors}) => {
     const [bathRooms, setBathRooms] = useState('1');
 
     return (
-        <RedPaper w={'215px'}>
+        <RedPaper w={'230px'} minW={'220px'}>
             <FilterItem title={'Количество этажей'}>
                 <FloorsFilter floors={floors} setFloors={setFloors} column withoutAll/>
             </FilterItem>

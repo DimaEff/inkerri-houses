@@ -4,12 +4,27 @@ import {makeStyles} from "@material-ui/core";
 
 import nextArrowIcon from '../../assets/nextArrow.svg';
 import prevArrowIcon from '../../assets/prevArrow.svg';
+import {displaySize} from "../../utils/consts";
 
 
 const useStyles = makeStyles(theme => ({
     root: ({h, w}) => ({
         height: h || 'auto',
         width: w || 'auto',
+    }),
+    indicator: ({isSelected}) => ({
+        zIndex: 2,
+        display: 'inline-block',
+        width: '10%',
+        maxWidth: '75px',
+        height: '5px',
+        marginBottom: '-10px',
+
+        backgroundColor: isSelected ? '#B72A27' : '#E3E3E3',
+
+        [theme.breakpoints.down(displaySize)]: {
+            height: '4px',
+        },
     }),
     arrow: ({arrow}) => ({
         zIndex: 2,
@@ -31,6 +46,12 @@ const useStyles = makeStyles(theme => ({
     })
 }))
 
+const Indicator = ({isSelected}) => {
+    const styles = useStyles({isSelected});
+
+    return <li className={styles.indicator}/>
+}
+
 const Arrow = ({clickHandler, arrow}) => {
     const styles = useStyles({arrow});
 
@@ -46,6 +67,7 @@ const MyCarousel = ({children, h, w, ...props}) => {
     return (
         <div className={styles.root}>
             <Carousel
+                renderIndicator={(clickHandler, isSelected) => <Indicator isSelected={isSelected}/>}
                 renderArrowNext={clickHandler => <Arrow arrow={'>'} clickHandler={clickHandler}/>}
                 renderArrowPrev={clickHandler => <Arrow arrow={'<'} clickHandler={clickHandler}/>}
                 showIndicators={false}

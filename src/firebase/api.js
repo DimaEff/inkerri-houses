@@ -6,6 +6,29 @@ const getCollectionData = async (collection) => {
     return response.docs.map(doc => ({id: doc.id, ...doc.data()}));
 }
 
+const getCollectionDataFromLimit = async (collection, orderField, limit, lastDoc, method) => {
+    let response;
+
+    if (!lastDoc) {
+        response = await db.collection(collection)
+            .orderBy(orderField, method || 'asc')
+            .limit(limit)
+            .get();
+    } else {
+        response = await db.collection(collection)
+            .orderBy(orderField, method || 'asc')
+            .startAfter(lastDoc)
+            .limit(limit)
+            .get();
+    }
+
+    return {
+        data: response.docs.map(doc => ({id: doc.id, ...doc.data()})),
+        lastDoc: response.docs[response.docs.length - 1],
+        isLastPage: response.docs.length < limit,
+    };
+}
+
 const getOneDoc = async (collection, docId) => {
     const doc = await db.collection(collection).doc(docId).get();
 
@@ -28,14 +51,17 @@ const addImg = async (file) => {
     const storageRef = storage.ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
-    const imgURL = await fileRef.getDownloadURL();
+    const imageURL = await fileRef.getDownloadURL();
 
-    return imgURL;
+    return imageURL;
 }
 
 export const commonAPI = {
     async getCollection(collection) {
         return await getCollectionData(collection);
+    },
+    async getLimitCollection(collection, orderField, limit, lastDoc, method) {
+        return await getCollectionDataFromLimit(collection, orderField, limit, lastDoc, method);
     },
     async getOneDoc(collection, docId) {
         return await getOneDoc(collection, docId);

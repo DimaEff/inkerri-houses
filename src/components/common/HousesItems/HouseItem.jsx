@@ -119,9 +119,10 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
         },
     ];
 
+    const test = houseItem.usableArea.toString();
     const cornerText = variant === 'secondary' ?
-        getFloorTitle(houseItem.floorsNumber) || plug :
-        (houseItem.usableArea.toString().split('.')[0] || plug) + ' м2';
+        houseItem.floors:
+        (houseItem.usableArea.toString().split('.')[0]  + ' м2');
 
     return (
         <RedPaper shadow cornerText={cornerText} h={'550px'} w={'320px'} {...props}>

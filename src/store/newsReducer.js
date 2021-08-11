@@ -19,7 +19,7 @@ const newsReducer = (state=initialState, action) => {
         case SET_NEWS:
             return {
                 ...state,
-                news: [...action.payload],
+                news: action.payload,
             }
 
         case SET_FETCHING:
@@ -33,7 +33,7 @@ const newsReducer = (state=initialState, action) => {
     }
 }
 
-export const getNews = () => async (dispatch) => {
+export const getNews = (page, limit) => async (dispatch) => {
     const data = await commonAPI.getCollection(NEWS);
     dispatch(setNews(data));
 }

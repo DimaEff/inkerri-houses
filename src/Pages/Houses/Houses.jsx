@@ -19,9 +19,9 @@ const Houses = ({houses, prices, squares}) => {
             <AppContainerItem lg={3} md={3} sm={12} xs={12}>
                 <Filter prices={prices} squares={squares} floors={floors} setFloors={setFloors}/>
             </AppContainerItem>
-            <AppContainerItem lg={9} md={9} sm={12} xs={12}>
+            <AppContainerItem jC={'flex-start'} lg={9} md={9} sm={12} xs={12}>
                 <Grid container>
-                    {houses.map(house => <AppContainerItem jC={'flex-start'} aI={'flex-start'} key={house.title} lg={4} md={4} sm={6} xs={12}>
+                    {houses.map(house => <AppContainerItem key={house.title} lg={4} md={6} sm={6} xs={12}>
                         <HouseItem shadow houseItem={house}/>
                     </AppContainerItem>)}
                 </Grid>

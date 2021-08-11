@@ -26,7 +26,7 @@ const HouseItemPage = ({houseId}) => {
                                 {houseItem.imagesURL}
                             </HouseItemCarousel>
                         </AppContainerItem>
-                    <AppContainerItem lg={5} md={5} sm={12} xs={12}>
+                    <AppContainerItem jC={'flex-start'} lg={5} md={5} sm={12} xs={12}>
                         <HouseItemInfo houseItem={houseItem}/>
                     </AppContainerItem>
                     <AppContainerItem jC={'flex-start'} lg={12} md={12} sm={12} xs={12}>
