@@ -1,2 +1,0 @@
-(this["webpackJsonpinkerri-houses"]=this["webpackJsonpinkerri-houses"]||[]).push([[7],{374:function(e,s,r){"use strict";r.r(s);r(0);var i=r(135),t=r(197),n=r(2);s.default=function(){return Object(n.jsxs)("div",{children:[Object(n.jsx)(i.a,{grey:!0}),Object(n.jsx)(t.a,{grey:!0})]})}}}]);
-//# sourceMappingURL=7.5ebd2361.chunk.js.map
