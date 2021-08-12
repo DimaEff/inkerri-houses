@@ -38,15 +38,17 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const MyInput = forwardRef(({children, errorText, ...props}, ref) => {
+const Select = forwardRef(({children, errorText, ...props}, ref) => {
     const styles = useStyles();
 
     return <div className={styles.inputWrapper}>
-        <input className={styles.input} ref={ref} autoComplete={'off'} {...props}/>
+        <select className={styles.input} ref={ref} autoComplete={'off'} {...props}>
+            {children}
+        </select>
         <div className={styles.errorText}>
-                {errorText?.message}
+            {errorText?.message}
         </div>
     </div>
 });
 
-export default MyInput;
+export default Select;

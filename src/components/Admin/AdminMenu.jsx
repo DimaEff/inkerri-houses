@@ -3,6 +3,8 @@ import React from 'react';
 import {Drawer, List, ListItemIcon, ListItemText, ListItem} from "@material-ui/core";
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import Registration from "../Registration/Registration";
+import AddNews from "./DialogsContent/AddNews";
+import AddHouse from "./DialogsContent/AddHouse";
 
 
 const Actions = ({children, setOpen}) => {
@@ -33,8 +35,8 @@ const AdminMenu = ({open, setOpen, openContentDialogCreator, logout}) => {
                 <Drawer anchor={'right'} open={open} onClose={() => setOpen(false)}>
                     <Actions setOpen={setOpen}>
                         {[
-                            {text: 'Добавить дом', action: openContentDialogCreator('Добавить дом')},
-                            {text: 'Добавить новость', action: openContentDialogCreator('Добавить новость')},
+                            {text: 'Добавить дом', action: openContentDialogCreator(<AddHouse />)},
+                            {text: 'Добавить новость', action: openContentDialogCreator(<AddNews />)},
                             {text: 'Добавить фото', action: openContentDialogCreator('Добавить фото')},
                             {text: 'Добавить администратора', action:  openContentDialogCreator(<Registration />)},
                             {text: 'Выйти', action: logout},

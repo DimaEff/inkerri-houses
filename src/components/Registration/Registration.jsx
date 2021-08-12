@@ -26,7 +26,7 @@ const Registration = ({addNewUser, ...props}) => {
 
     return (
         <div>
-            <Form onSubmit={registration} buttonText={'Зарегестрировать'} schema={schema} {...props}>
+            <Form onSubmit={registration} buttonText={'Зарегистрировать'} schema={schema} {...props}>
                 {[
                     {name: "email", placeholder: 'Email*', type: "email"},
                     {name: "password", placeholder: 'Пароль*', type: "password"},

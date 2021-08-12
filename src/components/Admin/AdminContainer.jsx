@@ -47,7 +47,10 @@ const AdminContainer = ({user, logout}) => {
                        setOpen={setOpenMenu}
                        openContentDialogCreator={openContentDialogCreator}
                        logout={logout}/>
-            <Dialog onClose={() => setOpenContentDialog(false)} aria-labelledby={'content-dialog'} open={openContentDialog}>
+            <Dialog
+                onClose={() => setOpenContentDialog(false)}
+                aria-labelledby={'content-dialog'}
+                open={openContentDialog}>
                 {contentDialog}
             </Dialog>
         </div>

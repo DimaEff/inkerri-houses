@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {makeStyles, Paper} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 import MyInput from "./MyInput";
 import MyButton from "../Button/MyButton";
 import SuccessAlert from "../Alerts/SuccessAlert";
+import MyPaper from "../AppContainer/MyPaper";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -13,21 +14,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    paper: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-        width: '80vw',
-        maxWidth: '400px',
-        minWidth: '280px',
-
-        paddingTop: '60px',
-        paddingBottom: '60px',
-        borderRadius: '30px',
-        backgroundColor: '#F3F2F2',
-        boxShadow: '0px 2px 70px 4px rgba(0, 0, 0, 0.32)',
     },
     form: {
         display: 'flex',
@@ -60,7 +46,7 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
     return (
         <div className={styles.root}>
             <SuccessAlert open={open} handleClose={() => setOpen(false)}/>
-            <Paper className={styles.paper} {...props}>
+            <MyPaper mW={'400px'} {...props}>
                 <form onSubmit={handleSubmit(onHandleSubmit)} className={styles.form}>
                     {antiSpam}
                     {children?.map(({name, placeholder, type, ...props}) => {
@@ -71,7 +57,7 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
                         {buttonText}
                     </MyButton>
                 </form>
-            </Paper>
+            </MyPaper>
         </div>
     );
 };

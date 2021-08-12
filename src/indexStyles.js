@@ -24,6 +24,11 @@ const theme = createTheme({
                 color: '#B72A27',
             }
         },
+        MuiDialog: {
+            paper: {
+                backgroundColor: 'transparent',
+            }
+        },
         PrivateSwitchBase: {
             root: {
                 padding: '2px',
