@@ -4,6 +4,7 @@ import {makeStyles, Typography} from "@material-ui/core";
 import Link from "../Text/Link";
 import {getNewsItemRoute} from "../../../AppRouter/consts";
 import {displaySize} from "../../../utils/consts";
+import {getDateTemplate} from "../../../utils/helpers";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +59,7 @@ const NewsItem = ({id, imageURL, date, title, text, ...props}) => {
             </div>
             <div>
                 <Typography className={styles.date}>
-                    {date}
+                    {getDateTemplate(date.toDate())}
                 </Typography>
             </div>
             <div>

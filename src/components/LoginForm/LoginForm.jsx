@@ -8,10 +8,10 @@ import {login} from "../../store/userReducer";
 
 const schema = yup.object().shape({
     email: yup.string()
-        .required('Это поле является обязательным')
-        .email('Введите корректный email'),
+        .required('Обязательное поле')
+        .email('Некорректный email'),
     password: yup.string()
-        .required('Это поле является обязательным')
+        .required('Обязательное поле')
         .min(6, 'Минимум 6 символов')
         .max(12, 'Максимум 12 символов'),
 });

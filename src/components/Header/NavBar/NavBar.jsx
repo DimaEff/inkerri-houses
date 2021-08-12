@@ -1,10 +1,11 @@
-import React from 'react';
-import {makeStyles} from "@material-ui/core";
+import React, {useState} from 'react';
+import {makeStyles, Dialog} from "@material-ui/core";
 
 import Navigation from "./Navigation";
 import {displaySize} from "../../../utils/consts";
 import NavTitle from "./NavTitle";
 import MyButton from "../../common/Button/MyButton";
+import LoginForm from "../../LoginForm/LoginForm";
 
 
 const useStytles = makeStyles((theme) => ({
@@ -54,12 +55,14 @@ const useStytles = makeStyles((theme) => ({
 const NavBar = () => {
     const styles = useStytles();
 
+
     return (
         <div className={styles.root}>
             <div className={styles.navigate}>
                 <Navigation/>
             </div>
             <div className={styles.navTitle}>
+
                 <NavTitle title={'Лучшее будущее для вашей семьи'}>
                     {[
                         {text: 'Надежность', color: '#B72A27'},

@@ -67,7 +67,7 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
                         return <MyInput key={name} placeholder={placeholder} type={type}
                                         errorText={errors[name]} {...register(name)} {...props}/>
                     })}
-                    <MyButton type={'submit'}>
+                    <MyButton action={props.action} type={'submit'}>
                         {buttonText}
                     </MyButton>
                 </form>

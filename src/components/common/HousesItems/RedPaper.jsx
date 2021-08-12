@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
         height: h || 'auto',
         width: w || 'auto',
         minWidth: minW || '260px',
+        maxWidth: '90vw',
         border: '2px solid #B72A27',
         borderRadius: '10px',
         padding: '20px 0px',
@@ -27,6 +28,7 @@ const useStyles = makeStyles(theme => ({
         padding: '8px',
         borderBottomLeftRadius: 'inherit',
         borderTopRightRadius: 'inherit',
+        textAlign: 'center',
         backgroundColor: '#B72A27',
 
         '& p': {

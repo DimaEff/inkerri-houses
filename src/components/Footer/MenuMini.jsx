@@ -37,10 +37,10 @@ const MenuMini = ({paths, menuNum, ...props}) => {
         <div {...props}>
             <div className={styles.menu}>
                 {
-                    filterPaths.map(({name, path}) => {
+                    filterPaths.map(({name, path, menuPath}) => {
                         return (
                             <div key={path}>
-                                <NavText color={'#3E3E3E99'} path={path}>
+                                <NavText color={'#3E3E3E99'} path={path} menuPath={menuPath}>
                                     {name}
                                 </NavText>
                             </div>

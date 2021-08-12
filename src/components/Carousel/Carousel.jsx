@@ -29,16 +29,19 @@ const useStyles = makeStyles(theme => ({
     arrow: ({arrow}) => ({
         zIndex: 2,
         position: 'absolute',
-        top: '0px',
+        top: '50%',
         bottom: '0px',
         right: arrow === '>' && '0px',
         left: arrow === '<' && '0px',
 
+        height: '20px',
+        width: '20px',
         display: 'flex',
         alignItems: 'center',
 
         margin: '5px',
         cursor: 'pointer',
+        backgroundColor: 'transparent',
 
         '& img': {
             height: '20px',

@@ -5,6 +5,7 @@ import {NavLink} from "react-router-dom";
 import logoImg from '../../../assets/Header/logo.svg';
 import NavigationMenuContainer from "./NavigationMenu/NavigationMenuContainer";
 import appRoutes from "../../../AppRouter/routes";
+import {getHomeRoute} from "../../../AppRouter/consts";
 
 
 const useStytles = makeStyles((theme) => ({
@@ -31,7 +32,7 @@ const Navigation = () => {
     return (
         <div className={styles.root}>
             <div className={styles.logo}>
-                <NavLink to={'#home'}>
+                <NavLink to={getHomeRoute()}>
                     <img src={logoImg}/>
                 </NavLink>
             </div>

@@ -5,7 +5,7 @@ import WeDo from "../../components/WeDo/WeDo";
 import WhyWe from "../../components/WhyWe/WhyWe";
 import NeedHelp from "../../components/NeedHelp/NeedHelp";
 import NewsMini from "../../components/NewsMini/NewsMini";
-import HousesMiniContainer from "../../HousesMini/HousesMiniContainer";
+import HousesMiniContainer from "../../components/HousesMini/HousesMiniContainer";
 
 
 const Home = () => {

@@ -42,12 +42,8 @@ const Item = ({icon, text, withTitle}) => {
         <div key={text} className={styles.item}>
             <img className={styles.icon} src={icon}/>
             <div>
-                <Typography style={{fontWeight: 600}}>
-                    {withTitle && splitText[0]}
-                </Typography>
-            </div>
-            <div>
                 <Typography>
+                    <span style={{fontWeight: 600}}>{withTitle && splitText[0]}</span>
                     {withTitle ? splitText[1]: splitText[0]}
                 </Typography>
             </div>

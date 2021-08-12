@@ -36,7 +36,7 @@ const NavigationMenuDesktop = ({paths}) => {
         <div className={styles.root}>
             <div className={styles.menu}>
                 {
-                    paths.map(({name, path}) => <NavText key={path} path={path}>
+                    paths.map(({name, path, menuPath}) => <NavText key={path} path={path} menuPath={menuPath}>
                         {name}
                     </NavText>)
                 }

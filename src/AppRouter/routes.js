@@ -5,7 +5,7 @@ import {
     getPhotosRoute,
     getScandinavianRoute,
     getDesigningRoute,
-    getConsultingRoute, getNewsItemRoute, getHousesItemRoute,
+    getConsultingRoute, getNewsItemRoute, getHousesItemRoute, getNewsRoute, getHousesRoute,
 } from "./consts";
 import Home from "../Pages/Home/Home";
 import HousesContainer from '../Pages/Houses/HousesContainer';
@@ -30,12 +30,14 @@ const appRoutes = [
         path: getNewsItemRoute(),
         Component: NewsContainer,
         lazyLoading: true,
+        menuPath: getNewsRoute(),
         menuNum: 1,
     },
     {
         name: 'Готовые проекты',
         path: getHousesItemRoute(),
         Component: HousesContainer,
+        menuPath: getHousesRoute(),
         menuNum: 1,
     },
     {

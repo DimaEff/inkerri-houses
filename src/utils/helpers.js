@@ -46,6 +46,17 @@ export const splitArray = (array, size) => {
     return subarray;
 }
 
+export const getDateTemplate = (date) => {
+    let day = date.getDate().toString();
+    let month = (+date.getMonth() + 1).toString();
+    const year = date.getFullYear().toString();
+
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+
+    return `${day}.${month}.${year}`;
+}
+
 // export const filterHouses = (filterData, houses) => {
 //     let result;
 //

@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme) => ({
     })
 }))
 
-const NavText = ({children, path, color, ...props}) => {
+const NavText = ({children, path, color, menuPath, ...props}) => {
     const styles = useStyles({color});
 
     return (
         <div className={styles.root} {...props}>
-            <Link to={path}>
+            <Link to={menuPath || path}>
                 {children}
             </Link>
         </div>

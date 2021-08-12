@@ -119,7 +119,6 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
         },
     ];
 
-    const test = houseItem.usableArea.toString();
     const cornerText = variant === 'secondary' ?
         houseItem.floors:
         (houseItem.usableArea.toString().split('.')[0]  + ' м2');

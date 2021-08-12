@@ -2,11 +2,13 @@ import {useEffect, useState} from "react";
 
 
 const useResolution = () => {
+    const [resolution, setResolution] = useState();
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const checkWidth = () => {
             const width = window.innerWidth;
+            setResolution(width)
             if (width <= 960) {
                 setIsMobile(true)
             } else {
@@ -20,7 +22,7 @@ const useResolution = () => {
         return () => window.removeEventListener('resize', checkWidth);
     }, [])
 
-    return isMobile;
+    return {isMobile, resolution};
 }
 
 export default useResolution;

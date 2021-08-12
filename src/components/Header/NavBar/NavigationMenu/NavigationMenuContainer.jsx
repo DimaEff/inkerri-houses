@@ -6,7 +6,7 @@ import NavigationMenuMobile from "./NavigationMenuMobile";
 
 
 const NavigationMenuContainer = ({paths}) => {
-    const isMobile = useResolution();
+    const {isMobile} = useResolution();
     const filterPaths = paths?.filter(path => path.menuNum === 1);
 
     return (

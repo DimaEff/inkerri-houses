@@ -6,6 +6,7 @@ import useGetDoc from "../../hooks/useGetDoc";
 import {firestoreCollections} from "../../utils/consts";
 import AppContainerItem from "../../components/common/AppContainer/AppContainerItem";
 import TextContainer from "../../components/common/AppContainer/TextContainer";
+import {getDateTemplate} from "../../utils/helpers";
 
 
 const NewsItemPage = ({newsItemId}) => {
@@ -25,7 +26,7 @@ const NewsItemPage = ({newsItemId}) => {
                             </div>
                             <div>
                                 <Typography variant={'h6'}>
-                                    {hewsItem.date}
+                                    {getDateTemplate(hewsItem.date.toDate())}
                                 </Typography>
                             </div>
                             <div>
