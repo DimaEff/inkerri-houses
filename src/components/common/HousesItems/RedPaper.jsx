@@ -3,7 +3,7 @@ import {makeStyles, Paper, Typography} from "@material-ui/core";
 
 
 const useStyles = makeStyles(theme => ({
-    root: ({shadow, h, w, minW}) => ({
+    root: ({shadow, h, w, minW, margin}) => ({
         display: 'flex',
         alignItems: 'center',
         position: 'relative',
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         border: '2px solid #B72A27',
         borderRadius: '10px',
         padding: '20px 0px',
-        margin: '15px 5px',
+        margin: margin || '15px 5px',
         boxShadow: shadow && '0px 2px 40px 2px rgba(0, 0, 0, 0.15)',
     }),
     cornerInfo: {
@@ -37,8 +37,8 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const MyComponent = ({children, shadow, cornerText, h, w, minW, ...props}) => {
-    const styles = useStyles({shadow, h, w, minW});
+const MyComponent = ({children, shadow, cornerText, h, w, minW, margin, ...props}) => {
+    const styles = useStyles({shadow, h, w, minW, margin});
 
     return (
         <Paper elevation={0} className={styles.root} {...props}>

@@ -2,24 +2,24 @@ import React from 'react';
 import {connect} from "react-redux";
 import {useParams} from "react-router-dom";
 
-import {getHouses} from "../../store/housesReducer";
-import {getPrices, getSquares, getStateHouses} from "../../selectors/house_selectors";
+import {getHouses, setFilterHousesValues} from "../../store/housesReducer";
+import {getFilterHouses, getPrices, getSquares} from "../../selectors/house_selectors";
 import Houses from "./Houses";
 import HouseItemPage from "./HouseItemPage/HouseItemPage";
 
 
-const HousesContainer = ({houses, prices, squares, getHouses}) => {
+const HousesContainer = (props) => {
     const {houseId} = useParams();
 
     if (houseId) return <HouseItemPage houseId={houseId}/>
 
-    return <Houses houses={houses} prices={prices} squares={squares}/>;
+    return <Houses {...props}/>;
 };
 
 const mapStateToProps = (state) => ({
-    houses: getStateHouses(state),
     prices: getPrices(state),
     squares: getSquares(state),
+    filteredHouses: getFilterHouses(state),
 })
 
-export default connect(mapStateToProps, {getHouses})(HousesContainer);
+export default connect(mapStateToProps, {getHouses, setFilterHousesValues})(HousesContainer);

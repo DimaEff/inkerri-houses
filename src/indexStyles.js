@@ -27,6 +27,7 @@ const theme = createTheme({
         MuiDialog: {
             paper: {
                 backgroundColor: 'transparent',
+                overflowX: 'hidden',
             }
         },
         PrivateSwitchBase: {

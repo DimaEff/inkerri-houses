@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Filter = ({prices, squares, floors, setFloors}) => {
+const Filter = ({prices, squares, floors, setFloors, onAdaptiveFilter, onFilter}) => {
     const styles = useStyles();
 
-    const reset = useCallback(() => {
+    const setDefaultValues = useCallback(() => {
         setFloors('all');
 
         setMinPrice(prices[0]);
@@ -33,14 +33,14 @@ const Filter = ({prices, squares, floors, setFloors}) => {
         setMinSquares(Math.floor(squares[0]));
         setMaxSquares(Math.ceil(squares[1]));
 
-        setBedRooms('1');
+        setBedRooms('all');
 
-        setBathRooms('1');
+        setBathRooms('all');
     }, [prices, squares, setFloors,])
 
     useEffect(() => {
-        reset();
-    }, [reset])
+        setDefaultValues();
+    }, [setDefaultValues])
 
     const [minPrice, setMinPrice] = useState(prices[0]);
     const [maxPrice, setMaxPrice] = useState(prices[1]);
@@ -48,14 +48,30 @@ const Filter = ({prices, squares, floors, setFloors}) => {
     const [minSquares, setMinSquares] = useState(squares[0]);
     const [maxSquares, setMaxSquares] = useState(squares[1]);
 
-    const [bedRooms, setBedRooms] = useState('1');
+    const [bedRooms, setBedRooms] = useState('all');
 
-    const [bathRooms, setBathRooms] = useState('1');
+    const [bathRooms, setBathRooms] = useState('all');
+
+    const onSubmit = () => {
+        onAdaptiveFilter({
+            minPrice,
+            maxPrice,
+            minSquares,
+            maxSquares,
+            bedRooms,
+            bathRooms,
+            floors});
+    }
+
+    const onReset = () => {
+        setDefaultValues();
+        onAdaptiveFilter(null);
+    }
 
     return (
-        <RedPaper w={'230px'} minW={'220px'}>
+        <RedPaper margin={'0px 0px'} w={'230px'} minW={'200px'}>
             <FilterItem title={'Количество этажей'}>
-                <FloorsFilter floors={floors} setFloors={setFloors} column withoutAll/>
+                <FloorsFilter floors={floors} setFloors={setFloors} onFilter={onFilter} column/>
             </FilterItem>
             <FilterItem title={'Цена (₽)'}>
                 <DoubleInputSlider
@@ -78,8 +94,9 @@ const Filter = ({prices, squares, floors, setFloors}) => {
                 />
             </FilterItem>
             <FilterItem title={'Количество спален'}>
-                <RadioInput value={bedRooms} setValue={setBedRooms} defaultValue={'1'}>
+                <RadioInput value={bedRooms} setValue={setBedRooms} defaultValue={'all'} name={'bedRooms'}>
                     {[
+                        {value: 'all', label: 'Все'},
                         {value: '1', label: '1'},
                         {value: '2', label: '2'},
                         {value: '3', label: '3'},
@@ -90,8 +107,9 @@ const Filter = ({prices, squares, floors, setFloors}) => {
                 </RadioInput>
             </FilterItem>
             <FilterItem title={'Количество с/узлов'}>
-                <RadioInput value={bathRooms} setValue={setBathRooms} defaultValue={'1'}>
+                <RadioInput value={bathRooms} setValue={setBathRooms} defaultValue={'all'} name={'bathRooms'}>
                     {[
+                        {value: 'all', label: 'Все'},
                         {value: '1', label: '1'},
                         {value: '2', label: '2'},
                         {value: '3', label: '3'},
@@ -101,11 +119,11 @@ const Filter = ({prices, squares, floors, setFloors}) => {
                 </RadioInput>
             </FilterItem>
             <div className={styles.buttons}>
-                <MyButton action={() => console.log({prices: [minPrice, maxPrice], squares: [minSquares, maxSquares]})}>
-                    Применить
-                </MyButton>
-                <MyButton action={reset}>
+                <MyButton action={onReset}>
                     Сбросить
+                </MyButton>
+                <MyButton action={onSubmit}>
+                    Применить
                 </MyButton>
             </div>
         </RedPaper>

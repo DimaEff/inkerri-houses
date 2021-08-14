@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'flex-start',
         width: '30%',
-        minWidth: '90px',
+        minWidth: '70px',
         marginLeft: '2px',
     }
 }))

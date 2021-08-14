@@ -3,6 +3,7 @@ import {makeStyles, Typography} from "@material-ui/core";
 
 import MyButton from "../../Button/MyButton";
 import {displaySize} from "../../../../utils/consts";
+import useResolution from "../../../../hooks/useResolution";
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,13 +26,13 @@ const useStyles = makeStyles(theme => ({
     }),
 }))
 
-const Item = ({value, title, floors, setFloors}) => {
+const Item = ({value, title, floors, action}) => {
     return (
         <div>
             {
                 value === floors ?
                     <MyButton style={{minHeight: '30px', padding: '5px 10px', fontSize: '16px'}}>{title}</MyButton>:
-                    <div style={{cursor: 'pointer'}} onClick={() => setFloors(value)}>
+                    <div style={{cursor: 'pointer'}} onClick={() => action(value)}>
                         <Typography style={{fontSize: '16px'}}>{title}</Typography>
                     </div>
             }
@@ -39,19 +40,24 @@ const Item = ({value, title, floors, setFloors}) => {
     )
 }
 
-const FloorsFilter = ({floors, setFloors, withoutAll, column, ...props}) => {
+const FloorsFilter = ({floors, setFloors, outsideFilter, column, onFilter, ...props}) => {
     const styles = useStyles({column});
 
     const floorsItems = [
         {value: '1', title: '1 этаж'},
-        {value: '1.5', title: '2 этажа'},
-        {value: '2', title: '3 этажа'},
+        {value: '1.5', title: '1.5 этажа'},
+        {value: '2', title: '2 этажа'},
     ];
+
+    const onChange = (value) => {
+        setFloors(value);
+        onFilter({floors: value});
+    }
 
     return (
         <div className={styles.root} {...props}>
-            {withoutAll || <Item value={'all'} title={'Все проекты'} floors={floors} setFloors={setFloors}/>}
-            {floorsItems.map(floor => <Item key={floor.title} floors={floors} setFloors={setFloors} {...floor}/>)}
+            {outsideFilter && <Item value={'all'} title={'Все проекты'} floors={floors} action={onChange}/>}
+            {floorsItems.map(floor => <Item key={floor.title} floors={floors} action={onChange} {...floor}/>)}
         </div>
     );
 };
