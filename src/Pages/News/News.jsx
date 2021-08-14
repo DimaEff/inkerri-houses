@@ -15,7 +15,7 @@ const News = () => {
     return (<div>
             <AppContainer jC={'flex-start'} title={'Новости'}>
                 {docs.map(newsItem => <AppContainerItem key={newsItem.id} lg={4} md={4} sm={6} xs={12}>
-                    <NewsItem {...newsItem}/>
+                    <NewsItem newsItem={newsItem}/>
                 </AppContainerItem>)}
             </AppContainer>
             <AppContainerItem lg={12} md={12} sm={12} xs={12}>

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
+const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, ...props}) => {
     const styles = useStyles();
     const [open, setOpen] = useState(false);
 
@@ -53,7 +53,7 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, ...props}) => {
                         return <MyInput key={name} placeholder={placeholder} type={type}
                                         errorText={errors[name]} {...register(name)} {...props}/>
                     })}
-                    <MyButton action={props.action} type={'submit'}>
+                    <MyButton action={action} type={'submit'}>
                         {buttonText}
                     </MyButton>
                 </form>

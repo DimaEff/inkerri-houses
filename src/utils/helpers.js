@@ -57,6 +57,12 @@ export const getDateTemplate = (date) => {
     return `${day}.${month}.${year}`;
 }
 
+export const toNumber = (str) => {
+    if (typeof str === 'number') return str;
+
+    return +str.split(',').join('.');
+}
+
 // export const filterHouses = (filterData, houses) => {
 //     let result;
 //

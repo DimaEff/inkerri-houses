@@ -19,26 +19,26 @@ const NewsItemPage = ({newsItemId}) => {
                     Элемент не найден
                 </Typography>:
                 hewsItem && <AppContainer withoutTitle>
-                    <AppContainerItem column lg={12} md={12} sm={12} xs={12}>
+                    <AppContainerItem jC={'center'} aI={'flex-start'} column lg={10} md={10} sm={12} xs={12}>
                         <TextContainer>
                             <div>
-                                <img src={hewsItem.imageURL}/>
+                                <img src={hewsItem.imagesURL[0]}/>
                             </div>
-                            <div>
-                                <Typography variant={'h6'}>
-                                    {getDateTemplate(hewsItem.date.toDate())}
-                                </Typography>
-                            </div>
-                            <div>
-                                <Typography variant={'h4'} color={'error'}>
-                                    {hewsItem.title}
-                                </Typography>
-                            </div>
-                            <div>
-                                <Typography>
-                                    {hewsItem.text}
-                                </Typography>
-                            </div>
+                                <div>
+                                    <Typography variant={'h6'}>
+                                        {getDateTemplate(hewsItem.date.toDate())}
+                                    </Typography>
+                                </div>
+                                <div>
+                                    <Typography variant={'h4'} color={'error'}>
+                                        {hewsItem.title}
+                                    </Typography>
+                                </div>
+                                <div style={{width: '100%'}}>
+                                    <Typography>
+                                        {hewsItem.text}
+                                    </Typography>
+                                </div>
                         </TextContainer>
                     </AppContainerItem>
                 </AppContainer>

@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
 
 import {displaySize} from "../../../utils/consts";
+import Form from "../Form/Form";
 
 
 const useStyles = makeStyles((theme) => ({

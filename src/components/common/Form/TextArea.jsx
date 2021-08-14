@@ -31,12 +31,12 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const TextArea = ({maxLength, myValue, ...props}) => {
+const TextArea = React.forwardRef(({maxLength, myValue, ...props}, ref) => {
     const styles = useStyles();
 
     return (
         <div className={styles.root}>
-            <textarea className={styles.input} maxLength={maxLength} {...props}/>
+            <textarea className={styles.input} ref={ref} maxLength={maxLength} {...props}/>
             <div className={styles.symbols}>
                 <Typography>
                     {myValue?.length || 0} / {maxLength}
@@ -44,6 +44,6 @@ const TextArea = ({maxLength, myValue, ...props}) => {
             </div>
         </div>
     );
-};
+});
 
 export default TextArea;

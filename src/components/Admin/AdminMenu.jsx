@@ -1,7 +1,11 @@
 import React from 'react';
-
 import {Drawer, List, ListItemIcon, ListItemText, ListItem} from "@material-ui/core";
-import InboxIcon from '@material-ui/icons/MoveToInbox';
+import CreateIcon from '@material-ui/icons/Create';
+import HouseIcon from '@material-ui/icons/House';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PhotoIcon from '@material-ui/icons/Photo';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+
 import Registration from "../Registration/Registration";
 import AddNews from "./DialogsContent/AddNews";
 import AddHouse from "./DialogsContent/AddHouse";
@@ -15,10 +19,10 @@ const Actions = ({children, setOpen}) => {
             onKeyDown={() => setOpen(false)}
         >
             <List>
-                {children.map(({text, action}) => (
+                {children.map(({text, action, icon}) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
-                            <InboxIcon />
+                            {icon}
                         </ListItemIcon>
                         <ListItemText primary={text} onClick={action}/>
                     </ListItem>
@@ -28,18 +32,38 @@ const Actions = ({children, setOpen}) => {
     )
 }
 
-const AdminMenu = ({open, setOpen, openContentDialogCreator, logout}) => {
+const AdminMenu = ({open, setOpen, openCloseAdminDialogContent, logout}) => {
     return (
         <div>
             <>
                 <Drawer anchor={'right'} open={open} onClose={() => setOpen(false)}>
                     <Actions setOpen={setOpen}>
                         {[
-                            {text: 'Добавить дом', action: openContentDialogCreator(<AddHouse />)},
-                            {text: 'Добавить новость', action: openContentDialogCreator(<AddNews />)},
-                            {text: 'Добавить фото', action: openContentDialogCreator('Добавить фото')},
-                            {text: 'Добавить администратора', action:  openContentDialogCreator(<Registration />)},
-                            {text: 'Выйти', action: logout},
+                            {
+                                text: 'Добавить дом',
+                                icon: <HouseIcon />,
+                                action: () => openCloseAdminDialogContent(true, AddHouse),
+                            },
+                            {
+                                text: 'Добавить новость',
+                                icon: <CreateIcon />,
+                                action: () => openCloseAdminDialogContent(true, AddNews),
+                            },
+                            // {
+                            //     text: 'Добавить фото',
+                            //     icon: <PhotoIcon />,
+                            //     action: openContentDialogCreator('Добавить фото')
+                            // },
+                            {
+                                text: 'Добавить администратора',
+                                icon: <PersonAddIcon />,
+                                action:  () => openCloseAdminDialogContent(true, Registration),
+                            },
+                            {
+                                text: 'Выйти',
+                                icon: <ExitToAppIcon />,
+                                action: logout
+                            },
                         ]}
                     </Actions>
                 </Drawer>

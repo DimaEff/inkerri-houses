@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import MyPaper from "../../common/AppContainer/MyPaper";
 import FileInput from "../../common/Form/FileInput";
 import {useForm, useWatch} from "react-hook-form";
@@ -7,6 +7,7 @@ import AdminCarousel from "./AdminCarousel";
 import {Button, makeStyles} from "@material-ui/core";
 import MyInput from "../../common/Form/MyInput";
 import TextArea from "../../common/Form/TextArea";
+import {AdminContext} from "../AdminContainer";
 
 
 const useStyles = makeStyles(theme => ({
@@ -24,19 +25,28 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const AddNews = () => {
+const AddNews = ({defaultValues, openCloseAdminDialogContent}) => {
+    const {addNewsItem} = useContext(AdminContext);
+
     const styles = useStyles();
 
-    const {register, control, handleSubmit} = useForm();
+    const {register, control, handleSubmit} = useForm({
+        defaultValues: {
+            imagesURL: defaultValues.imagesURL,
+            title: defaultValues.title,
+            text: defaultValues.text,
+        },
+    });
     const text = useWatch({name: 'text', control});
 
-    const submit = (data) => {
-        console.log(data)
+    const onAddNewsItem = (data) => {
+        addNewsItem(data, defaultValues.id);
+        openCloseAdminDialogContent(false, null);
     }
 
     return (
         <MyPaper style={{width: '600px'}}>
-            <form style={{width: '90%'}} onSubmit={handleSubmit(submit)}>
+            <form style={{width: '90%'}} onSubmit={handleSubmit(onAddNewsItem)}>
                 <AdminCarousel>
                     <div className={styles.slide}>
                         <div>
@@ -51,7 +61,7 @@ const AddNews = () => {
                     </div>
                     <div style={{height: '100%'}}>
                         <div className={styles.slide}>
-                            <Button variant={'text'}>
+                            <Button type={'submit'} variant={'outlined'}>
                                 Добавить новость
                             </Button>
                         </div>

@@ -1,64 +1,64 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 
-import {getUser} from "../../selectors/user_selectors";
 import {logout} from "../../store/userReducer";
-import AdminButton from "./AdminButton";
-import {Dialog, makeStyles} from "@material-ui/core";
-import LoginForm from "../LoginForm/LoginForm";
-import AdminMenu from "./AdminMenu";
+import {getUser} from "../../selectors/user_selectors";
+import {commonAPI} from "../../firebase/api";
+import {firestoreCollections} from "../../utils/consts";
+import {toNumber} from "../../utils/helpers";
+import Admin from "./Admin";
+import {openCloseAdminDialogContent} from "../../store/adminReducer";
+import {getDefaultValues, getDialogContent, getIsOpenDialogContent} from "../../selectors/admin_selectors";
 
 
-const useStyles = makeStyles((theme) => ({
-    adminLoginButton: {
-        zIndex: '3',
-        position: 'fixed',
-        top: '0px',
-        left: '0px',
-        width: '30px',
-        height: '30px',
-    },
-}))
+const addHouse = (data, includesCount, docId) => {
+    const files = data.imagesURL;
 
-const AdminContainer = ({user, logout}) => {
-    const styles = useStyles();
-
-    const [openMenu, setOpenMenu] = useState(false);
-    const [openDialog, setOpenDialog] = useState(false);
-
-    const [openContentDialog, setOpenContentDialog] = useState(false);
-    const [contentDialog, setContentDialog] = useState(null);
-
-    const openContentDialogCreator = (content) => () => {
-        setContentDialog(content);
-        setOpenContentDialog(true);
+    const dataCopy = {
+        title: data.title,
+        usableArea: toNumber(data.usableArea),
+        totalArea: toNumber(data.totalArea),
+        dimensions: [toNumber(data.dimensions1), toNumber(data.dimensions2)],
+        floors: data.floors,
+        minPrice: toNumber(data.minPrice),
+        maxPrice: toNumber(data.maxPrice),
+        bedRooms: toNumber(data.bedRooms),
+        bathRooms: toNumber(data.bathRooms),
+        description: data.description,
     }
 
-    return (
-        <div>
-            {!!user || <div>
-                <span className={styles.adminLoginButton} onClick={() => setOpenDialog(true)}/>
-                <Dialog onClose={() => setOpenDialog(false)} aria-labelledby={'login-dialog'} open={openDialog}>
-                    <LoginForm action={() => setOpenDialog(false)}/>
-                </Dialog>
-            </div>}
-            {user && <AdminButton onClick={() => setOpenMenu(true)}/>}
-            <AdminMenu open={openMenu}
-                       setOpen={setOpenMenu}
-                       openContentDialogCreator={openContentDialogCreator}
-                       logout={logout}/>
-            <Dialog
-                onClose={() => setOpenContentDialog(false)}
-                aria-labelledby={'content-dialog'}
-                open={openContentDialog}>
-                {contentDialog}
-            </Dialog>
-        </div>
-    );
+    const includes = [];
+
+    for (let i=1; i <= includesCount; i++) {
+        const includeName = `includes${i}`;
+        const include = data[includeName];
+        includes.push(include)
+    }
+    dataCopy.includes = includes;
+
+    commonAPI.addUpdateDoc(firestoreCollections.houses, files, dataCopy, docId)
+}
+
+const addNewsItem = (data, docId) => {
+    const files = data.imagesURL;
+    delete data.imagesURL;
+
+    commonAPI.addUpdateDoc(firestoreCollections.news, files, data, docId)
+}
+
+export const AdminContext = React.createContext({})
+
+const AdminContainer = (props) => {
+    return <AdminContext.Provider value={{addHouse, addNewsItem}}>
+        <Admin {...props}/>
+    </AdminContext.Provider>
 };
 
 const mapStateToProps = (state) => ({
     user: getUser(state),
+    isOpenDialogContent: getIsOpenDialogContent(state),
+    DialogContent: getDialogContent(state),
+    defaultValues: getDefaultValues(state),
 })
 
-export default connect(mapStateToProps, {logout})(AdminContainer);
+export default connect(mapStateToProps, {logout, openCloseAdminDialogContent})(AdminContainer);

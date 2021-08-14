@@ -1,4 +1,5 @@
 import {db, storage, auth} from './index'
+import firebase from "firebase";
 
 
 const getCollectionData = async (collection) => {
@@ -44,16 +45,26 @@ const addUpdateData = async (collection, data, doc) => {
 }
 
 const deleteData = async (collection, docId) => {
-    if (!docId) await db.collection(collection).doc(docId).delete()
+    await db.collection(collection).doc(docId).delete()
 }
 
-const addImg = async (file) => {
-    const storageRef = storage.ref();
-    const fileRef = storageRef.child(file.name);
-    await fileRef.put(file);
-    const imageURL = await fileRef.getDownloadURL();
+export const addImg = async (file) => {
+    let imageURL = file;
+
+    if (typeof file === 'object') {
+        const storageRef = storage.ref();
+        const fileRef = storageRef.child(file.name);
+        await fileRef.put(file);
+        imageURL = await fileRef.getDownloadURL();
+    }
 
     return imageURL;
+}
+
+export const deleteImg = async (imageURL) => {
+    const imgRef = storage.refFromURL(imageURL);
+
+    await imgRef.delete();
 }
 
 export const commonAPI = {
@@ -66,15 +77,23 @@ export const commonAPI = {
     async getOneDoc(collection, docId) {
         return await getOneDoc(collection, docId);
     },
-    async addUpdateDoc(docCollection, file, data, doc) {
-        let imgURL = file;
-        if (typeof file !== 'string') {
-            imgURL = await addImg(file);
+    async addUpdateDoc(docCollection, files, data, doc) {
+        let imagesURL = [];
+
+        for (const file of files) {
+            const imageURL = await addImg(file);
+            imagesURL.push(imageURL);
         }
 
-        await addUpdateData(docCollection, {...data, imgURL}, doc);
+        await addUpdateData(docCollection,
+            {...data, imagesURL, date: firebase.firestore.Timestamp.fromDate(new Date())},
+            doc);
     },
-    async deleteDoc(docCollection, doc) {
+    async deleteDoc(docCollection, doc, imagesURL) {
+        for (const imageURL of imagesURL) {
+            await deleteImg(imageURL);
+        }
+
         if (doc) await deleteData(docCollection, doc);
     },
 };
@@ -91,29 +110,3 @@ export const userAPI = {
         await auth.createUserWithEmailAndPassword(email, password);
     },
 }
-
-// export const housesAPI = {
-//     async getHouses() {
-//         return await getCollectionData(HOUSES);
-//     },
-//     async addUpdateHouse(file, data, doc) {
-//         const imgURL = await addImg(file);
-//         await addUpdateData(HOUSES, {...data, imgURL}, doc);
-//     },
-//     async deleteHouse(doc) {
-//         await deleteData(HOUSES, doc);
-//     },
-// };
-//
-// export const newsAPI = {
-//     async getNews() {
-//         await getCollectionData(NEWS);
-//     },
-//     async addUpdateNews(file, data, doc) {
-//         const imgURL = await addImg(file);
-//         await addUpdateData(NEWS, {...data, imgURL}, doc);
-//     },
-//     async deleteNews(doc) {
-//         await deleteData(NEWS, doc);
-//     },
-// }

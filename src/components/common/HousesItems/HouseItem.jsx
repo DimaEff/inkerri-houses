@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles, Typography} from "@material-ui/core";
+import {connect} from "react-redux";
 
 import {getFloorTitle, getPriceTemplate} from "../../../utils/helpers";
 import {getHousesItemRoute} from "../../../AppRouter/consts";
@@ -10,6 +11,10 @@ import bedIcon from '../../../assets/HouseItem/bed.svg';
 import bathIcon from '../../../assets/HouseItem/bath.svg';
 import houseIcon from '../../../assets/HouseItem/house.svg';
 import Link from "../Text/Link";
+import {getUser} from "../../../selectors/user_selectors";
+import {openCloseAdminDialogContent} from "../../../store/adminReducer";
+import {firestoreCollections} from "../../../utils/consts";
+import AdminItemsPanel from "../../Admin/AdminItemsPanel";
 
 
 const useStyles = makeStyles(theme => ({
@@ -69,7 +74,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const HouseItem = ({variant, shadow, houseItem, ...props}) => {
+const HouseItem = ({variant, shadow, houseItem, user, openCloseAdminDialogContent, ...props}) => {
     const styles = useStyles({shadow});
 
     const plug = '-'.repeat(5);
@@ -126,6 +131,9 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
     return (
         <RedPaper shadow cornerText={cornerText} h={'550px'} w={'320px'} {...props}>
             <div className={styles.root}>
+                {user && <div>
+                    <AdminItemsPanel collectionName={firestoreCollections.houses} item={houseItem}/>
+                </div>}
                 <div className={styles.floorTitle}>
                     <Typography>
                         {getFloorTitle(houseItem.floors) || plug}
@@ -159,4 +167,8 @@ const HouseItem = ({variant, shadow, houseItem, ...props}) => {
     );
 };
 
-export default HouseItem;
+const mapStateToProps = (state) => ({
+    user: getUser(state),
+})
+
+export default connect(mapStateToProps, {openCloseAdminDialogContent})(HouseItem);

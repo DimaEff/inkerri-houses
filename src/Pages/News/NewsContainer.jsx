@@ -1,9 +1,6 @@
 import React from 'react';
-import {connect} from "react-redux";
 import {useParams} from "react-router-dom";
 
-import {getStateNews} from "../../selectors/news_selector";
-import {getNews} from "../../store/newsReducer";
 import News from "./News";
 import NewsItemPage from "./NewsItemPage";
 
@@ -16,8 +13,4 @@ const NewsContainer = () => {
     return <News />;
 };
 
-const mapStateToProps = (state) => ({
-    news: getStateNews(state),
-})
-
-export default connect(mapStateToProps, {getNews})(NewsContainer);
+export default NewsContainer;
