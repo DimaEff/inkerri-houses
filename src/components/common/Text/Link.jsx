@@ -1,22 +1,28 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
 import {makeStyles, Typography} from "@material-ui/core";
+
+import {NavLink} from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
-    link: {
+    link: ({fontSize, fontWeight}) => ({
         border: 'none',
         outline: 'none',
         textDecoration: 'none',
-    }
+
+        '& p': {
+            fontSize: fontSize,
+            fontWeight: fontWeight,
+        }
+    })
 }))
 
-const Link = ({children, to, ...props}) => {
-    const styles = useStyles();
+const Link = ({children, to, color, fontSize, fontWeight, ...props}) => {
+    const styles = useStyles({fontSize, fontWeight});
 
     return (
-        <NavLink to={to} className={styles.link}>
-            <Typography color={'secondary'}>
+        <NavLink to={to} className={styles.link} {...props}>
+            <Typography color={color || 'secondary'}>
                 {children}
             </Typography>
         </NavLink>

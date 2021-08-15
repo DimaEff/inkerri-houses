@@ -16,7 +16,7 @@ const FilterContainer = (props) => {
     }
 
     return (
-        <div style={{width: '100%', maxWidth: '300px', margin: '20px 10px'}}>
+        <div>
             {isMobile ?
                 <>
                     <MyButton style={{width: '100%'}} action={() => setOpen(true)}>

@@ -21,12 +21,12 @@ const HouseItemPage = ({houseId}) => {
                         Элемент не найден
                     </Typography>:
                     houseItem && <AppContainer title={houseItem.title}>
-                        <AppContainerItem lg={7} md={7} sm={12} xs={12}>
+                        <AppContainerItem  lg={7} md={7} sm={12} xs={12}>
                             <HouseItemCarousel>
                                 {houseItem.imagesURL}
                             </HouseItemCarousel>
                         </AppContainerItem>
-                    <AppContainerItem jC={'flex-start'} lg={5} md={5} sm={12} xs={12}>
+                    <AppContainerItem margin aI={'flex-start'} lg={5} md={5} sm={12} xs={12}>
                         <HouseItemInfo houseItem={houseItem}/>
                     </AppContainerItem>
                     <AppContainerItem jC={'flex-start'} lg={12} md={12} sm={12} xs={12}>

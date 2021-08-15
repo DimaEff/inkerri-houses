@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 
 import './App.css';
@@ -10,7 +10,10 @@ import AppRouter from "./AppRouter/AppRouter";
 import appRoutes from "./AppRouter/routes";
 import AdminContainer from "./components/Admin/AdminContainer";
 import {setCurrentUser} from "./store/userReducer";
+import SuccessAlert from "./components/common/Alerts/SuccessAlert";
 
+
+export const SuccessContext = React.createContext(null);
 
 const App = ({getHouses, setCurrentUser}) => {
     useEffect(() => {
@@ -23,12 +26,17 @@ const App = ({getHouses, setCurrentUser}) => {
         })
     }, [setCurrentUser])
 
+    const [openSuccess, setOpenSuccess] = useState(false);
+
     return (
         <div>
-            <Header />
-            <AdminContainer />
-            <AppRouter routes={appRoutes}/>
-            <Footer />
+            <SuccessAlert open={openSuccess} handleClose={() => setOpenSuccess(false)}/>
+            <SuccessContext.Provider value={setOpenSuccess}>
+                <Header/>
+                <AdminContainer/>
+                <AppRouter routes={appRoutes}/>
+                <Footer/>
+            </SuccessContext.Provider>
         </div>
     );
 }

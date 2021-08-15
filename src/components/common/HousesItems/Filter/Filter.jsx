@@ -69,7 +69,7 @@ const Filter = ({prices, squares, floors, setFloors, onAdaptiveFilter, onFilter}
     }
 
     return (
-        <RedPaper margin={'0px 0px'} w={'230px'} minW={'200px'}>
+        <RedPaper w={'230px'} minW={'200px'}>
             <FilterItem title={'Количество этажей'}>
                 <FloorsFilter floors={floors} setFloors={setFloors} onFilter={onFilter} column/>
             </FilterItem>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {Button, makeStyles, Menu, MenuItem, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {NavLink} from "react-router-dom";
@@ -47,10 +48,10 @@ const NavigationMenuMobile = ({paths}) => {
                     onClose={handleClose}
                 >
                     {
-                        paths.map(({name, path}) => {
+                        paths.map(({name, menuPath, path}) => {
                             return (
-                                <MenuItem key={path} onClick={handleClose} style={{position: 'relative'}}>
-                                    <NavLink to={path} style={{position: 'absolute', width: '100%', height: '100%'}}/>
+                                <MenuItem key={menuPath} onClick={handleClose} style={{position: 'relative'}}>
+                                    <NavLink to={menuPath || path} style={{position: 'absolute', width: '100%', height: '100%'}}/>
                                     {name}
                                 </MenuItem>
                             )

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Grid, Typography, Box, Container} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import Pagination from '@material-ui/lab/Pagination';
 
 import AppContainer from "../../components/common/AppContainer/AppContainer";

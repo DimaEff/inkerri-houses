@@ -56,7 +56,7 @@ const ListItems = ({children, icon, withTitle, ...props}) => {
 
     return (
         <div {...props}>
-            {children.map(text => <Item withTitle={withTitle} icon={icon} text={text}/>)}
+            {children.map(text => <Item key={text} withTitle={withTitle} icon={icon} text={text}/>)}
         </div>
     );
 };

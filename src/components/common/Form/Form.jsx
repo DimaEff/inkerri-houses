@@ -1,12 +1,12 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 import {makeStyles} from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 
 import MyInput from "./MyInput";
 import MyButton from "../Button/MyButton";
-import SuccessAlert from "../Alerts/SuccessAlert";
 import MyPaper from "../AppContainer/MyPaper";
+import {SuccessContext} from "../../../App";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -28,30 +28,30 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, ...props}) => {
+const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, defaultValues, ...props}) => {
     const styles = useStyles();
-    const [open, setOpen] = useState(false);
+
+    const setOpenSuccess = useContext(SuccessContext);
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
+        defaultValues: defaultValues,
     })
 
     const onHandleSubmit = async (data, e) => {
-        const result = await onSubmit(data, e)
-        setOpen(true);
+        const result = await onSubmit(data, e);
         reset(result);
+        setOpenSuccess(true);
     }
 
     return (
         <div className={styles.root}>
-            <SuccessAlert open={open} handleClose={() => setOpen(false)}/>
             <MyPaper mW={'400px'} {...props}>
                 <form onSubmit={handleSubmit(onHandleSubmit)} className={styles.form}>
                     {antiSpam}
-                    {children?.map(({name, placeholder, type, ...props}) => {
-                        return <MyInput key={name} placeholder={placeholder} type={type}
-                                        errorText={errors[name]} {...register(name)} {...props}/>
+                    {children?.map(({name, ...props}) => {
+                        return <MyInput key={name} errorText={errors[name]} {...register(name)} {...props}/>
                     })}
                     <MyButton action={action} type={'submit'}>
                         {buttonText}

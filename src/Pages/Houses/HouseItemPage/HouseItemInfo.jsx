@@ -1,10 +1,31 @@
-import React from 'react';
-import {makeStyles, Typography} from "@material-ui/core";
+import React, {useState} from 'react';
+import {Dialog, makeStyles, Typography} from "@material-ui/core";
 
 import {getPriceTemplate} from "../../../utils/helpers";
 import HouseItemParams from "../../../components/common/HousesItems/HouseItemParams";
 import TextContainer from "../../../components/common/AppContainer/TextContainer";
+import MyButton from "../../../components/common/Button/MyButton";
+import {callOrderTemplate} from "../../../utils/consts";
+import FeedbackForm from "../../../components/FeedbackForm/FeedbackForm";
+import * as yup from "yup";
 
+
+const schema = yup.object().shape({
+    username: yup.string()
+        .required('Обязательное поле')
+        .min(3, 'Минимум 3 символа')
+        .max(12, 'Максимум 12 символов'),
+    surname: yup.string()
+        .required('Обязательное поле')
+        .min(3, 'Минимум 3 символа')
+        .max(12, 'Максимум 12 символов'),
+    email: yup.string()
+        .required('Обязательное поле')
+        .email('Некорректный email'),
+    phone: yup.string()
+        .required('Обязательное поле')
+        .matches(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, 'Некорректный номер')
+});
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,6 +64,8 @@ const HouseItemInfo = ({houseItem}) => {
         },
     ];
 
+    const [open, setOpen] = useState(false);
+
     return (
         <div className={styles.root}>
             <TextContainer mB={'10px'}>
@@ -63,6 +86,23 @@ const HouseItemInfo = ({houseItem}) => {
                     <div>
                         <HouseItemParams params={params}/>
                     </div>
+                </div>
+                <div>
+                    <MyButton action={() => setOpen(true)}>
+                        Отправить заявку
+                    </MyButton>
+                    <Dialog open={open} onClose={() => setOpen(false)}>
+                        <FeedbackForm defaultValues={{house: houseItem.title}} template={callOrderTemplate}
+                                      schema={schema} action={() => setOpen(false)} buttonText={'Заказать звонок'}>
+                            {[
+                                {name: 'username', placeholder: 'Имя*'},
+                                {name: 'surname', placeholder: 'Фамилия*'},
+                                {name: 'email', placeholder: 'Email*'},
+                                {name: 'phone', placeholder: 'Номер телефона*'},
+                                {name: 'house', placeholder: 'Название проекта'},
+                            ]}
+                        </FeedbackForm>
+                    </Dialog>
                 </div>
             </TextContainer>
         </div>

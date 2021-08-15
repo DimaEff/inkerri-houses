@@ -4,6 +4,7 @@ import NavText from "../../../common/Text/NavText";
 import {makeStyles, Typography} from "@material-ui/core";
 import searchIcon from "../../../../assets/Header/searchIcon.svg";
 import InstagramContact from "../../../common/Contacts/InstagramContact";
+import SearchContainer from "../../../common/Search/SearchContainer";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
 
         '& div': {
-            marginRight: '30px',
+            marginRight: '20px',
         }
     },
 }))
@@ -43,7 +44,7 @@ const NavigationMenuDesktop = ({paths}) => {
             </div>
             <div className={styles.contacts}>
                 <div>
-                    <img src={searchIcon}/>
+                    <SearchContainer />
                 </div>
                 <InstagramContact />
                 <div>
