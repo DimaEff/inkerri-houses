@@ -19,7 +19,7 @@ const ImageContainer = ({children, breakpointColumnsObj, ...props}) => {
                     breakpointCols={breakpointColumnsObj || breakpointColumnsObjDefault}
                     className="my-masonry-grid"
                     columnClassName="my-masonry-grid_column">
-                    {children.map(img => <div key={img}>
+                    {children?.map((img, index) => <div key={img + index}>
                         <img src={img}/>
                     </div>)}
                 </Masonry>

@@ -1,10 +1,12 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import TextIcon from "../common/Text/TextIcon";
 import MyButton from "../common/Button/MyButton";
+import {getHousesRoute} from "../../AppRouter/consts";
 import {displaySize} from "../../utils/consts";
 import energyImg from '../../assets/Building2/energy.svg';
 import viewImg from '../../assets/Building2/view.svg';
@@ -34,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const WhyScandinavian = ({grey}) => {
     const styles = useStyles();
+    const history = useHistory();
 
     const advantages = [
         {
@@ -68,7 +71,7 @@ const WhyScandinavian = ({grey}) => {
                     <MyButton>
                         Узнать подробности
                     </MyButton>
-                    <MyButton variant={'secondary'}>
+                    <MyButton action={() => history.push(getHousesRoute())} variant={'secondary'}>
                         Посмотреть проеты
                     </MyButton>
                 </div>

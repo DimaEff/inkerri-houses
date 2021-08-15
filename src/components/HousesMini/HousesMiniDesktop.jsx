@@ -1,10 +1,13 @@
 import React from 'react';
-import {Grid} from "@material-ui/core";
+import {Grid, makeStyles} from "@material-ui/core";
+import {useHistory} from "react-router-dom";
 
 import {splitArray} from "../../utils/helpers";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import HouseItem from "../common/HousesItems/HouseItem";
 import MyCarousel from "../Carousel/Carousel";
+import MyButton from "../common/Button/MyButton";
+import {getHousesRoute} from "../../AppRouter/consts";
 
 
 const HouseGroupSlide = ({houseGroup}) => {
@@ -20,10 +23,17 @@ const HouseGroupSlide = ({houseGroup}) => {
 };
 
 const HousesMiniDesktop = ({houses}) => {
+    const history = useHistory()
+
     const splitHouses = splitArray(houses.slice(0, 12), 3)
 
     return (
-        <AppContainerItem lg={12} md={12} sm={12} xs={12}>
+        <AppContainerItem column lg={12} md={12} sm={12} xs={12}>
+            <div style={{position: 'relative', display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
+                <MyButton style={{position: 'absolute', top: '-60px'}} action={() => history.push(getHousesRoute())}>
+                    Все проекты
+                </MyButton>
+            </div>
             <MyCarousel showThumbs={false} showIndicators={true}>
                 {splitHouses.map(houseGroup => <HouseGroupSlide key={houseGroup[0].title} houseGroup={houseGroup}/>)}
             </MyCarousel>

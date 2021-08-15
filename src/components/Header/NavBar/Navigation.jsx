@@ -8,10 +8,11 @@ import appRoutes from "../../../AppRouter/routes";
 import {getHomeRoute} from "../../../AppRouter/consts";
 
 
-const useStytles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         alignItems: 'flex-end',
+        justifyContent: 'space-around',
         minWidth: '100%',
     },
     logo: {
@@ -27,7 +28,7 @@ const useStytles = makeStyles((theme) => ({
 }))
 
 const Navigation = () => {
-    const styles = useStytles();
+    const styles = useStyles();
 
     return (
         <div className={styles.root}>

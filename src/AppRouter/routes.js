@@ -10,11 +10,11 @@ import {
 import Home from "../Pages/Home/Home";
 import HousesContainer from '../Pages/Houses/HousesContainer';
 
-const Scandinavian = React.lazy(() => import("../Pages/Scandinavian/Scandinavian"));
+const ScandinavianContainer = React.lazy(() => import("../Pages/Scandinavian/ScandinavianContainer"));
 const Designing = React.lazy(() => import("../Pages/Designing/Designing"));
 const Consulting = React.lazy(() => import("../Pages/Consulting/Consulting"));
 const NewsContainer = React.lazy(() => import("../Pages/News/NewsContainer"));
-const Photos = React.lazy(() => import("../Pages/Photos/Photos"));
+const PhotosContainer = React.lazy(() => import("../Pages/Photos/PhotosContainer"));
 
 
 const appRoutes = [
@@ -43,14 +43,14 @@ const appRoutes = [
     {
         name: 'Фотогалерея',
         path: getPhotosRoute(),
-        Component: Photos,
+        Component: PhotosContainer,
         lazyLoading: true,
         menuNum: 1,
     },
     {
         name: 'Скандинавские дома',
         path: getScandinavianRoute(),
-        Component: Scandinavian,
+        Component: ScandinavianContainer,
         lazyLoading: true,
         menuNum: 2,
     },
