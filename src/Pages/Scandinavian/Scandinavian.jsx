@@ -10,7 +10,7 @@ const Scandinavian = ({photos}) => {
     return (
         <div>
             <HowBuild grey/>
-            <BuildingStepsContainer />
+            {/*<BuildingStepsContainer />*/}
             <WhyScandinavian grey/>
             <PhotosContainer photos={photos}/>
         </div>

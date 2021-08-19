@@ -20,13 +20,14 @@ const PhotosContainer = ({children, photos, afterPhotos}) => {
 
     const breakpointColumnsObjDefault = {
         default: 3,
-        600: 2,
+        960: 2,
+        500: 1,
     };
 
     return (
         <Grid className={styles.root} container>
+            {children}
             <Container maxWidth={'lg'}>
-                {children}
                 <ImageContainer breakpointColumnsObj={breakpointColumnsObjDefault}>
                     {photos}
                 </ImageContainer>

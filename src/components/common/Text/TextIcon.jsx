@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
 
         [theme.breakpoints.down(displaySize)]: {
-            fontSize: '12px',
+            fontSize: '16px',
         },
     },
     decoration: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '18px',
 
             [theme.breakpoints.down(displaySize)]: {
-                fontSize: '11px',
+                fontSize: '14px',
             },
         },
     }

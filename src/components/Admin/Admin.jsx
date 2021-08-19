@@ -26,7 +26,7 @@ const Admin = ({isOpenDialogContent, DialogContent, defaultValues, openCloseAdmi
     return (
         <div>
             {!!user || <div>
-                <span className={styles.adminLoginButton} onClick={() => setOpenDialog(true)}/>
+                <span className={styles.adminLoginButton} onDoubleClick={() => setOpenDialog(true)}/>
                 <Dialog onClose={() => setOpenDialog(false)} aria-labelledby={'login-dialog'} open={openDialog}>
                     <LoginForm action={() => setOpenDialog(false)}/>
                 </Dialog>

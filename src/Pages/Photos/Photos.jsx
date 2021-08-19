@@ -8,15 +8,14 @@ import {Button, Typography} from "@material-ui/core";
 const Photos = ({photos, currentPage, pagesCount, setCurrentPage}) => {
 
     const paginateButton = pagesCount === currentPage ?
-        <Typography>Это все фото</Typography>:
+        <Typography color={'secondary'}>Это все фото</Typography>:
         <Button color={'secondary'} variant={'outlined'} onClick={() => setCurrentPage(page => page + 1)}>
             Еще фото
         </Button>
 
     return <PhotosContainer photos={photos} afterPhotos={paginateButton}>
-        <div style={{width: '100%', textAlign: 'center'}}>
+        <div style={{position: 'relative', display: 'flex', justifyContent: 'space-around', minWidth: '280px'}}>
             <Navigation />
-
         </div>
     </PhotosContainer>;
 };

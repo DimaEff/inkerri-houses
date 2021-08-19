@@ -1,14 +1,13 @@
-import React, {useState} from 'react';
-import {makeStyles, Dialog} from "@material-ui/core";
+import React from 'react';
+import {makeStyles} from "@material-ui/core";
 
 import Navigation from "./Navigation";
 import {displaySize} from "../../../utils/consts";
 import NavTitle from "./NavTitle";
 import MyButton from "../../common/Button/MyButton";
-import LoginForm from "../../LoginForm/LoginForm";
 
 
-const useStytles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '100%',
         width: '61%',
@@ -40,7 +39,6 @@ const useStytles = makeStyles((theme) => ({
     button: {
         position: 'relative',
         bottom: '-60%',
-        // bottom: '-550px',
 
         [theme.breakpoints.down("md")]: {
             bottom: '-50%',
@@ -53,7 +51,7 @@ const useStytles = makeStyles((theme) => ({
 }))
 
 const NavBar = () => {
-    const styles = useStytles();
+    const styles = useStyles();
 
 
     return (

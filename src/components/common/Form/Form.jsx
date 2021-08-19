@@ -6,7 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import MyInput from "./MyInput";
 import MyButton from "../Button/MyButton";
 import MyPaper from "../AppContainer/MyPaper";
-import {SuccessContext} from "../../../App";
+import {AlertContext} from "../../../App";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, defaultValues, ...props}) => {
     const styles = useStyles();
 
-    const setOpenSuccess = useContext(SuccessContext);
+    const {setOpenSuccess, setOpenFailed} = useContext(AlertContext);
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         mode: 'onBlur',
@@ -40,9 +40,13 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, default
     })
 
     const onHandleSubmit = async (data, e) => {
-        const result = await onSubmit(data, e);
-        reset(result);
-        setOpenSuccess(true);
+        try {
+            const result = await onSubmit(data, e);
+            reset(result);
+            setOpenSuccess(true);
+        } catch (error) {
+            setOpenFailed(true);
+        }
     }
 
     return (

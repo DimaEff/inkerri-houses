@@ -13,7 +13,7 @@ const NavigationMenuContainer = ({paths}) => {
         <div style={{display: 'flex'}}>
             {
                 isMobile ?
-                <NavigationMenuMobile paths={filterPaths}/>:
+                <NavigationMenuMobile paths={paths}/>:
                 <NavigationMenuDesktop paths={filterPaths}/>
             }
         </div>

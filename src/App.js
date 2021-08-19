@@ -14,9 +14,10 @@ import {setCurrentUser} from "./store/userReducer";
 import SuccessAlert from "./components/common/Alerts/SuccessAlert";
 import {getPhotosRoute} from "./AppRouter/consts";
 import PhotosContainer from "./Pages/Photos/PhotosContainer";
+import FailedAlert from "./components/common/Alerts/FailedAlert";
 
 
-export const SuccessContext = React.createContext(null);
+export const AlertContext = React.createContext(null);
 
 const App = ({getHouses, setCurrentUser}) => {
     const {pathname} = useLocation();
@@ -32,18 +33,20 @@ const App = ({getHouses, setCurrentUser}) => {
     }, [setCurrentUser])
 
     const [openSuccess, setOpenSuccess] = useState(false);
+    const [openFailed, setOpenFailed] = useState(false);
 
     if (pathname === getPhotosRoute()) return <PhotosContainer />
 
     return (
         <div>
             <SuccessAlert open={openSuccess} handleClose={() => setOpenSuccess(false)}/>
-            <SuccessContext.Provider value={setOpenSuccess}>
-                <Header/>
-                <AdminContainer/>
+            <FailedAlert open={openFailed} handleClose={() => setOpenFailed(false)}/>
+            <AlertContext.Provider value={{setOpenSuccess, setOpenFailed}}>
+                <Header />
+                <AdminContainer />
                 <AppRouter routes={appRoutes}/>
-                <Footer/>
-            </SuccessContext.Provider>
+                <Footer />
+            </AlertContext.Provider>
         </div>
     );
 }

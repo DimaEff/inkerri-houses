@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         alignItems: 'flex-end',
-        justifyContent: 'space-around',
         minWidth: '100%',
     },
     logo: {

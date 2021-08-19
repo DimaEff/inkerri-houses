@@ -14,15 +14,14 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '50%',
         backgroundColor: '#B72A27',
         boxShadow: '0px 2px 30px 4px rgba(0, 0, 0, 0.52)',
-        cursor: 'pointer',
     }
 }))
 
-const AdminButton = (props) => {
+const AdminButton = ({setOpenMenu}) => {
     const styles = useStyles();
 
     return (
-        <div className={styles.root} {...props}/>
+        <div onClick={() => setOpenMenu(true)} className={styles.root}/>
     );
 };
 

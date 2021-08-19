@@ -7,7 +7,7 @@ import AdminCarousel from "./AdminCarousel";
 import {Button, makeStyles} from "@material-ui/core";
 import MyInput from "../../common/Form/MyInput";
 import TextArea from "../../common/Form/TextArea";
-import {AdminContext} from "../AdminContainer";
+import AdminContext from "../AdminContext";
 
 
 const useStyles = makeStyles(theme => ({

@@ -91,7 +91,7 @@ const HouseItemInfo = ({houseItem}) => {
                     <MyButton action={() => setOpen(true)}>
                         Отправить заявку
                     </MyButton>
-                    <Dialog open={open} onClose={() => setOpen(false)}>
+                    <Dialog scroll={'body'} open={open} onClose={() => setOpen(false)}>
                         <FeedbackForm defaultValues={{house: houseItem.title}} template={callOrderTemplate}
                                       schema={schema} action={() => setOpen(false)} buttonText={'Заказать звонок'}>
                             {[

@@ -3,9 +3,9 @@ import {createTheme} from "@material-ui/core";
 
 const theme = createTheme({
     props: {
-      MuiButton: {
-          disableElevation: true,
-      }
+        MuiButton: {
+            disableElevation: true,
+        },
     },
     palette: {
         primary: {
@@ -29,6 +29,12 @@ const theme = createTheme({
                 backgroundColor: 'transparent',
                 overflowX: 'hidden',
             }
+        },
+        MuiMenu: {
+            paper: {
+                borderRadius: '20px',
+                padding: '20px',
+            },
         },
         PrivateSwitchBase: {
             root: {

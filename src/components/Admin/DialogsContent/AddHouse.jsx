@@ -8,7 +8,7 @@ import MyInput from "../../common/Form/MyInput";
 import TextArea from "../../common/Form/TextArea";
 import MyPaper from "../../common/AppContainer/MyPaper";
 import Select from "../../common/Form/Select";
-import {AdminContext} from "../AdminContainer";
+import AdminContext from "../AdminContext";
 
 
 const useStyles = makeStyles(theme => ({
