@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, defaultValues, ...props}) => {
     const styles = useStyles();
 
-    const {setOpenSuccess, setOpenFailed} = useContext(AlertContext);
+    const TryToSubmitWithAlerts = useContext(AlertContext);
 
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         mode: 'onBlur',
@@ -40,19 +40,14 @@ const Form = ({children, onSubmit, schema, buttonText, antiSpam, action, default
     })
 
     const onHandleSubmit = async (data, e) => {
-        try {
-            const result = await onSubmit(data, e);
-            reset(result);
-            setOpenSuccess(true);
-        } catch (error) {
-            setOpenFailed(true);
-        }
+        const result = await onSubmit(data, e);
+        reset(result);
     }
 
     return (
         <div className={styles.root}>
             <MyPaper mW={'400px'} {...props}>
-                <form onSubmit={handleSubmit(onHandleSubmit)} className={styles.form}>
+                <form onSubmit={handleSubmit(TryToSubmitWithAlerts(onHandleSubmit))} className={styles.form}>
                     {antiSpam}
                     {children?.map(({name, ...props}) => {
                         return <MyInput key={name} errorText={errors[name]} {...register(name)} {...props}/>

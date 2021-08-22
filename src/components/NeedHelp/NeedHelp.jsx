@@ -4,7 +4,7 @@ import * as yup from "yup";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import questionImg from '../../assets/Frame26/question.svg';
 import AppContainer from "../common/AppContainer/AppContainer";
-import {callOrderTemplate} from "../../utils/consts";
+import {callOrderTemplate} from "../../emailSendler";
 import FeedbackForm from "../FeedbackForm/FeedbackForm";
 
 

@@ -5,7 +5,7 @@ import {getPriceTemplate} from "../../../utils/helpers";
 import HouseItemParams from "../../../components/common/HousesItems/HouseItemParams";
 import TextContainer from "../../../components/common/AppContainer/TextContainer";
 import MyButton from "../../../components/common/Button/MyButton";
-import {callOrderTemplate} from "../../../utils/consts";
+import {callOrderTemplate} from "../../../emailSendler";
 import FeedbackForm from "../../../components/FeedbackForm/FeedbackForm";
 import * as yup from "yup";
 

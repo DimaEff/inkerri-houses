@@ -17,11 +17,11 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-const AdminButton = ({setOpenMenu}) => {
+const AdminButton = (props) => {
     const styles = useStyles();
 
     return (
-        <div onClick={() => setOpenMenu(true)} className={styles.root}/>
+        <div className={styles.root} {...props}/>
     );
 };
 

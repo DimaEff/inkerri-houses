@@ -1,12 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import * as yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {makeStyles, Paper} from "@material-ui/core";
 
-import sendEmail from "./index";
-import {callOrderTemplate, displaySize} from '../../utils/consts'
+import sendEmail, {callOrderTemplate} from "../../emailSendler";
+import { displaySize} from '../../utils/consts'
 import MyButton from "../common/Button/MyButton";
+import {AlertContext} from "../../App";
 
 
 // Я понимаю, что вот эту форму делать так стремно, но:
@@ -95,13 +96,15 @@ const useStyles = makeStyles((theme => ({
 const FeedbackFormMini = () => {
     const styles = useStyles();
 
+    const TryToSubmitWithAlerts = useContext(AlertContext);
+
     const {register, handleSubmit, formState: {errors}, reset} = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
     })
 
-    const onSubmit = async () => {
-        const result = await sendEmail(callOrderTemplate);
+    const onSubmit = async (data, e) => {
+        const result = await sendEmail(callOrderTemplate)(data, e);
         reset(result);
     }
 
@@ -118,7 +121,7 @@ const FeedbackFormMini = () => {
         <div>
             <a name={"help"}/>
             <Paper elevation={0} className={styles.paper}>
-                <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+                <form onSubmit={handleSubmit(TryToSubmitWithAlerts(onSubmit))} className={styles.form}>
                     <input type="hidden" name="contact_number" />
                     <div className={styles.inputWrapper}>
                         <input type="text" placeholder={'Имя*'} className={styles.input} autoComplete={'off'} {...register('username')}/>
