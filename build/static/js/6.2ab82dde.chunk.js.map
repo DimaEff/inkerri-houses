@@ -1,1 +1,0 @@
-{"version":3,"sources":["Pages/Photos/Photos.jsx"],"names":["Photos"],"mappings":"wHAAA,uBAUeA,UARA,WACX,OACI","file":"static/js/6.2ab82dde.chunk.js","sourcesContent":["import React from 'react';\r\n\r\nconst Photos = () => {\r\n    return (\r\n        <div>\r\n            Photos\r\n        </div>\r\n    );\r\n};\r\n\r\nexport default Photos;"],"sourceRoot":""}
