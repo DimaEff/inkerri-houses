@@ -3,7 +3,7 @@ import {makeStyles, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 
 import {getFloorTitle, getPriceTemplate} from "../../../utils/helpers";
-import {getHousesItemRoute} from "../../../AppRouter/consts";
+import {ItemRoute} from "../../../AppRouter/consts";
 import RedPaper from "./RedPaper";
 import MyButton from "../Button/MyButton";
 import HouseItemParams from "./HouseItemParams";
@@ -156,7 +156,7 @@ const HouseItem = ({variant, shadow, houseItem, user, openCloseAdminDialogConten
                     <HouseItemParams params={variant === 'secondary' ? paramsSecondary || plug: paramsFirst || plug}/>
                 </div>
                 <div className={styles.button}>
-                    <Link to={getHousesItemRoute(houseItem.id)}>
+                    <Link to={ItemRoute(houseItem.id)}>
                         <MyButton>
                             Подробнее
                         </MyButton>

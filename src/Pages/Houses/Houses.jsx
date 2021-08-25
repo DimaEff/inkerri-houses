@@ -12,7 +12,7 @@ import FloorsFilter from "../../components/common/HousesItems/Filter/FloorsFilte
 const Houses = ({prices, squares, filteredHouses, setFilterHousesValues}) => {
     const [floors, setFloors] = useState('all');
 
-    const pageSize = 3;
+    const pageSize = 9;
     const pagesCount = Math.ceil(filteredHouses.length / pageSize);
     const [currentPage, setCurrentPage] = useState(1);
     const startPage = (currentPage - 1) * pageSize;

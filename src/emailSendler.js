@@ -2,7 +2,7 @@ import emailjs from "emailjs-com";
 
 
 export const callOrderTemplate = 'template_upgw49v';
-export const errorTemplate = 'template_33lz19w';
+// export const errorTemplate = 'template_33lz19w';
 
 const sendEmail = (template) => async (data, e, str) => {
     e?.preventDefault();

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 
-import {getStateHouses} from "../../selectors/house_selectors";
+import {getHouses} from "../../selectors/house_selectors";
 import HousesMiniDesktop from "./HousesMiniDesktop";
 import useResolution from "../../hooks/useResolution";
 import HousesMiniMobile from "./HousesMiniMobile";
@@ -24,7 +24,7 @@ const HousesMiniContainer = ({houses}) => {
 };
 
 const mapStateToProps = (state) => ({
-    houses: getStateHouses(state),
+    houses: getHouses(state),
 })
 
 export default connect(mapStateToProps, null)(HousesMiniContainer);

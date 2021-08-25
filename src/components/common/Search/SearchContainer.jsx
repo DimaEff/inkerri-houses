@@ -4,7 +4,7 @@ import Fuse from "fuse.js";
 import {IconButton, makeStyles} from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search'
 
-import {getStateHouses} from "../../../selectors/house_selectors";
+import {getHouses} from "../../../selectors/house_selectors";
 import useResolution from "../../../hooks/useResolution";
 import Search from "./Search";
 import searchIcon from "../../../assets/Header/searchIcon.svg";
@@ -63,7 +63,7 @@ const SearchContainer = ({houses}) => {
 };
 
 const mapStateToProps = (state) => ({
-    houses: getStateHouses(state),
+    houses: getHouses(state),
 })
 
 export default connect(mapStateToProps, {})(SearchContainer);

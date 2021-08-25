@@ -9,11 +9,9 @@ const useStyles = makeStyles((theme) => ({
         border: 'none',
         outline: 'none',
         textDecoration: 'none',
-
-        '& p': {
-            fontSize: fontSize,
-            fontWeight: fontWeight,
-        }
+        color: 'inherit',
+        // fontSize: fontSize,
+        // fontWeight: fontWeight,
     })
 }))
 
@@ -21,11 +19,11 @@ const Link = ({children, to, color, fontSize, fontWeight, ...props}) => {
     const styles = useStyles({fontSize, fontWeight});
 
     return (
-        <NavLink to={to} className={styles.link} {...props}>
-            <Typography color={color || 'secondary'}>
+        <Typography color={color || 'secondary'}>
+            <NavLink to={to} className={styles.link} {...props}>
                 {children}
-            </Typography>
-        </NavLink>
+            </NavLink>
+        </Typography>
     );
 };
 

@@ -62,9 +62,11 @@ export const addImg = async (file) => {
 }
 
 export const deleteImg = async (imageURL) => {
-    const imgRef = storage.refFromURL(imageURL);
-
-    await imgRef.delete();
+    try {
+        const imgRef = storage.refFromURL(imageURL);
+        await imgRef.delete();
+    } catch {
+    }
 }
 
 export const commonAPI = {
@@ -85,9 +87,11 @@ export const commonAPI = {
             imagesURL.push(imageURL);
         }
 
-        await addUpdateData(docCollection,
+        await addUpdateData(
+            docCollection,
             {...data, imagesURL, date: firebase.firestore.Timestamp.fromDate(new Date())},
-            doc);
+            doc
+        );
     },
     async deleteDoc(docCollection, doc, imagesURL) {
         for (const imageURL of imagesURL) {

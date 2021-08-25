@@ -1,7 +1,7 @@
 import {createSelector} from "reselect";
 
 
-export const getStateHouses = (state) => state.houses.houses;
+export const getHouses = (state) => state.houses.houses;
 
 export const getPrices = (state) => state.houses.prices;
 export const getSquares = (state) => state.houses.squares;
@@ -50,7 +50,7 @@ const housesFilter = (houses, filterValues) => {
 
 export const getFilterHousesValues = (state) => state.houses.filterValues;
 
-export const getFilterHouses = createSelector(getStateHouses, getFilterHousesValues,
+export const getFilterHouses = createSelector(getHouses, getFilterHousesValues,
     (houses, filterValues) => {
         let filterHouses = houses;
 

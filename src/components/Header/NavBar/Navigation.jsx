@@ -6,6 +6,7 @@ import logoImg from '../../../assets/Header/logo.svg';
 import NavigationMenuContainer from "./NavigationMenu/NavigationMenuContainer";
 import appRoutes from "../../../AppRouter/routes";
 import {getHomeRoute} from "../../../AppRouter/consts";
+import {displaySize} from "../../../utils/consts";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -17,12 +18,16 @@ const useStyles = makeStyles((theme) => ({
     logo: {
         width: '11vw',
         minWidth: '70px',
-        marginRight: '15px',
+        marginRight: '18px',
 
         '& img': {
             maxHeight: '100%',
             maxWidth: '100%',
-        }
+        },
+
+        [theme.breakpoints.down(displaySize)]: {
+            marginRight: '15px',
+        },
     }
 }))
 

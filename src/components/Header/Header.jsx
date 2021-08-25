@@ -1,31 +1,23 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core";
+import {connect} from "react-redux";
 
 import NavBar from "./NavBar/NavBar";
 import Carousel from "./Carousel";
 import {displaySize} from "../../utils/consts";
-import house1Img from '../../assets/Header/house1.png';
-import house2Img from '../../assets/Header/house2.png';
-import house3Img from '../../assets/Header/house3.png';
-import house4Img from '../../assets/Header/house4.png';
-import house5Img from '../../assets/Header/house5.png';
-
+import {getBanners} from "../../selectors/banners_selectors";
 
 const useStyles = makeStyles(theme => ({
     root: {
         position: 'relative',
-        minWidth: '100vw',
         overflow: 'hidden',
     },
     img: {
         position: 'relative',
         overflow: 'hidden',
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
-        height: '100%',
         minHeight: '45.8vw',
-        width: '100vw',
 
         [theme.breakpoints.down(displaySize)]: {
             minHeight: '365px',
@@ -35,10 +27,7 @@ const useStyles = makeStyles(theme => ({
 
         '& img': {
             position: 'absolute',
-            width: '100vw',
-            height: '100%',
             minHeight: '365px',
-            maxHeight: '45.8vw',
         }
     },
     navBar: {
@@ -62,16 +51,8 @@ const Img = ({img}) => {
     </div>
 }
 
-const Header = () => {
+const Header = ({banners}) => {
     const styles = useStyles();
-
-    const imgs = [
-        {name: 'house1Img', img: house1Img},
-        {name: 'house2Img', img: house2Img},
-        {name: 'house3Img', img: house3Img},
-        {name: 'house4Img', img: house4Img},
-        {name: 'house5Img', img: house5Img},
-    ]
 
     return (
         <div className={styles.root}>
@@ -79,10 +60,14 @@ const Header = () => {
                 <NavBar />
             </div>
             <Carousel>
-                {imgs.map(({name, img}) => <Img key={name} img={img}/>)}
+                {banners?.map(({id, imagesURL}) => <Img key={id} img={imagesURL[0]}/>)}
             </Carousel>
         </div>
     );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+    banners: getBanners(state),
+})
+
+export default connect(mapStateToProps, {})(Header);

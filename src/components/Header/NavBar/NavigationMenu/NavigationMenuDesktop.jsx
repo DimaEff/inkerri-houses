@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
     menu: {
         display: 'flex',
+        marginRight: '60px',
 
         '& div': {
             marginRight: '30px',
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'flex-end',
 
         '& div': {
-            marginRight: '20px',
+            marginRight: '10px',
         }
     },
 }))

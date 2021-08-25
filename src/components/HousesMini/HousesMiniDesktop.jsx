@@ -7,7 +7,7 @@ import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import HouseItem from "../common/HousesItems/HouseItem";
 import MyCarousel from "../Carousel/Carousel";
 import MyButton from "../common/Button/MyButton";
-import {getHousesRoute} from "../../AppRouter/consts";
+import {Route} from "../../AppRouter/consts";
 
 
 const HouseGroupSlide = ({houseGroup}) => {
@@ -30,12 +30,14 @@ const HousesMiniDesktop = ({houses}) => {
     return (
         <AppContainerItem column lg={12} md={12} sm={12} xs={12}>
             <div style={{position: 'relative', display: 'flex', justifyContent: 'flex-end', width: '100%'}}>
-                <MyButton style={{position: 'absolute', top: '-60px'}} action={() => history.push(getHousesRoute())}>
+                <MyButton style={{position: 'absolute', top: '-60px'}} action={() => history.push(Route())}>
                     Все проекты
                 </MyButton>
             </div>
             <MyCarousel showThumbs={false} showIndicators={true}>
+                {/*<div style={{width: '50px', backgroundColor: 'transparent'}}/>*/}
                 {splitHouses.map(houseGroup => <HouseGroupSlide key={houseGroup[0].title} houseGroup={houseGroup}/>)}
+                {/*<div style={{width: '50px', backgroundColor: 'transparent'}}/>*/}
             </MyCarousel>
         </AppContainerItem>
     );

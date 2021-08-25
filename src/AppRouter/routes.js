@@ -5,7 +5,7 @@ import {
     getPhotosRoute,
     getScandinavianRoute,
     getDesigningRoute,
-    getConsultingRoute, getNewsItemRoute, getHousesItemRoute, getNewsRoute, getHousesRoute,
+    getConsultingRoute, getNewsItemRoute, ItemRoute, getNewsRoute, Route,
 } from "./consts";
 import Home from "../Pages/Home/Home";
 import HousesContainer from '../Pages/Houses/HousesContainer';
@@ -35,9 +35,9 @@ const appRoutes = [
     },
     {
         name: 'Готовые проекты',
-        path: getHousesItemRoute(),
+        path: ItemRoute(),
         Component: HousesContainer,
-        menuPath: getHousesRoute(),
+        menuPath: Route(),
         menuNum: 1,
     },
     {

@@ -1,11 +1,13 @@
 import React from 'react';
+import {Typography} from "@material-ui/core";
 
 import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import proectingImg from '../../assets/Home/proecting.svg';
 import buildingImg from '../../assets/Home/building.svg';
 import consultingImg from '../../assets/Home/consulting.svg';
-import {Typography} from "@material-ui/core";
+import Link from "../common/Text/Link";
+import {getConsultingRoute, getDesigningRoute, getScandinavianRoute} from "../../AppRouter/consts";
 
 
 const WeDo = ({grey}) => {
@@ -16,9 +18,9 @@ const WeDo = ({grey}) => {
                     <img src={proectingImg}/>
                 </div>
                 <div style={{margin: '10px'}}>
-                    <Typography>
+                    <Link color={'primary'} to={getDesigningRoute()}>
                         Проектирование
-                    </Typography>
+                    </Link>
                 </div>
             </AppContainerItem>
             <AppContainerItem margin column jC={'flex-end'} lg={4} md={4} sm={12} xs={12}>
@@ -26,9 +28,11 @@ const WeDo = ({grey}) => {
                     <img src={buildingImg}/>
                 </div>
                 <div style={{margin: '10px'}}>
-                    <Typography>
-                        Строительство
-                    </Typography>
+                    <div style={{margin: '10px'}}>
+                        <Link color={'primary'} to={getScandinavianRoute()}>
+                            Строительство
+                        </Link>
+                    </div>
                 </div>
             </AppContainerItem>
             <AppContainerItem margin column jC={'flex-end'} lg={4} md={4} sm={12} xs={12}>
@@ -36,9 +40,9 @@ const WeDo = ({grey}) => {
                     <img src={consultingImg}/>
                 </div>
                 <div style={{margin: '10px'}}>
-                    <Typography>
+                    <Link color={'primary'} to={getConsultingRoute()}>
                         Консультирование
-                    </Typography>
+                    </Link>
                 </div>
             </AppContainerItem>
         </AppContainer>

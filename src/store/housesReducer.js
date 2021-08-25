@@ -48,8 +48,8 @@ const housesReducer = (state=initialState, action) => {
     }
 }
 
-export const getHouses = () => async (dispatch) => {
-    const data = await commonAPI.getCollection(HOUSES);
+export const setMinMaxValues = () => (dispatch, getState) => {
+    const data = getState().houses.houses;
 
     const minPrice = getMinMaxArrValue(data, 'minPrice', 'min');
     const maxPrice = getMinMaxArrValue(data, 'maxPrice', 'max');
@@ -64,7 +64,7 @@ export const setFilterHousesValues = (filterValues) => (dispatch) => {
     dispatch(setFilterValues(filterValues));
 }
 
-const setHouses = (payload) => ({type: SET_HOUSES, payload});
+export const setHouses = (payload) => ({type: SET_HOUSES, payload});
 const setMinMaxPrices = (payload) => ({type: SET_MIN_MAX_PRICES, payload})
 const setMinMaxSquares = (payload) => ({type: SET_MIN_MAX_SQUARES, payload})
 const setFilterValues = (payload) => ({type: SET_FILTER_VALUES, payload})

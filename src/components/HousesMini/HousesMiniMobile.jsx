@@ -4,7 +4,7 @@ import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import HouseItem from "../common/HousesItems/HouseItem";
 import MyButton from "../common/Button/MyButton";
 import Link from "../common/Text/Link";
-import {getHousesRoute} from "../../AppRouter/consts";
+import {Route} from "../../AppRouter/consts";
 
 
 const HousesMiniMobile = ({houses}) => {
@@ -16,7 +16,7 @@ const HousesMiniMobile = ({houses}) => {
                     </AppContainerItem>
                 )}
                 <AppContainerItem lg={12} md={12} sm={12} xs={12}>
-                    <Link to={getHousesRoute()}>
+                    <Link to={Route()}>
                         <MyButton variant={'secondary'} oval>
                             Все проекты
                         </MyButton>

@@ -6,14 +6,14 @@ import {CloudUpload, InsertDriveFile} from "@material-ui/icons";
 
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    root: ({h, w}) => ({
         display: 'flex',
         flexFlow: 'column',
         justifyContent: 'center',
         alignItems: 'center',
 
-        height: '250px',
-        width: '400px',
+        height: h,
+        width: w,
         padding: '10px',
         margin: '20px',
         borderRadius: '30px',
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         color: '#333',
         cursor: 'pointer',
         overflowY: 'auto',
-    },
+    }),
     icon: {
         marginTop: '16px',
         fontSize: '42px',
@@ -29,8 +29,8 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const FileInput = ({control, name}) => {
-    const styles = useStyles();
+const FileInput = ({control, name, h, w}) => {
+    const styles = useStyles({h, w});
 
     const {field: {onChange, onBlur, value}} = useController({
         name,
@@ -48,7 +48,7 @@ const FileInput = ({control, name}) => {
                 {value.length > 0 ?
                     <div>
                         <List>
-                            {value.map(file => <ListItem key={file.name}>
+                            {value.map((file, index) => <ListItem key={file.name || index}>
                                 <ListItemIcon>
                                     <InsertDriveFile />
                                 </ListItemIcon>

@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
 import {getUser} from "../selectors/user_selectors";
-import {getLoginRoute} from "../AppRouter/consts";
 
 
 const withAuthRedirect = (Component) => {

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {connect} from "react-redux";
 
 import Photos from "./Photos";
-import {getStateHouses} from "../../selectors/house_selectors";
+import {getHouses} from "../../selectors/house_selectors";
 import Footer from "../../components/Footer/Footer";
 
 
@@ -21,7 +21,7 @@ const PhotosContainer = ({houses}) => {
 };
 
 const mapStateToProps = (state) => ({
-    houses: getStateHouses(state),
+    houses: getHouses(state),
 })
 
 export default connect(mapStateToProps, {})(PhotosContainer);

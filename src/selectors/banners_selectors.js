@@ -1,0 +1,1 @@
+export const getBanners = (state) => state.banners.banners;

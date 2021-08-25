@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 import Scandinavian from "./Scandinavian";
-import {getStateHouses} from "../../selectors/house_selectors";
+import {getHouses} from "../../selectors/house_selectors";
 
 
 const ScandinavianContainer = ({houses}) => {
@@ -13,7 +13,7 @@ const ScandinavianContainer = ({houses}) => {
 };
 
 const mapStateToProps = (state) => ({
-    houses: getStateHouses(state),
+    houses: getHouses(state),
 })
 
 export default connect(mapStateToProps, {})(ScandinavianContainer);

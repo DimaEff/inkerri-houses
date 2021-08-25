@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexFlow: 'column',
 
-        width: '90%',
+        width: '80%',
         marginBottom: '20px',
         borderBottom: '1px solid #B72A27',
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         width: '100%',
-        padding: '0px 10px',
+        padding: '0px 5px',
         fontSize: '16px',
         fontWeight: 600,
 

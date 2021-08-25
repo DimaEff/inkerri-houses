@@ -18,6 +18,9 @@ const theme = createTheme({
             main: '#B72A27',
         }
     },
+    typography: {
+        fontFamily: ['"Noto Sans"',].join(','),
+    },
     overrides: {
         MuiSlider: {
             colorSecondary: {
@@ -26,6 +29,7 @@ const theme = createTheme({
         },
         MuiDialog: {
             paper: {
+                borderRadius: '30px',
                 backgroundColor: 'transparent',
                 overflowX: 'hidden',
             }

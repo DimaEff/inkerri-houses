@@ -70,62 +70,64 @@ const Filter = ({prices, squares, floors, setFloors, onAdaptiveFilter, onFilter}
 
     return (
         <RedPaper w={'230px'} minW={'200px'}>
-            <FilterItem title={'Количество этажей'}>
-                <FloorsFilter floors={floors} setFloors={setFloors} onFilter={onFilter} column/>
-            </FilterItem>
-            <FilterItem title={'Цена (₽)'}>
-                <DoubleInputSlider
-                    min={minPrice}
-                    max={maxPrice}
-                    setMin={setMinPrice}
-                    setMax={setMaxPrice}
-                    minValue={prices[0]}
-                    maxValue={prices[1]}
-                />
-            </FilterItem>
-            <FilterItem title={'Площадь (м2)'}>
-                <DoubleInputSlider
-                    min={minSquares}
-                    max={maxSquares}
-                    setMin={setMinSquares}
-                    setMax={setMaxSquares}
-                    minValue={Math.floor(squares[0])}
-                    maxValue={Math.ceil(squares[1])}
-                />
-            </FilterItem>
-            <FilterItem title={'Количество спален'}>
-                <RadioInput value={bedRooms} setValue={setBedRooms} defaultValue={'all'} name={'bedRooms'}>
-                    {[
-                        {value: 'all', label: 'Все'},
-                        {value: '1', label: '1'},
-                        {value: '2', label: '2'},
-                        {value: '3', label: '3'},
-                        {value: '4', label: '4'},
-                        {value: '5', label: '5'},
-                        {value: '5+', label: '5+'},
-                    ]}
-                </RadioInput>
-            </FilterItem>
-            <FilterItem title={'Количество с/узлов'}>
-                <RadioInput value={bathRooms} setValue={setBathRooms} defaultValue={'all'} name={'bathRooms'}>
-                    {[
-                        {value: 'all', label: 'Все'},
-                        {value: '1', label: '1'},
-                        {value: '2', label: '2'},
-                        {value: '3', label: '3'},
-                        {value: '4', label: '4'},
-                        {value: '4+', label: '4+'},
-                    ]}
-                </RadioInput>
-            </FilterItem>
-            <div className={styles.buttons}>
-                <MyButton action={onReset}>
-                    Сбросить
-                </MyButton>
-                <MyButton action={onSubmit}>
-                    Применить
-                </MyButton>
-            </div>
+            {/*<div style={{width: '90%'}}>*/}
+                <FilterItem title={'Количество этажей'}>
+                    <FloorsFilter floors={floors} setFloors={setFloors} onFilter={onFilter} column/>
+                </FilterItem>
+                <FilterItem title={'Цена (₽)'}>
+                    <DoubleInputSlider
+                        min={minPrice}
+                        max={maxPrice}
+                        setMin={setMinPrice}
+                        setMax={setMaxPrice}
+                        minValue={prices[0]}
+                        maxValue={prices[1]}
+                    />
+                </FilterItem>
+                <FilterItem title={'Площадь (м2)'}>
+                    <DoubleInputSlider
+                        min={minSquares}
+                        max={maxSquares}
+                        setMin={setMinSquares}
+                        setMax={setMaxSquares}
+                        minValue={Math.floor(squares[0])}
+                        maxValue={Math.ceil(squares[1])}
+                    />
+                </FilterItem>
+                <FilterItem title={'Количество спален'}>
+                    <RadioInput value={bedRooms} setValue={setBedRooms} defaultValue={'all'} name={'bedRooms'}>
+                        {[
+                            {value: 'all', label: 'Все'},
+                            {value: '1', label: '1'},
+                            {value: '2', label: '2'},
+                            {value: '3', label: '3'},
+                            {value: '4', label: '4'},
+                            {value: '5', label: '5'},
+                            {value: '5+', label: '5+'},
+                        ]}
+                    </RadioInput>
+                </FilterItem>
+                <FilterItem title={'Количество с/узлов'}>
+                    <RadioInput value={bathRooms} setValue={setBathRooms} defaultValue={'all'} name={'bathRooms'}>
+                        {[
+                            {value: 'all', label: 'Все'},
+                            {value: '1', label: '1'},
+                            {value: '2', label: '2'},
+                            {value: '3', label: '3'},
+                            {value: '4', label: '4'},
+                            {value: '4+', label: '4+'},
+                        ]}
+                    </RadioInput>
+                </FilterItem>
+                <div className={styles.buttons}>
+                    <MyButton action={onReset}>
+                        Сбросить
+                    </MyButton>
+                    <MyButton action={onSubmit}>
+                        Применить
+                    </MyButton>
+                </div>
+            {/*</div>*/}
         </RedPaper>
     );
 };

@@ -5,7 +5,7 @@ import {commonAPI} from "../../firebase/api";
 import {firestoreCollections} from "../../utils/consts";
 
 
-export const addHouse = (data, includesCount, docId) => {
+export const addHouse = async (data, includesCount, docId) => {
     const files = data.imagesURL;
 
     const dataCopy = {
@@ -30,14 +30,20 @@ export const addHouse = (data, includesCount, docId) => {
     }
     dataCopy.includes = includes;
 
-    commonAPI.addUpdateDoc(firestoreCollections.houses, files, dataCopy, docId)
+    await commonAPI.addUpdateDoc(firestoreCollections.houses, files, dataCopy, docId)
 }
 
-export const addNewsItem = (data, docId) => {
+export const addNewsItem = async (data, docId) => {
     const files = data.imagesURL;
     delete data.imagesURL;
 
-    commonAPI.addUpdateDoc(firestoreCollections.news, files, data, docId)
+    await commonAPI.addUpdateDoc(firestoreCollections.news, files, data, docId)
+}
+
+export const addBannerItem = async (e) => {
+    const file = e.target.files;
+
+    await commonAPI.addUpdateDoc(firestoreCollections.banners, file, {})
 }
 
 export default React.createContext({})

@@ -12,6 +12,21 @@ const useStyles = makeStyles(theme => ({
         height: h || 'auto',
         width: w || 'auto',
     }),
+    carousel: {
+        position: 'relative',
+        left: '-5%',
+        // padding: '30px',
+        // margin: '30px',
+        width: '110%',
+
+        '&>div': {
+            // left: '-9%',
+            padding: '0px 40px',
+            margin: '30px',
+            // width: '120%',
+            // maxWidth: '120%',
+        }
+    },
     indicator: ({isSelected}) => ({
         zIndex: 2,
         display: 'inline-block',
@@ -27,12 +42,12 @@ const useStyles = makeStyles(theme => ({
         },
     }),
     arrow: ({arrow}) => ({
-        zIndex: 2,
+        zIndex: 10,
         position: 'absolute',
         top: '50%',
         bottom: '0px',
-        right: arrow === '>' && '0px',
-        left: arrow === '<' && '0px',
+        right: arrow === '>' && '-10px',
+        left: arrow === '<' && '-10px',
 
         height: '20px',
         width: '20px',
@@ -75,6 +90,7 @@ const MyCarousel = ({children, h, w, ...props}) => {
                 renderArrowPrev={clickHandler => <Arrow arrow={'<'} clickHandler={clickHandler}/>}
                 showIndicators={false}
                 showStatus={false}
+                className={styles.carousel}
                 {...props}
             >
                 {children}

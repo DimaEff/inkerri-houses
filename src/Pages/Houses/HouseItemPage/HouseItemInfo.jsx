@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
     },
     description: {
         overflowY: 'auto',
-        // minHeight: '100px',
         maxHeight: '300px',
     }
 }))

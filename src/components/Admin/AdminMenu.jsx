@@ -9,6 +9,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import Registration from "../Registration/Registration";
 import AddNews from "./DialogsContent/AddNews";
 import AddHouse from "./DialogsContent/AddHouse";
+import Banners from "./DialogsContent/Banners/Banners";
 
 
 const Actions = ({children, setOpen}) => {
@@ -49,11 +50,11 @@ const AdminMenu = ({open, setOpen, openCloseAdminDialogContent, logout}) => {
                                 icon: <CreateIcon />,
                                 action: () => openCloseAdminDialogContent(true, AddNews),
                             },
-                            // {
-                            //     text: 'Добавить фото',
-                            //     icon: <PhotoIcon />,
-                            //     action: openContentDialogCreator('Добавить фото')
-                            // },
+                            {
+                                text: 'Баннеры',
+                                icon: <PhotoIcon />,
+                                action: () => openCloseAdminDialogContent(true, Banners),
+                            },
                             {
                                 text: 'Добавить администратора',
                                 icon: <PersonAddIcon />,
