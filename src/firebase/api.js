@@ -80,12 +80,8 @@ export const commonAPI = {
         return await getOneDoc(collection, docId);
     },
     async addUpdateDoc(docCollection, files, data, doc) {
-        let imagesURL = [];
-
-        for (const file of files) {
-            const imageURL = await addImg(file);
-            imagesURL.push(imageURL);
-        }
+        const promises = files.map(file => addImg(file));
+        const imagesURL = await Promise.all(promises);
 
         await addUpdateData(
             docCollection,
@@ -94,11 +90,10 @@ export const commonAPI = {
         );
     },
     async deleteDoc(docCollection, doc, imagesURL) {
-        for (const imageURL of imagesURL) {
-            await deleteImg(imageURL);
-        }
-
         if (doc) await deleteData(docCollection, doc);
+
+        const promises = imagesURL.map(imageURL => deleteImg(imageURL));
+        await Promise.all(promises);
     },
 };
 

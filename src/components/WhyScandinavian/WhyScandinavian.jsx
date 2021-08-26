@@ -1,6 +1,7 @@
-import React from 'react';
-import {makeStyles} from "@material-ui/core";
+import React, {useState} from 'react';
+import {Dialog, makeStyles} from "@material-ui/core";
 import {useHistory} from "react-router-dom";
+import * as yup from "yup";
 
 import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
@@ -11,7 +12,26 @@ import {displaySize} from "../../utils/consts";
 import energyImg from '../../assets/Building2/energy.svg';
 import viewImg from '../../assets/Building2/view.svg';
 import layoutImg from '../../assets/Building2/layout.svg';
+import FeedbackForm from "../FeedbackForm/FeedbackForm";
+import {callOrderTemplate} from "../../emailSendler";
 
+
+const schema = yup.object().shape({
+    username: yup.string()
+        .required('Обязательное поле')
+        .min(3, 'Минимум 3 символа')
+        .max(12, 'Максимум 12 символов'),
+    surname: yup.string()
+        .required('Обязательное поле')
+        .min(3, 'Минимум 3 символа')
+        .max(12, 'Максимум 12 символов'),
+    email: yup.string()
+        .required('Обязательное поле')
+        .email('Некорректный email'),
+    phone: yup.string()
+        .required('Обязательное поле')
+        .matches(/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/, 'Некорректный номер')
+});
 
 const useStyles = makeStyles(theme => ({
     button: {
@@ -37,6 +57,8 @@ const useStyles = makeStyles(theme => ({
 const WhyScandinavian = ({grey}) => {
     const styles = useStyles();
     const history = useHistory();
+
+    const [open, setOpen] = useState(false);
 
     const advantages = [
         {
@@ -68,9 +90,23 @@ const WhyScandinavian = ({grey}) => {
             })}
             <AppContainerItem lg={12} md={12} sm={12} xs={12}>
                 <div className={styles.button}>
-                    <MyButton>
-                        Узнать подробности
-                    </MyButton>
+                    <div>
+                        <MyButton action={() => setOpen(true)}>
+                            Узнать подробности
+                        </MyButton>
+                        <Dialog scroll={'body'} open={open} onClose={() => setOpen(false)}>
+                            <FeedbackForm  template={callOrderTemplate}
+                                          schema={schema} action={() => setOpen(false)} buttonText={'Заказать звонок'}>
+                                {[
+                                    {name: 'username', placeholder: 'Имя*'},
+                                    {name: 'surname', placeholder: 'Фамилия*'},
+                                    {name: 'email', placeholder: 'Email*'},
+                                    {name: 'phone', placeholder: 'Номер телефона*'},
+                                ]}
+                            </FeedbackForm>
+                        </Dialog>
+                    </div>
+
                     <MyButton action={() => history.push(Route())} variant={'secondary'}>
                         Посмотреть проеты
                     </MyButton>
