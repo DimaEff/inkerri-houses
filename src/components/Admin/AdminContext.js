@@ -41,9 +41,13 @@ export const addNewsItem = async (data, docId) => {
 }
 
 export const addBannerItem = async (e) => {
-    const file = e.target.files;
+    const files = [];
 
-    await commonAPI.addUpdateDoc(firestoreCollections.banners, file, {})
+    for (const file of e.target.files) {
+        files.push(file);
+    }
+
+    await commonAPI.addUpdateDoc(firestoreCollections.banners, files, {})
 }
 
 export default React.createContext({})
