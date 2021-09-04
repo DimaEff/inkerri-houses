@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import MyPaper from "../AppContainer/MyPaper";
 import AdminCarousel from "../../Admin/DialogsContent/AdminCarousel";
 import {Button, makeStyles, Typography} from "@material-ui/core";
-import {AlertContext} from "../../../App";
+import {AlertContext} from "../../../AppContainer";
 
 
 const useStyles = makeStyles(theme => ({

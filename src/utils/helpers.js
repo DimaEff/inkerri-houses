@@ -15,7 +15,7 @@ export const getFloorTitle = (floorsNumber) => {
 }
 
 export const getStringPrice = (price) => {
-    return price?.toString().split( /(?=(?:...)*$)/ ).join(' ');
+    return price?.toString().split(/(?=(?:...)*$)/).join(' ');
 }
 
 export const getPriceTemplate = (minPrice, maxPrice) => {
@@ -39,8 +39,8 @@ export const getMinMaxArrValue = (arr, prop, type) => {
 export const splitArray = (array, size) => {
     const subarray = [];
 
-    for (let i = 0; i <Math.ceil(array.length/size); i++){
-        subarray[i] = array.slice((i*size), (i*size) + size);
+    for (let i = 0; i < Math.ceil(array.length / size); i++) {
+        subarray[i] = array.slice((i * size), (i * size) + size);
     }
 
     return subarray;
@@ -63,8 +63,11 @@ export const toNumber = (str) => {
     return +str.split(',').join('.');
 }
 
-// export const filterHouses = (filterData, houses) => {
-//     let result;
-//
-//     if (filterData.)
-// }
+export const getRandomString = (length = 5) => {
+    return Math.random().toString(36).substr(2, length)
+}
+
+export const getNewRandomRenamedFile = (file, length) => {
+    const fileName = file.name.split('.');
+    return new File([file], fileName[0] + getRandomString(length) + '.' + fileName[1], {type: file.type});
+}

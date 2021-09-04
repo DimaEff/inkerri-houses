@@ -7,7 +7,7 @@ import {makeStyles, Paper} from "@material-ui/core";
 import sendEmail, {callOrderTemplate} from "../../emailSendler";
 import { displaySize} from '../../utils/consts'
 import MyButton from "../common/Button/MyButton";
-import {AlertContext} from "../../App";
+import {AlertContext} from "../../AppContainer";
 
 
 // Я понимаю, что вот эту форму делать так стремно, но:

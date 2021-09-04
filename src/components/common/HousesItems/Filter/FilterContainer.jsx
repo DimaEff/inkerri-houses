@@ -19,7 +19,7 @@ const FilterContainer = (props) => {
         <div>
             {isMobile ?
                 <>
-                    <MyButton style={{width: '100%'}} action={() => setOpen(true)}>
+                    <MyButton style={{width: '82vw'}} action={() => setOpen(true)}>
                         Фильтр
                     </MyButton>
                     <Dialog scroll={'body'} onClose={() => setOpen(false)} open={open}>

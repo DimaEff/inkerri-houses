@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '60px',
 
         '& div': {
-            marginRight: '30px',
+            marginRight: '20px',
         }
     },
     contacts: {

@@ -6,7 +6,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import MyInput from "./MyInput";
 import MyButton from "../Button/MyButton";
 import MyPaper from "../AppContainer/MyPaper";
-import {AlertContext} from "../../../App";
+import {AlertContext} from "../../../AppContainer";
 
 
 const useStyles = makeStyles((theme) => ({

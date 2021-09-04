@@ -1,5 +1,6 @@
 import {db, storage, auth} from './index'
 import firebase from "firebase";
+import {getNewRandomRenamedFile} from "../utils/helpers";
 
 
 const getCollectionData = async (collection) => {
@@ -52,9 +53,10 @@ export const addImg = async (file) => {
     let imageURL = file;
 
     if (typeof file === 'object') {
+        const renamedFile = getNewRandomRenamedFile(file);
         const storageRef = storage.ref();
-        const fileRef = storageRef.child(file.name);
-        await fileRef.put(file);
+        const fileRef = storageRef.child(renamedFile.name);
+        await fileRef.put(renamedFile);
         imageURL = await fileRef.getDownloadURL();
     }
 

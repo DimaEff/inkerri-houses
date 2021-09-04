@@ -9,6 +9,7 @@ import {getUser} from "../../../selectors/user_selectors";
 import {openCloseAdminDialogContent} from "../../../store/adminReducer";
 import AdminItemsPanel from "../../Admin/AdminItemsPanel";
 import {firestoreCollections} from "../../../utils/consts";
+import SingleImageContainer from "../AppContainer/SingleImageContainer";
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,16 +27,11 @@ const useStyles = makeStyles(theme => ({
         },
     },
     img: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        overflow: 'hidden',
-
         width: '100%',
         height: '212px',
 
-        '& img': {
-            width: '100%',
+        [theme.breakpoints.down(600)]: {
+            height: '160px',
         },
     },
     date: {
@@ -58,8 +54,13 @@ const NewsItem = ({newsItem, user, openCloseAdminDialogContent, ...props}) => {
 
     return (
         <div className={styles.root} {...props}>
+            {/*<div className={styles.img}>*/}
+            {/*    <img src={newsItem.imagesURL[0]}/>*/}
+            {/*</div>*/}
             <div className={styles.img}>
-                <img src={newsItem.imagesURL[0]}/>
+                <SingleImageContainer>
+                    <img src={newsItem.imagesURL[0]}/>
+                </SingleImageContainer>
             </div>
             <div style={{display: 'flex', alignItems: 'center'}}>
                 <Typography className={styles.date}>
