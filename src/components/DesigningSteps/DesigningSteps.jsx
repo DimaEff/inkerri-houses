@@ -23,7 +23,7 @@ const DesigningSteps = ({grey}) => {
     const listTitle3 = 'В состав альбома КР может входить:';
 
     return (
-        <AppContainer title={'Консультации по строительству'} grey={!!grey}>
+        <AppContainer title={'Проектирование делится на несколько стадий, каждая из которых оформляется отдельным альбомом'} grey={!!grey}>
             <Step step={1} text={text1} listTitle={listTitle1} image1={s1h1Img} image2={s1h2Img}>
                 {[
                     'генеральный план участка',

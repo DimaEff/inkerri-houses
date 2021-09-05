@@ -2,9 +2,6 @@ import React, {useState} from 'react';
 import {IconButton, makeStyles} from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-import {commonAPI} from "../../../../firebase/api";
-import {firestoreCollections} from "../../../../utils/consts";
-
 
 const useStyles = makeStyles(theme => ({
     bannerRoot: {
@@ -26,12 +23,10 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const BannerImage = ({id, imagesURL, bannersCount}) => {
+const AdminSliderImage = ({imageURL, bannersCount, deleteFunction}) => {
     const styles = useStyles();
 
     const [openDelete, setOpenDelete] = useState(false);
-
-    const deleteBanner = () => commonAPI.deleteDoc(firestoreCollections.banners, id, imagesURL);
 
     return (
         <div className={styles.bannerRoot}
@@ -41,14 +36,14 @@ const BannerImage = ({id, imagesURL, bannersCount}) => {
             {
                 openDelete &&
                 <div className={styles.deleteButton}>
-                    <IconButton disabled={bannersCount < 2} onDoubleClick={deleteBanner}>
+                    <IconButton disabled={bannersCount && bannersCount < 2} onDoubleClick={deleteFunction}>
                         <DeleteIcon color={'secondary'} fontSize={"large"}/>
                     </IconButton>
                 </div>
             }
-            <img src={imagesURL[0]}/>
+            <img src={imageURL}/>
         </div>
     )
 }
 
-export default BannerImage;
+export default AdminSliderImage;

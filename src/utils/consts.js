@@ -4,4 +4,5 @@ export const firestoreCollections = {
     houses: 'houses',
     news: 'news',
     banners: 'banners',
+    albums: 'albums',
 };

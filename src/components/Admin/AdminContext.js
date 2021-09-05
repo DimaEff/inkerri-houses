@@ -1,7 +1,7 @@
 import React from "react";
 
 import {toNumber} from "../../utils/helpers";
-import {commonAPI} from "../../firebase/api";
+import {commonAPI, deleteImg} from "../../firebase/api";
 import {firestoreCollections} from "../../utils/consts";
 
 
@@ -48,6 +48,18 @@ export const addBannerItem = async (e) => {
     }
 
     await commonAPI.addUpdateDoc(firestoreCollections.banners, files, {})
+}
+
+export const addPhotosToAlbum = async (albumId, files, data) => {
+
+    await commonAPI.addUpdateDoc(firestoreCollections.albums, files, data, albumId)
+}
+
+export const deletePhotosFromAlbum = async (albumId, imageURL, oldData) => {
+    const imagesURLWithoutDeleted = oldData.imagesURL?.filter(img => img !== imageURL);
+    await addPhotosToAlbum(albumId, [], {...oldData, imagesURL: imagesURLWithoutDeleted})
+
+    await deleteImg(imageURL);
 }
 
 export default React.createContext({})

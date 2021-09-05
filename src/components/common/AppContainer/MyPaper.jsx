@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        flexFlow: 'column',
 
         width: '80vw',
         maxWidth: mW || 'auto',

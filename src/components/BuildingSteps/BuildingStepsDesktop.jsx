@@ -6,6 +6,7 @@ import s5 from '../../assets/BuildingSteps/s5.svg';
 import s6 from '../../assets/BuildingSteps/s6.svg';
 import s8 from '../../assets/BuildingSteps/s8.svg';
 import BuildingStep from "./BuildingStep";
+import allSteps from "../../assets/BuildingSteps/allSteps.png";
 
 
 const BuildingStepsDesktop = () => {
@@ -64,6 +65,9 @@ const BuildingStepsDesktop = () => {
             >
                 Монтаж инженерных сетей, контрутепление, внутрення отделка
             </BuildingStep>
+            <div>
+                <img style={{width: '100%'}} src={allSteps}/>
+            </div>
         </div>
     );
 };

@@ -13,6 +13,10 @@ import searchIcon from "../../../assets/Header/searchIcon.svg";
 const useStyles = makeStyles(theme => ({
     root: {
         position: 'relative',
+        width: '20px',
+    },
+    searchIcon: {
+        cursor: 'pointer',
     },
     input: {
         position: 'absolute',
@@ -50,7 +54,7 @@ const SearchContainer = ({houses}) => {
 
     return (
         <div className={styles.root}>
-            <div style={{cursor: 'pointer'}} onClick={() => setShowInput(s => !s)}>
+            <div className={styles.searchIcon} onClick={() => setShowInput(s => !s)}>
                 <img src={searchIcon}/>
             </div>
             {showInput &&

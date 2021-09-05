@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import MyPaper from "../AppContainer/MyPaper";
-import AdminCarousel from "../../Admin/DialogsContent/AdminCarousel";
+import AdminCarousel from "../AppContainer/AdminCarousel";
 import {Button, makeStyles, Typography} from "@material-ui/core";
 import {AlertContext} from "../../../AppContainer";
 
@@ -50,7 +50,7 @@ export const ContentSlide = ({children}) => {
     </div>
 }
 
-const ContentForm = ({children, withoutForm, handleSubmit, onSubmit, buttonTitle, errors}) => {
+const ContentForm = ({children, header, withoutForm, handleSubmit, onSubmit, buttonTitle, errors}) => {
     const styles = useStyles();
     const TryToSubmitWithAlerts = useContext(AlertContext);
 
@@ -58,6 +58,7 @@ const ContentForm = ({children, withoutForm, handleSubmit, onSubmit, buttonTitle
 
     return (
         <MyPaper style={{width: '600px'}}>
+            {header}
             <form style={{width: '90%'}}
                   onSubmit={withoutForm ? () => '': handleSubmit(TryToSubmitWithAlerts(onSubmit))}>
                 <AdminCarousel>

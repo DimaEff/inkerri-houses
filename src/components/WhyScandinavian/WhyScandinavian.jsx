@@ -108,7 +108,7 @@ const WhyScandinavian = ({grey}) => {
                     </div>
 
                     <MyButton action={() => history.push(Route())} variant={'secondary'}>
-                        Посмотреть проеты
+                        Посмотреть проекты
                     </MyButton>
                 </div>
             </AppContainerItem>

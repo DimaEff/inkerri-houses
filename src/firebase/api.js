@@ -84,10 +84,11 @@ export const commonAPI = {
     async addUpdateDoc(docCollection, files, data, doc) {
         const promises = files.map(file => addImg(file));
         const imagesURL = await Promise.all(promises);
+        const oldImagesURL = data.imagesURL || [];
 
         await addUpdateData(
             docCollection,
-            {...data, imagesURL, date: firebase.firestore.Timestamp.fromDate(new Date())},
+            {...data, imagesURL: [...oldImagesURL, ...imagesURL], date: firebase.firestore.Timestamp.fromDate(new Date())},
             doc
         );
     },

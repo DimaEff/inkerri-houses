@@ -20,10 +20,10 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         display: 'flex',
         width: '100%',
-        minHeight: '90px',
+        minHeight: '100px',
 
         [theme.breakpoints.down(1220)]: {
-            minHeight: '100px',
+            minHeight: '110px',
         },
 
         [theme.breakpoints.down(displaySize)]: {
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
     contactItem: {
         position: 'absolute',
-        top: '-2vw',
+        top: '-1.3vw',
 
         [theme.breakpoints.down(1220)]: {
             top: '-2.5vw',

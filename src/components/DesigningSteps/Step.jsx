@@ -1,5 +1,6 @@
 import React from 'react';
-import {makeStyles, Typography} from "@material-ui/core";
+import {Accordion, AccordionDetails, AccordionSummary, makeStyles, Typography} from "@material-ui/core";
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import TextContainer from "../common/AppContainer/TextContainer";
@@ -101,18 +102,21 @@ const Step = ({children, step, text, listTitle, image1, image2, withoutMargin}) 
             </AppContainerItem>
             <AppContainerItem margin lg={6} md={6} sm={12} xs={12}>
                 <div className={styles.list}>
-                    <TextContainer>
-                        <div>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}
+                                          aria-controls="panel1a-content"
+                                          id="panel1a-header"
+                        >
                             <Typography>
                                 {listTitle}
                             </Typography>
-                        </div>
-                        <div>
+                        </AccordionSummary>
+                        <AccordionDetails>
                             <ListItems icon={doubleCheckIcon}>
                                 {children}
                             </ListItems>
-                        </div>
-                    </TextContainer>
+                        </AccordionDetails>
+                    </Accordion>
                 </div>
             </AppContainerItem>
             <AppContainerItem margin={!withoutMargin} lg={6} md={6} sm={12} xs={12}>

@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
     contacts: {
         display: 'flex',
         justifyContent: 'flex-end',
+        alignItems: 'center',
 
         '& div': {
-            marginRight: '10px',
+            marginRight: '20px',
         }
     },
 }))
@@ -44,15 +45,11 @@ const NavigationMenuDesktop = ({paths}) => {
                 }
             </div>
             <div className={styles.contacts}>
-                <div>
-                    <SearchContainer />
-                </div>
-                <InstagramContact />
-                <div>
-                    <Typography color={'secondary'}>
-                        +7 (931) 308-57-59
-                    </Typography>
-                </div>
+                <SearchContainer/>
+                <InstagramContact/>
+                <Typography style={{height: '110%'}} color={'secondary'}>
+                    +7 (931) 308-57-59
+                </Typography>
             </div>
         </div>
     );

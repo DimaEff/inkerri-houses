@@ -49,9 +49,9 @@ const BuildingStep = ({children, step, img, orientation, rootTop, rootLeft, deco
     return (
         <div className={styles.root} {...props}>
             <div className={styles.decoration}>
-                <div className={styles.img}>
-                    <img src={img}/>
-                </div>
+                {/*<div className={styles.img}>*/}
+                {/*    <img src={img}/>*/}
+                {/*</div>*/}
                 <div className={styles.text}>
                     <Typography variant={'h5'} color={'error'}>{step} этап</Typography>
                     <Typography variant={'body2'}>{children}</Typography>
