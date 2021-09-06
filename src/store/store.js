@@ -5,6 +5,7 @@ import housesReducer from "./housesReducer";
 import userReducer from "./userReducer";
 import adminReducer from "./adminReducer";
 import bannersReducer from "./bannersReducer";
+import albumsReducer from "./albumsReducer";
 
 
 const reducers = combineReducers({
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     user: userReducer,
     admin: adminReducer,
     banners: bannersReducer,
+    albums: albumsReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

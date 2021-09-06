@@ -23,7 +23,7 @@ export const addHouse = async (data, includesCount, docId) => {
 
     const includes = [];
 
-    for (let i=1; i <= includesCount; i++) {
+    for (let i = 1; i <= includesCount; i++) {
         const includeName = `includes${i}`;
         const include = data[includeName];
         includes.push(include)
@@ -40,19 +40,30 @@ export const addNewsItem = async (data, docId) => {
     await commonAPI.addUpdateDoc(firestoreCollections.news, files, data, docId)
 }
 
-export const addBannerItem = async (e) => {
-    const files = [];
+const getArrayFromFiles = (files) => {
+    let filesArray = [];
 
-    for (const file of e.target.files) {
-        files.push(file);
+    for (const file of files) {
+        filesArray.push(file);
     }
 
-    await commonAPI.addUpdateDoc(firestoreCollections.banners, files, {})
+    return filesArray;
+}
+
+export const addBannerItem = async (files) => {
+    const validateFiles = getArrayFromFiles(files);
+
+    await commonAPI.addUpdateDoc(firestoreCollections.banners, validateFiles, {})
+}
+
+export const addNewAlbum = async (name) => {
+    await commonAPI.addUpdateDoc(firestoreCollections.albums, [], {name})
 }
 
 export const addPhotosToAlbum = async (albumId, files, data) => {
+    const validateFiles = getArrayFromFiles(files);
 
-    await commonAPI.addUpdateDoc(firestoreCollections.albums, files, data, albumId)
+    await commonAPI.addUpdateDoc(firestoreCollections.albums, validateFiles, data, albumId);
 }
 
 export const deletePhotosFromAlbum = async (albumId, imageURL, oldData) => {

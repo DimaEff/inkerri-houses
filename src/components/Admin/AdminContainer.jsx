@@ -6,11 +6,11 @@ import {getUser} from "../../selectors/user_selectors";
 import Admin from "./Admin";
 import {openCloseAdminDialogContent} from "../../store/adminReducer";
 import {getDefaultValues, getDialogContent, getIsOpenDialogContent} from "../../selectors/admin_selectors";
-import AdminContext, {addBannerItem, addHouse, addNewsItem, addPhotosToAlbum, deletePhotosFromAlbum} from "./AdminContext";
+import AdminContext, * as adminFunctions from "./AdminContext";
 
 
 const AdminContainer = (props) => {
-    return <AdminContext.Provider value={{addHouse, addNewsItem, addBannerItem, addPhotosToAlbum, deletePhotosFromAlbum}}>
+    return <AdminContext.Provider value={adminFunctions}>
         <Admin {...props}/>
     </AdminContext.Provider>
 };

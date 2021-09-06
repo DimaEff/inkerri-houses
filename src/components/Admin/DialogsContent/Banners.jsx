@@ -28,7 +28,7 @@ const AddImage = ({addBannerItem}) => {
 const Banners = ({banners}) => {
     const {addBannerItem} = useContext(AdminContext);
 
-    const deleteBanner = (id, imagesURL) => commonAPI.deleteDoc(firestoreCollections.banners, id, imagesURL);
+    const handleDeleteBanner = (id, imagesURL) => commonAPI.deleteDoc(firestoreCollections.banners, id, imagesURL);
 
     return (
         <ContentForm withoutForm={<AddImage addBannerItem={addBannerItem}/>}>
@@ -36,7 +36,7 @@ const Banners = ({banners}) => {
                 <AdminSliderImage id={id}
                                   bannersCount={banners.length}
                                   imageURL={imagesURL[0]}
-                                  deleteFunction={() => deleteBanner(id, imagesURL)}
+                                  deleteFunction={() => handleDeleteBanner(id, imagesURL)}
                 />
             </ContentSlide>)}
         </ContentForm>

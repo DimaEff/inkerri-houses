@@ -4,47 +4,32 @@ import AddIcon from "@material-ui/icons/Add";
 import {useForm, useWatch} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import {connect} from "react-redux";
 
 import Select from "../../common/Form/Select";
-import {getRandomString} from "../../../utils/helpers";
 import MyInput from "../../common/Form/MyInput";
 import ContentForm, {ContentSlide} from "../../common/Form/ContentForm";
 import AddImageButton from "../../common/Button/AddImageButton";
 import AdminSliderImage from "../../common/AppContainer/AdminSliderImage";
+import {getAlbums} from "../../../selectors/albums_selectors";
 import AdminContext from "../AdminContext";
+import {commonAPI} from "../../../firebase/api";
+import {firestoreCollections} from "../../../utils/consts";
 
-
-const testAlbums = [
-    {
-        id: 'fsgdvx',
-        name: 'Альбом 1',
-        imagesURL: ['https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80', 'https://smapse.ru/storage/2018/12/east-campus-aerial.jpg']
-    },
-    {
-        id: 'asaggwg',
-        name: 'Альбом 2',
-        imagesURL: ['https://www.timeoutdubai.com/public/styles/full_img/public/images/2020/07/13/IMG-Dubai-UAE.jpg?itok=j4dmDDZa', 'https://mywowo.net/media/images/cache/dubai_img_worlds_of_adventure_01_presentazione_jpg_1200_630_cover_85.jpg']
-    },
-    {
-        id: 'sddbe',
-        name: 'Альбом 3',
-        imagesURL: []
-    },
-];
 
 const schema = yup.object().shape({
     name: yup.string()
         .required().min(3, 'Минимум 3 символа').max(30, 'Минимум 3 символа'),
 });
 
-const AlbumsHeader = ({albums, setAlbums, setCurrentAlbum}) => {
+const AlbumsHeader = ({albums, addAlbum, deleteAlbum, setCurrentAlbum}) => {
     const [open, setOpen] = useState(false);
 
     const {register, setValue, control, handleSubmit, formState: {errors}} = useForm({
         mode: 'onBlur',
         resolver: yupResolver(schema),
         defaultValues: {
-            currentAlbum: albums[0].id,
+            currentAlbum: albums[0]?.id,
         }
     })
 
@@ -59,11 +44,10 @@ const AlbumsHeader = ({albums, setAlbums, setCurrentAlbum}) => {
     }
 
     const handleAddAlbum = (data) => {
-        const res = testAlbums.push({id: getRandomString(), name: data.name, imagesURL: []});
-        setAlbums(testAlbums);
+        addAlbum(data.name);
         resetName();
     }
-    
+
     return (
         <form onSubmit={handleSubmit(handleAddAlbum)}>
             <Select {...register('currentAlbum')}>
@@ -74,38 +58,59 @@ const AlbumsHeader = ({albums, setAlbums, setCurrentAlbum}) => {
                     <div style={{display: 'flex', justifyContent: 'space-between', width: '300px'}}>
                         <MyInput placeholder={'Название альбома'} errorText={errors.name} {...register('name')}/>
                         <IconButton type={'submit'}>
-                            <AddIcon />
+                            <AddIcon/>
                         </IconButton>
-                    </div>:
-                    <Button type={'button'} variant={'outlined'} onClick={() => setOpen(true)}>
-                        Добавить альбом
-                    </Button>
+                    </div> :
+                    <div>
+                        <Button type={'button'} variant={'outlined'} onClick={() => setOpen(true)}>
+                            Добавить альбом
+                        </Button>
+                        <Button type={'button'} variant={'outlined'} onDoubleClick={deleteAlbum}>
+                            Удалить текущий альбом
+                        </Button>
+                    </div>
                 }
             </div>
         </form>
     )
 }
 
-const Albums = () => {
-    const {addPhotosToAlbum, deletePhotosFromAlbum} = useContext(AdminContext);
+const Albums = ({albums}) => {
+    const {addNewAlbum, addPhotosToAlbum, deletePhotosFromAlbum} = useContext(AdminContext);
 
-    // Надо подключить компонент к стору(но сначала сделать редьюсер) и передать альбомы.
-    // Потом добавить использование функций add..., delete...
-    const [albums, setAlbums] = useState(testAlbums);
     const [currentAlbum, setCurrentAlbum] = useState(null);
-    
+
+    const currentAlbumData = albums.find(album => album.id === currentAlbum);
+
+    const handleAddImages = (e) => {
+        addPhotosToAlbum(currentAlbum, e, currentAlbumData);
+    }
+
+    const handleDeleteImage = (imageURL) => {
+        deletePhotosFromAlbum(currentAlbum, imageURL, currentAlbumData);
+    }
+
+    const handleDeleteAlbum = () => {
+        commonAPI.deleteDoc(firestoreCollections.albums, currentAlbum, currentAlbumData.imagesURL);
+    }
+
     return (
-        <ContentForm withoutForm={<AddImageButton addItem={() => console.log('add img')}/>} 
-                     header={<AlbumsHeader albums={albums} setAlbums={setAlbums} setCurrentAlbum={setCurrentAlbum}/>}
+        <ContentForm withoutForm={<AddImageButton multiple addItem={handleAddImages}/>}
+                     header={<AlbumsHeader albums={albums} deleteAlbum={handleDeleteAlbum} addAlbum={addNewAlbum}
+                                           setCurrentAlbum={setCurrentAlbum}/>}
         >
-            {albums.find(({id}) => id === currentAlbum)?.imagesURL.map((imageURL) => <ContentSlide key={imageURL}>
+            {albums.find(({id}) => id === currentAlbum)?.imagesURL?.map((imageURL) => <ContentSlide key={imageURL}>
                 <AdminSliderImage id={imageURL}
                                   imageURL={imageURL}
-                                  deleteFunction={() => console.log('delete img')}
+                                  deleteFunction={() => handleDeleteImage(imageURL)}
                 />
             </ContentSlide>)}
         </ContentForm>
     );
 };
 
-export default Albums;
+const mapStateToProps = (state) => ({
+    albums: getAlbums(state),
+})
+
+export default connect(mapStateToProps, {})(Albums);

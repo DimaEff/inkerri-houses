@@ -1,15 +1,15 @@
-const SET_BANNERS_IMAGES = 'bannersReducer/SET_BANNERS_IMAGES';
+const SET_ALBUMS_IMAGES = 'albumsReducer/SET_ALBUMS_IMAGES';
 
 const initialState = {
     albums: [],
 }
 
-const bannersReducer = (state = initialState, action) => {
+const albumsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_BANNERS_IMAGES:
+        case SET_ALBUMS_IMAGES:
             return {
                 ...state,
-                banners: action.payload,
+                albums: action.payload,
             }
 
         default:
@@ -17,6 +17,6 @@ const bannersReducer = (state = initialState, action) => {
     }
 }
 
-export const setBanners = (payload) => ({type: SET_BANNERS_IMAGES, payload});
+export const setAlbums = (payload) => ({type: SET_ALBUMS_IMAGES, payload});
 
-export default bannersReducer;
+export default albumsReducer;

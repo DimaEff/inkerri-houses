@@ -28,6 +28,10 @@ const AdminSliderImage = ({imageURL, bannersCount, deleteFunction}) => {
 
     const [openDelete, setOpenDelete] = useState(false);
 
+    const handleDelete = () => {
+
+    }
+
     return (
         <div className={styles.bannerRoot}
              onMouseEnter={() => setOpenDelete(true)}

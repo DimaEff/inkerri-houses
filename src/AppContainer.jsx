@@ -1,31 +1,29 @@
 import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
-import {useLocation} from "react-router-dom";
 
 import './App.css';
 import {auth} from "./firebase";
 import {setHouses, setMinMaxValues} from "./store/housesReducer";
 import {setCurrentUser} from "./store/userReducer";
 import SuccessAlert from "./components/common/Alerts/SuccessAlert";
-import {getPhotosRoute} from "./AppRouter/consts";
-import PhotosContainer from "./Pages/Photos/PhotosContainer";
 import FailedAlert from "./components/common/Alerts/FailedAlert";
 import {firestoreCollections} from "./utils/consts";
 import useSubscribeCollection from "./hooks/useSubscribeCollection";
 import {setBanners} from "./store/bannersReducer";
+import {setAlbums} from "./store/albumsReducer";
 import App from "./App";
 
 
 export const AlertContext = React.createContext(null);
 
-const AppContainer = ({setBanners, setHouses, setMinMaxValues, setCurrentUser}) => {
+const AppContainer = ({setBanners, setHouses, setMinMaxValues, setCurrentUser, setAlbums}) => {
     const setHousesAndMinMaxValues = async (houses) => {
         await setHouses(houses);
         setMinMaxValues();
-    }
-    useSubscribeCollection(firestoreCollections.houses, setHousesAndMinMaxValues)
-
-    useSubscribeCollection(firestoreCollections.banners, setBanners)
+    };
+    useSubscribeCollection(firestoreCollections.houses, setHousesAndMinMaxValues);
+    useSubscribeCollection(firestoreCollections.banners, setBanners);
+    useSubscribeCollection(firestoreCollections.albums, setAlbums);
 
     useEffect(() => {
         auth.onAuthStateChanged(user => {
@@ -63,5 +61,6 @@ export default connect(
         setBanners,
         setHouses,
         setMinMaxValues,
-        setCurrentUser
+        setCurrentUser,
+        setAlbums,
     })(AppContainer);
