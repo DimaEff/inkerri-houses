@@ -7,7 +7,7 @@ import AppContainer from "../common/AppContainer/AppContainer";
 import AppContainerItem from "../common/AppContainer/AppContainerItem";
 import TextIcon from "../common/Text/TextIcon";
 import MyButton from "../common/Button/MyButton";
-import {Route} from "../../AppRouter/consts";
+import {HouseRoute} from "../../AppRouter/consts";
 import {displaySize} from "../../utils/consts";
 import energyImg from '../../assets/Building2/energy.svg';
 import viewImg from '../../assets/Building2/view.svg';
@@ -107,7 +107,7 @@ const WhyScandinavian = ({grey}) => {
                         </Dialog>
                     </div>
 
-                    <MyButton action={() => history.push(Route())} variant={'secondary'}>
+                    <MyButton action={() => history.push(HouseRoute())} variant={'secondary'}>
                         Посмотреть проекты
                     </MyButton>
                 </div>

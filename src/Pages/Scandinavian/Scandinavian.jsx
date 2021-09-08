@@ -14,7 +14,7 @@ const Scandinavian = ({photos}) => {
             {/*<BuildingStepsContainer />*/}
             <BuildingSteps />
             <WhyScandinavian grey/>
-            <PhotosContainer photos={photos}/>
+            <PhotosContainer content={photos}/>
         </div>
     );
 };

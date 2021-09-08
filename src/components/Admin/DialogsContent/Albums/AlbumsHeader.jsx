@@ -1,20 +1,12 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Button, IconButton} from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import React, {useEffect, useState} from 'react';
+import * as yup from "yup";
 import {useForm, useWatch} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import {connect} from "react-redux";
+import {Button, IconButton} from "@material-ui/core";
 
-import Select from "../../common/Form/Select";
-import MyInput from "../../common/Form/MyInput";
-import ContentForm, {ContentSlide} from "../../common/Form/ContentForm";
-import AddImageButton from "../../common/Button/AddImageButton";
-import AdminSliderImage from "../../common/AppContainer/AdminSliderImage";
-import {getAlbums} from "../../../selectors/albums_selectors";
-import AdminContext from "../AdminContext";
-import {commonAPI} from "../../../firebase/api";
-import {firestoreCollections} from "../../../utils/consts";
+import Select from "../../../common/Form/Select";
+import MyInput from "../../../common/Form/MyInput";
+import AddIcon from "@material-ui/icons/Add";
 
 
 const schema = yup.object().shape({
@@ -75,42 +67,4 @@ const AlbumsHeader = ({albums, addAlbum, deleteAlbum, setCurrentAlbum}) => {
     )
 }
 
-const Albums = ({albums}) => {
-    const {addNewAlbum, addPhotosToAlbum, deletePhotosFromAlbum} = useContext(AdminContext);
-
-    const [currentAlbum, setCurrentAlbum] = useState(null);
-
-    const currentAlbumData = albums.find(album => album.id === currentAlbum);
-
-    const handleAddImages = (e) => {
-        addPhotosToAlbum(currentAlbum, e, currentAlbumData);
-    }
-
-    const handleDeleteImage = (imageURL) => {
-        deletePhotosFromAlbum(currentAlbum, imageURL, currentAlbumData);
-    }
-
-    const handleDeleteAlbum = () => {
-        commonAPI.deleteDoc(firestoreCollections.albums, currentAlbum, currentAlbumData.imagesURL);
-    }
-
-    return (
-        <ContentForm withoutForm={<AddImageButton multiple addItem={handleAddImages}/>}
-                     header={<AlbumsHeader albums={albums} deleteAlbum={handleDeleteAlbum} addAlbum={addNewAlbum}
-                                           setCurrentAlbum={setCurrentAlbum}/>}
-        >
-            {albums.find(({id}) => id === currentAlbum)?.imagesURL?.map((imageURL) => <ContentSlide key={imageURL}>
-                <AdminSliderImage id={imageURL}
-                                  imageURL={imageURL}
-                                  deleteFunction={() => handleDeleteImage(imageURL)}
-                />
-            </ContentSlide>)}
-        </ContentForm>
-    );
-};
-
-const mapStateToProps = (state) => ({
-    albums: getAlbums(state),
-})
-
-export default connect(mapStateToProps, {})(Albums);
+export default AlbumsHeader;

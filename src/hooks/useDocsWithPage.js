@@ -20,6 +20,7 @@ const useDocsWithPage = (collection, orderField, limit, method) => {
             setIsLastPage(data.isLastPage);
         }
         if (isFetching && !isLastPage) fetchData()
+
     }, [isFetching, isLastPage, lastDoc]);
 
     return {docs, isLastPage, handleStartFetch: () => setIsFetching(true), isFetching}

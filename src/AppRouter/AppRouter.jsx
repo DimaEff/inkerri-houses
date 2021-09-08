@@ -1,5 +1,5 @@
-import React from 'react';
-import {Switch, Route, Redirect} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {Switch, Route, Redirect, useLocation} from "react-router-dom";
 
 // import withAuthRedirect from "./withAuthRedirect";
 import withSuspense from "./withSuspense";

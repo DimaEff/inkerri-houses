@@ -1,12 +1,6 @@
 import React from "react";
 
-import {
-    getHomeRoute,
-    getPhotosRoute,
-    getScandinavianRoute,
-    getDesigningRoute,
-    getConsultingRoute, getNewsItemRoute, ItemRoute, getNewsRoute, Route,
-} from "./consts";
+import * as routes from "./consts";
 import Home from "../Pages/Home/Home";
 import HousesContainer from '../Pages/Houses/HousesContainer';
 
@@ -20,50 +14,52 @@ const PhotosContainer = React.lazy(() => import("../Pages/Photos/PhotosContainer
 const appRoutes = [
     {
         name: 'Главная',
-        path: getHomeRoute(),
+        path: routes.getHomeRoute(),
         Component: Home,
         exact: true,
         menuNum: 1,
     },
     {
         name: 'Новости',
-        path: getNewsItemRoute(),
+        path: routes.getNewsItemRoute(),
         Component: NewsContainer,
         lazyLoading: true,
-        menuPath: getNewsRoute(),
+        menuPath: routes.getNewsRoute(),
         menuNum: 1,
     },
     {
         name: 'Готовые проекты',
-        path: ItemRoute(),
+        path: routes.HouseItemRoute(),
         Component: HousesContainer,
-        menuPath: Route(),
+        menuPath: routes.HouseRoute(),
         menuNum: 1,
     },
     {
         name: 'Фотогалерея',
-        path: getPhotosRoute(),
+        path: routes.getPhotosAlbumRoute(),
         Component: PhotosContainer,
         lazyLoading: true,
+        menuPath: routes.getPhotosRoute(),
         menuNum: 1,
+        withoutElement: true,
     },
     {
         name: 'Скандинавские дома',
-        path: getScandinavianRoute(),
+        path: routes.getScandinavianRoute(),
         Component: ScandinavianContainer,
         lazyLoading: true,
         menuNum: 2,
     },
     {
         name: 'Проектирование',
-        path: getDesigningRoute(),
+        path: routes.getDesigningRoute(),
         Component: Designing,
         lazyLoading: true,
         menuNum: 2,
     },
     {
         name: 'Консультации',
-        path: getConsultingRoute(),
+        path: routes.getConsultingRoute(),
         Component: Consulting,
         lazyLoading: true,
         menuNum: 2,

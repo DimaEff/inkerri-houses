@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-const PhotosContainer = ({children, photos, afterPhotos}) => {
+const PhotosContainer = ({children, content, afterPhotos, ...props}) => {
     const styles = useStyles();
 
     const breakpointColumnsObjDefault = {
@@ -28,8 +28,8 @@ const PhotosContainer = ({children, photos, afterPhotos}) => {
         <Grid className={styles.root} container>
             {children}
             <Container maxWidth={'lg'}>
-                <ImageContainer breakpointColumnsObj={breakpointColumnsObjDefault}>
-                    {photos}
+                <ImageContainer breakpointColumnsObj={breakpointColumnsObjDefault} {...props}>
+                    {content}
                 </ImageContainer>
             </Container>
             {afterPhotos}

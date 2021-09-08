@@ -3,7 +3,7 @@ import {makeStyles, Paper, Typography} from "@material-ui/core";
 
 import MyInput from "../Form/MyInput";
 import Link from "../Text/Link";
-import {ItemRoute} from "../../../AppRouter/consts";
+import {HouseItemRoute} from "../../../AppRouter/consts";
 
 
 const useStyles = makeStyles(theme => ({
@@ -36,7 +36,7 @@ const Item = ({item, setShowInput}) => {
                   fontWeight={'bold'}
                   onClick={() => setShowInput(false)}
                   color={'primary'}
-                  to={ItemRoute(item.id)}>
+                  to={HouseItemRoute(item.id)}>
                 {item.title}
             </Link>
         </div>

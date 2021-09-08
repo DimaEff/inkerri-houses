@@ -5,7 +5,7 @@ import AppContainerItem from "./AppContainerItem";
 
 
 // Стили для Masonry находятся в App.css
-const ImageContainer = ({children, breakpointColumnsObj, ...props}) => {
+const ImageContainer = ({children, breakpointColumnsObj, readyChildren}) => {
     const breakpointColumnsObjDefault = {
         default: 4,
         600: 3,
@@ -13,14 +13,15 @@ const ImageContainer = ({children, breakpointColumnsObj, ...props}) => {
     };
 
     return (
-        <div {...props}>
+        <div>
             <AppContainerItem lg={12} md={12} sm={12} xs={12}>
                 <Masonry
                     breakpointCols={breakpointColumnsObj || breakpointColumnsObjDefault}
                     className="my-masonry-grid"
-                    columnClassName="my-masonry-grid_column">
-                    {children?.map((img, index) => <div key={img + index}>
-                        <img src={img}/>
+                    columnClassName="my-masonry-grid_column"
+                >
+                    {children?.map((item, index) => <div key={item.toString() + index}>
+                        {readyChildren ? item: <img src={item}/>}
                     </div>)}
                 </Masonry>
             </AppContainerItem>
